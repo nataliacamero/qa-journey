@@ -1,0 +1,18 @@
+{
+  "name": "qa-journey",
+  "version": "1.0.0",
+  "description": "Este repositorio documenta mi transición estratégica de Frontend Developer a **QA Engineer de Élite**, enfocándome en excelencia técnica, automatización y prevención de defectos.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.7"
+  }
+}
