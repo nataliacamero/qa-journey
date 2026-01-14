@@ -14,3 +14,23 @@ test("TC-01: Login Exitoso (Happy Path)", async ({ page }) => {
   // 4. Validar que entramos (Aserción)
   await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
 });
+
+test("TC-02: Login Fallido (Sad Path)", async ({ page }) => {
+  // 1. Ir a la página de Login
+  await page.goto("https://www.saucedemo.com/");
+
+  // 2. Escribir usuario correcto (Usando el atributo técnico data-test)
+  await page.locator('[data-test="username"]').fill("standard_user");
+
+  // 3. Escribir contraseña incorrecta
+  await page.locator('[data-test="password"]').fill("no_es_esta");
+
+  // 4. Hacer clic en el botón de Login
+  await page.locator('[data-test="login-button"]').click();
+
+  // 5. Validar que no entramos y vemos el mensaje de error (Aserción)
+  await expect(page.locator('[data-test="error"]')).toBeVisible();
+  await expect(page.locator('[data-test="error"]')).toContainText(
+    "Epic sadface: Username and password do not match any user in this service"
+  );
+});
