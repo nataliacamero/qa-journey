@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Panel de Control - Natalia QA</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #f0f2f5;
+        color: #333;
+        padding: 20px;
+      }
+      .card {
+        background: white;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: auto;
+      }
+      h1 {
+        color: #2c3e50;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 15px;
+        margin-top: 0;
+      }
+      .date {
+        color: #7f8c8d;
+        font-size: 0.9em;
+        margin-bottom: 20px;
+        display: block;
+      }
+      .task {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+        font-size: 1.1em;
+        transition: 0.3s;
+        padding: 10px;
+        border-radius: 6px;
+      }
+      .task:hover {
+        background: #f8f9fa;
+      }
+      input[type="checkbox"] {
+        width: 22px;
+        height: 22px;
+        margin-right: 15px;
+        cursor: pointer;
+        accent-color: #27ae60;
+      }
+      .status {
+        font-weight: bold;
+        color: #3498db;
+        margin-top: 20px;
+        font-size: 1.2em;
+        text-align: right;
+      }
+      .progress-bar {
+        height: 10px;
+        background: #e0e0e0;
+        border-radius: 5px;
+        margin-top: 10px;
+        overflow: hidden;
+      }
+      .fill {
+        height: 100%;
+        background: #27ae60;
+        width: 0%;
+        transition: width 0.5s ease;
+      }
+      .badge {
+        background: #e67e22;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.7em;
+        margin-left: 10px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>🚀 Misión: Estrategia & Nube</h1>
+      <span class="date"
+        >📅 Miércoles 14 de Enero | Objetivo: Teoría Selectores + GitHub</span
+      >
+
+      <div class="task">
+        <input type="checkbox" id="t0" />
+        <label for="t0"
+          >📖 Lectura: Selectores Resilientes + Quiz
+          <span class="badge">NUEVO</span></label
+        >
+      </div>
+      <div class="task">
+        <input type="checkbox" id="t1" />
+        <label for="t1">🔗 Crear Repo GitHub y conectar local</label>
+      </div>
+      <div class="task">
+        <input type="checkbox" id="t2" />
+        <label for="t2">✍️ Escribir TC-02 (Login Fallido) desde cero</label>
+      </div>
+      <div class="task">
+        <input type="checkbox" id="t3" />
+        <label for="t3">🕵️‍♀️ Aprender "Inspector Codegen" (Magia)</label>
+      </div>
+      <div class="task">
+        <input type="checkbox" id="t4" />
+        <label for="t4">📊 Actualizar Excel y Sincronizar</label>
+      </div>
+      <div class="task">
+        <input type="checkbox" id="t5" />
+        <label for="t5">💾 Git Commit & Push (Nube)</label>
+      </div>
+
+      <div class="status">Progreso: <span id="percent">0%</span></div>
+      <div class="progress-bar"><div class="fill" id="fill"></div></div>
+    </div>
+
+    <script>
+      const checks = document.querySelectorAll('input[type="checkbox"]');
+      const percent = document.getElementById("percent");
+      const fill = document.getElementById("fill");
+
+      checks.forEach((check, index) => {
+        const saved = localStorage.getItem("qa-task-14-01-v2-" + index); // v2 para resetear mañana
+        if (saved === "true") check.checked = true;
+        check.addEventListener("change", () => {
+          localStorage.setItem("qa-task-14-01-v2-" + index, check.checked);
+          update();
+        });
+      });
+
+      function update() {
+        const checked = document.querySelectorAll("input:checked").length;
+        const pct = Math.round((checked / checks.length) * 100);
+        percent.innerText = pct + "%";
+        fill.style.width = pct + "%";
+        if (pct === 100)
+          document.querySelector("h1").innerText = "🎉 ¡EXCELENCIA PURA! 🎉";
+      }
+      update();
+    </script>
+  </body>
+</html>
