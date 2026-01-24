@@ -6,7 +6,7 @@
     <style>
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: #fdfcf0;
+        background: #fdfcf0; /* Un tono crema suave para la calma */
         color: #2c3e50;
         padding: 20px;
       }
@@ -21,7 +21,7 @@
       }
       h1 {
         color: #1a1a1a;
-        border-bottom: 4px solid #f1c40f;
+        border-bottom: 4px solid #f1c40f; /* Amarillo energía */
         padding-bottom: 15px;
         margin-top: 0;
         font-size: 1.8em;
@@ -87,57 +87,65 @@
         font-weight: bold;
         text-transform: uppercase;
       }
+      .badge-warmup {
+        background: #e67e22; /* Naranja para calentar */
+        color: white;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.75em;
+        margin-left: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
     </style>
   </head>
   <body>
     <div class="card">
-      <h1>🏗️ Misión: Arquitectura & Robustez</h1>
+      <h1>🚀 Misión: Retorno & Consolidación</h1>
       <span class="date"
-        >📅 Jueves 15 de Enero | Objetivo: POM e Intro a Validaciones</span
+        >📅 Sábado 24 de Enero | Objetivo: Cerrar pendientes y TC-03</span
       >
 
       <div class="task">
         <input type="checkbox" id="t0" />
         <label for="t0"
-          >📖 Lectura: Page Object Model (POM) - ¿Por qué modularizar?
-          <span class="badge">NUEVO</span></label
+          >🔥 Warm-up: Git Status & Review (Ubicarnos en contexto)
+          <span class="badge-warmup">INICIO</span></label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t1" />
         <label for="t1"
-          >🧹 Refactor: Limpiar TC-01 y TC-02 (Remover clicks
-          innecesarios)</label
+          >🧪 TC-03: Crear test "Email Inválido" (Sad Path) con Codegen</label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t2" />
-        <label for="t2"
-          >✍️ Escribir TC-03 (Formato Email) - Usando Codegen</label
-        >
+        <label for="t2">🏗️ Refactor TC-03: Integrarlo en LoginPage (POM)</label>
       </div>
       <div class="task">
         <input type="checkbox" id="t3" />
         <label for="t3"
-          >🧩 Reto: Crear tu primer "Page Object" para el Login</label
+          >⚙️ Config: Implementar Path Aliases (@pages/...)
+          <span class="badge">PRO</span></label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t4" />
         <label for="t4"
-          >📊 Actualizar Excel de Roadmap (Poner TC-03 en verde)</label
+          >📊 Excel: Actualizar Roadmap (Poner TC-03 en Verde)</label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t5" />
         <label for="t5"
-          >🚀 Git Commit & Push (Asegurar progreso en GitHub)</label
+          >💾 Git Commit & Push (Guardar progreso del retorno)</label
         >
       </div>
 
       <div class="status-container">
         <div class="status-text">
-          <span>Progreso de la sesión:</span> <span id="percent">0%</span>
+          <span>Progreso de hoy:</span> <span id="percent">0%</span>
         </div>
         <div class="progress-bar"><div class="fill" id="fill"></div></div>
       </div>
@@ -148,11 +156,14 @@
       const percent = document.getElementById("percent");
       const fill = document.getElementById("fill");
 
+      // Clave única para hoy (24 de Enero) para que empiece en 0%
+      const STORAGE_KEY = "qa-task-24-01-retorno-";
+
       checks.forEach((check, index) => {
-        const saved = localStorage.getItem("qa-task-15-01-pom-" + index);
+        const saved = localStorage.getItem(STORAGE_KEY + index);
         if (saved === "true") check.checked = true;
         check.addEventListener("change", () => {
-          localStorage.setItem("qa-task-15-01-pom-" + index, check.checked);
+          localStorage.setItem(STORAGE_KEY + index, check.checked);
           update();
         });
       });
@@ -163,8 +174,7 @@
         percent.innerText = pct + "%";
         fill.style.width = pct + "%";
         if (pct === 100) {
-          document.querySelector("h1").innerText =
-            "🌟 ¡ARQUITECTA DE ÉLITE! 🌟";
+          document.querySelector("h1").innerText = "🌟 ¡RETORNO EXITOSO! 🌟";
           document.querySelector("h1").style.color = "#27ae60";
         }
       }
