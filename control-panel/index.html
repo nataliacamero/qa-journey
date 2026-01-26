@@ -21,7 +21,7 @@
       }
       h1 {
         color: #1a1a1a;
-        border-bottom: 4px solid #8e44ad; /* Morado para "Expansión" */
+        border-bottom: 4px solid #8e44ad; /* Morado Expansión */
         padding-bottom: 15px;
         margin-top: 0;
         font-size: 1.8em;
@@ -73,12 +73,22 @@
       }
       .fill {
         height: 100%;
-        background: #8e44ad; /* Barra Morada */
+        background: #8e44ad;
         width: 0%;
         transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .badge {
         background: #2980b9;
+        color: white;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 0.75em;
+        margin-left: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .badge-read {
+        background: #27ae60; /* Verde Lectura */
         color: white;
         padding: 3px 10px;
         border-radius: 20px;
@@ -93,7 +103,7 @@
     <div class="card">
       <h1>🚀 Misión: Expansión & Inventario</h1>
       <span class="date"
-        >📅 Martes 27 de Enero | Objetivo: Validar el Inventario (POM)</span
+        >📅 Martes 27 de Enero | Objetivo: Validar Listas y Productos</span
       >
 
       <div class="task">
@@ -103,32 +113,38 @@
       <div class="task">
         <input type="checkbox" id="t1" />
         <label for="t1"
-          >🏗️ Arquitectura: Crear archivo
-          <code>pages/ProductPage.ts</code></label
+          >📖 Lectura: "Lists & Locators" (Playwright Docs)
+          <span class="badge-read">TEORÍA</span></label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t2" />
         <label for="t2"
-          >🧪 Testing: Crear <code>tests/inventory.spec.ts</code></label
+          >🏗️ Arquitectura: Crear archivo
+          <code>pages/ProductPage.ts</code></label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t3" />
         <label for="t3"
-          >🧠 Lógica: Validar lista de items (Uso de Arrays)
-          <span class="badge">NUEVO</span></label
+          >🧪 Testing: Crear <code>tests/inventory.spec.ts</code></label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t4" />
         <label for="t4"
-          >⚙️ Config: Usar el alias <code>@pages</code> en el nuevo test</label
+          >🧠 Lógica: Validar lista de items (Arrays y Bucles)</label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t5" />
-        <label for="t5">💾 Git: Commit & Push de la nueva Feature</label>
+        <label for="t5"
+          >⚙️ Config: Usar el alias <code>@pages</code> en el nuevo test</label
+        >
+      </div>
+      <div class="task">
+        <input type="checkbox" id="t6" />
+        <label for="t6">💾 Git: Commit & Push de la nueva Feature</label>
       </div>
 
       <div class="status-container">
@@ -145,7 +161,7 @@
       const fill = document.getElementById("fill");
 
       // Clave única para el 27 de Enero
-      const STORAGE_KEY = "qa-task-27-01-inventory-";
+      const STORAGE_KEY = "qa-task-27-01-inventory-v2-";
 
       checks.forEach((check, index) => {
         const saved = localStorage.getItem(STORAGE_KEY + index);
@@ -171,4 +187,3 @@
     </script>
   </body>
 </html>
- 
