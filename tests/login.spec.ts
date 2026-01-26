@@ -28,6 +28,23 @@ test("TC-02: Login Fallido (Sad Path)", async ({ page }) => {
   // 3. Validar que no entramos y vemos el mensaje de error (Aserción)
   await expect(loginPage.errorMessage).toBeVisible();
   await expect(loginPage.errorMessage).toContainText(
-    "Epic sadface: Username and password do not match any user in this service"
+    "Epic sadface: Username and password do not match any user in this service",
+  );
+});
+
+test("TC-03: Login Fallido (Sad Path) - Usuario vacio", async ({ page }) => {
+  //Instanciamos la clase LoginPage
+  const loginPage = new LoginPage(page);
+
+  // 1. Ir a la página de Login
+  await loginPage.navigateTo();
+
+  // 2. Escribir usuario vacio y contraseña correcta y clicar el boton de login.
+  await loginPage.login("", "secret_sauce");
+
+  // 3. Validar que no entramos y vemos el mensaje de error (Aserción)
+  await expect(loginPage.errorMessage).toBeVisible();
+  await expect(loginPage.errorMessage).toContainText(
+    "Epic sadface: Username is required",
   );
 });
