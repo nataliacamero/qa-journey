@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
     <style>
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: #fdfcf0; /* Un tono crema suave para la calma */
+        background: #fdfcf0;
         color: #2c3e50;
         padding: 20px;
       }
@@ -21,7 +21,7 @@
       }
       h1 {
         color: #1a1a1a;
-        border-bottom: 4px solid #f1c40f; /* Amarillo energía */
+        border-bottom: 4px solid #8e44ad; /* Morado para "Expansión" */
         padding-bottom: 15px;
         margin-top: 0;
         font-size: 1.8em;
@@ -50,7 +50,7 @@
         height: 24px;
         margin-right: 18px;
         cursor: pointer;
-        accent-color: #f1c40f;
+        accent-color: #8e44ad;
       }
       .status-container {
         margin-top: 30px;
@@ -73,22 +73,12 @@
       }
       .fill {
         height: 100%;
-        background: #f1c40f;
+        background: #8e44ad; /* Barra Morada */
         width: 0%;
         transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .badge {
-        background: #3498db;
-        color: white;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-size: 0.75em;
-        margin-left: 10px;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-      .badge-warmup {
-        background: #e67e22; /* Naranja para calentar */
+        background: #2980b9;
         color: white;
         padding: 3px 10px;
         border-radius: 20px;
@@ -101,51 +91,49 @@
   </head>
   <body>
     <div class="card">
-      <h1>🚀 Misión: Retorno & Consolidación</h1>
+      <h1>🚀 Misión: Expansión & Inventario</h1>
       <span class="date"
-        >📅 Sábado 24 de Enero | Objetivo: Cerrar pendientes y TC-03</span
+        >📅 Martes 27 de Enero | Objetivo: Validar el Inventario (POM)</span
       >
 
       <div class="task">
         <input type="checkbox" id="t0" />
-        <label for="t0"
-          >🔥 Warm-up: Git Status & Review (Ubicarnos en contexto)
-          <span class="badge-warmup">INICIO</span></label
-        >
+        <label for="t0">🔥 Warm-up: git status (Verificar limpieza)</label>
       </div>
       <div class="task">
         <input type="checkbox" id="t1" />
         <label for="t1"
-          >🧪 TC-03: Crear test "Email Inválido" (Sad Path) con Codegen</label
+          >🏗️ Arquitectura: Crear archivo
+          <code>pages/ProductPage.ts</code></label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t2" />
-        <label for="t2">🏗️ Refactor TC-03: Integrarlo en LoginPage (POM)</label>
+        <label for="t2"
+          >🧪 Testing: Crear <code>tests/inventory.spec.ts</code></label
+        >
       </div>
       <div class="task">
         <input type="checkbox" id="t3" />
         <label for="t3"
-          >⚙️ Config: Implementar Path Aliases (@pages/...)
-          <span class="badge">PRO</span></label
+          >🧠 Lógica: Validar lista de items (Uso de Arrays)
+          <span class="badge">NUEVO</span></label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t4" />
         <label for="t4"
-          >📊 Excel: Actualizar Roadmap (Poner TC-03 en Verde)</label
+          >⚙️ Config: Usar el alias <code>@pages</code> en el nuevo test</label
         >
       </div>
       <div class="task">
         <input type="checkbox" id="t5" />
-        <label for="t5"
-          >💾 Git Commit & Push (Guardar progreso del retorno)</label
-        >
+        <label for="t5">💾 Git: Commit & Push de la nueva Feature</label>
       </div>
 
       <div class="status-container">
         <div class="status-text">
-          <span>Progreso de hoy:</span> <span id="percent">0%</span>
+          <span>Progreso de mañana:</span> <span id="percent">0%</span>
         </div>
         <div class="progress-bar"><div class="fill" id="fill"></div></div>
       </div>
@@ -156,8 +144,8 @@
       const percent = document.getElementById("percent");
       const fill = document.getElementById("fill");
 
-      // Clave única para hoy (24 de Enero) para que empiece en 0%
-      const STORAGE_KEY = "qa-task-24-01-retorno-";
+      // Clave única para el 27 de Enero
+      const STORAGE_KEY = "qa-task-27-01-inventory-";
 
       checks.forEach((check, index) => {
         const saved = localStorage.getItem(STORAGE_KEY + index);
@@ -174,11 +162,13 @@
         percent.innerText = pct + "%";
         fill.style.width = pct + "%";
         if (pct === 100) {
-          document.querySelector("h1").innerText = "🌟 ¡RETORNO EXITOSO! 🌟";
-          document.querySelector("h1").style.color = "#27ae60";
+          document.querySelector("h1").innerText =
+            "🌟 ¡QA ENGINEER NIVEL 2! 🌟";
+          document.querySelector("h1").style.color = "#8e44ad";
         }
       }
       update();
     </script>
   </body>
 </html>
+ 
