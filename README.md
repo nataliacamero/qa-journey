@@ -1,3 +1,23 @@
+# 🚀 QA Journey - Automatización con Playwright
+
+Bienvenido a mi repositorio de aprendizaje y especialización en QA Automation. Este proyecto documenta mi transición de **Frontend Developer** a **SDET (Software Development Engineer in Test)**, aplicando buenas prácticas de desarrollo al mundo del testing.
+
+## 🎯 Objetivos del Proyecto
+
+- Implementar pruebas E2E (End-to-End) robustas y escalables.
+- Dominar herramientas de última generación como **Playwright**.
+- Aplicar patrones de diseño avanzados como **Page Object Model (POM)**.
+- Configurar entornos profesionales con **TypeScript** y **Path Aliases**.
+- Asegurar la calidad en entornos multi-navegador (Chromium, Firefox, WebKit).
+
+## 🛠️ Stack Técnico
+
+- **Lenguaje:** TypeScript
+- **Framework:** Playwright
+- **Patrón de Diseño:** Page Object Model (POM)
+- **Gestión de Versiones:** Git / GitHub
+- **Metodología:** Casos de prueba estructurados (Clean Code & DRY)
+
 ## 📈 Roadmap de Progreso
 
 ### Fase 1: Fundamentos & Scripting
@@ -17,3 +37,32 @@
 
 - [ ] **TC-05:** Validación dinámica de precios y nombres.
 - [ ] **Filtros Avanzados:** Uso de `.filter()` para búsqueda de productos.
+
+## 🚀 Cómo ejecutar las pruebas
+
+Para correr los tests en tu máquina local, sigue estos pasos:
+
+1. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
+2. **Ejecutar todos los tests (Modo Headless):**
+   ```bash
+   npx playwright test
+   ```
+3. **Ejecutar un archivo de prueba específico:**
+   ```bash
+   npx playwright test tests/inventory.spec.ts
+   ```
+4. **Ejecutar los tests en modo visual (Headed):**
+   ```bash
+   npx playwright test --headed
+   ```
+5. **Ejecutar con la interfaz de usuario de Playwright (UI Mode):**
+   ```bash
+    npx playwright test --ui
+   ```
+6. **Abrir el último reporte generado:**
+   ```bash
+   npx playwright show-report
+   ```
