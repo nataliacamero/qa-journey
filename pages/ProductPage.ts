@@ -6,6 +6,7 @@ export class ProductPage {
   readonly inventoryList: Locator;
   readonly inventoryItems: Locator;
   readonly pageTitle: Locator;
+  readonly itemPrices: Locator;
 
   // Constructor
   constructor(page: Page) {
@@ -17,6 +18,8 @@ export class ProductPage {
     this.inventoryItems = page.locator(".inventory_item");
     // Titulo de la seccion.
     this.pageTitle = page.locator(".title");
+    // Lista de precios de los items.
+    this.itemPrices = page.locator(".inventory_item_price");
   }
   // Methods
   async validateOnPage() {
@@ -26,5 +29,9 @@ export class ProductPage {
 
   async getProductCount() {
     return await this.inventoryItems.count();
+  }
+
+  async getAllPrices() {
+    return await this.itemPrices.allTextContents();
   }
 }
