@@ -44,3 +44,33 @@ test("TC-05: Validar el formato de precios ($)", async ({ page }) => {
     expect(price).toContain("$");
   }
 });
+
+test("TC-06: Validar nombres de productos contra lista maestra", async ({
+  page,
+}) => {
+  // Instanciamos la clase LoginPage.
+  const loginPage = new LoginPage(page);
+  // Instanciamos la clase ProductPage.
+  const productPage = new ProductPage(page);
+
+  // 1. Navegar a la pagina de Login.
+  await loginPage.navigateTo();
+  // 2. Hacer login con usuario y contraseña valido.
+  await loginPage.login("standard_user", "secret_sauce");
+  // 3. Validar que se carga la pagina de products.
+  const titleText = await productPage.validateOnPage();
+  expect(titleText).toBe("Products");
+  // 4. Validar que los productos tienen los nombres correctos.
+  const actualNames = await productPage.getAllProductNames();
+  const expectedNames = [
+    "Sauce Labs Backpack",
+    "Sauce Labs Bike Light",
+    "Sauce Labs Bolt T-Shirt",
+    "Sauce Labs Fleece Jacket",
+    "Sauce Labs Onesie",
+    "Test.allTheThings() T-Shirt (Red)",
+  ];
+  // Se valida longitud de la lista, contenido, y orden exacto.
+  console.log("Comparando nombres reales contra lista esperada...");
+  expect(actualNames).toEqual(expectedNames);
+});
