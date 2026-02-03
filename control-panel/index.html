@@ -2,89 +2,274 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Panel de Control - QA Journey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Control - Sesión 8 | QA Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
       body {
-        font-family: "Segoe UI", sans-serif;
-        background: #f4f7f6;
-        color: #333;
-        padding: 20px;
+        font-family: "Inter", sans-serif;
       }
-      .card {
-        background: white;
-        border-radius: 12px;
-        padding: 25px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        margin: auto;
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
       }
-      h1 {
-        color: #2c3e50;
-        border-bottom: 3px solid #3498db;
-        padding-bottom: 10px;
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
       }
-      .task {
-        display: flex;
-        align-items: center;
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 6px;
-        transition: 0.3s;
-      }
-      .task:hover {
-        background: #f0f4f8;
-      }
-      input[type="checkbox"] {
-        width: 20px;
-        height: 20px;
-        margin-right: 15px;
-        accent-color: #3498db;
-      }
-      .badge {
-        background: #e67e22;
-        color: white;
-        padding: 2px 8px;
-        border-radius: 12px;
-        font-size: 0.8em;
-        margin-left: 10px;
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
       }
     </style>
   </head>
-  <body>
-    <div class="card">
-      <h1>🛠️ Sesión 7: Integridad de Datos</h1>
-      <p>
-        <strong>Objetivo:</strong> Validar que la información de los productos
-        sea correcta y dinámica.
-      </p>
+  <body
+    class="bg-slate-50 min-h-screen p-4 md:p-10 flex justify-center items-start"
+  >
+    <div class="max-w-3xl w-full space-y-8">
+      <h1 class="text-xl font-bold text-slate-800 flex items-center">
+        Sesion 8
+      </h1>
 
-      <div class="task">
-        <input type="checkbox" />
-        <label>📊 Actualizar Roadmap con TC-04 en Excel</label>
+      <!-- SECCIÓN DE TAREAS (CHECKLIST) -->
+      <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-xl font-bold text-slate-800 flex items-center">
+            <span class="bg-blue-100 text-blue-600 p-2 rounded-lg mr-3"
+              >📋</span
+            >
+            Hoja de Ruta del Día
+          </h2>
+          <span
+            class="text-xs font-bold text-slate-400 uppercase tracking-widest"
+            >Paso a Paso</span
+          >
+        </div>
+
+        <div class="space-y-4 mb-8">
+          <div
+            class="flex items-center p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/30 transition-all group"
+          >
+            <input
+              type="checkbox"
+              class="task-check w-6 h-6 rounded-lg border-slate-300 text-blue-600 focus:ring-blue-500 transition-all cursor-pointer"
+            />
+            <label
+              class="ml-4 text-slate-700 font-semibold group-hover:text-blue-800 transition-colors cursor-pointer"
+              >📊 Actualizar Roadmap (Excel) con el TC-06</label
+            >
+          </div>
+
+          <div
+            class="flex items-center p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/30 transition-all group"
+          >
+            <input
+              type="checkbox"
+              class="task-check w-6 h-6 rounded-lg border-slate-300 text-blue-600 focus:ring-blue-500 transition-all cursor-pointer"
+            />
+            <label
+              class="ml-4 text-slate-700 font-semibold group-hover:text-blue-800 transition-colors cursor-pointer"
+              >🏗️ Extender <code>ProductPage.ts</code> (itemNames y
+              Method)</label
+            >
+          </div>
+
+          <div
+            class="flex items-center p-4 bg-blue-50 rounded-2xl border border-blue-200 hover:border-blue-400 transition-all group"
+          >
+            <input
+              type="checkbox"
+              class="task-check w-6 h-6 rounded-lg border-blue-400 text-blue-600 focus:ring-blue-500 transition-all cursor-pointer"
+            />
+            <label
+              class="ml-4 text-blue-900 font-bold group-hover:text-blue-950 cursor-pointer"
+              >🧪 Ejecutar TC-06: Comparación de Arrays con Lista Maestra</label
+            >
+            <span
+              class="ml-auto bg-blue-600 text-white text-[10px] px-2 py-1 rounded-md font-bold uppercase"
+              >Target</span
+            >
+          </div>
+
+          <div
+            class="flex items-center p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-300 hover:bg-blue-50/30 transition-all group"
+          >
+            <input
+              type="checkbox"
+              class="task-check w-6 h-6 rounded-lg border-slate-300 text-blue-600 focus:ring-blue-500 transition-all cursor-pointer"
+            />
+            <label
+              class="ml-4 text-slate-700 font-semibold group-hover:text-blue-800 transition-colors cursor-pointer"
+              >🏁 Cierre: Bitácora S8, Commit (Conventional) & Push</label
+            >
+          </div>
+        </div>
+
+        <!-- BARRA DE PROGRESO DINÁMICA -->
+        <div class="pt-6 border-t border-slate-100">
+          <div class="flex justify-between items-center mb-2">
+            <span
+              class="text-sm font-bold text-slate-500 uppercase tracking-tighter"
+              >Progreso de la Sesión</span
+            >
+            <span id="progress-text" class="text-lg font-black text-blue-600"
+              >0%</span
+            >
+          </div>
+          <div
+            class="w-full bg-slate-100 rounded-full h-4 overflow-hidden border border-slate-200 p-1"
+          >
+            <div
+              id="progress-bar"
+              class="bg-gradient-to-r from-blue-500 to-indigo-600 h-full rounded-full transition-all duration-500 ease-out"
+              style="width: 0%"
+            ></div>
+          </div>
+        </div>
       </div>
-      <div class="task">
-        <input type="checkbox" />
-        <label
-          >🏗️ Extender <code>ProductPage.ts</code> con selectores de
-          precios</label
+
+      <!-- SECCIÓN DE TEORÍA: EL "READING" DE LA SESIÓN -->
+      <div
+        class="bg-slate-900 rounded-[2.5rem] p-10 shadow-2xl border border-slate-800 relative overflow-hidden"
+      >
+        <!-- Icono de fondo -->
+        <div
+          class="absolute top-10 right-10 text-slate-800 text-9xl font-black pointer-events-none opacity-20 italic"
         >
-      </div>
-      <div class="task">
-        <input type="checkbox" />
-        <label>🧪 Crear TC-05: Validar formato de precios ($)</label>
-        <span class="badge">NUEVO</span>
-      </div>
-      <div class="task">
-        <input type="checkbox" />
-        <label
-          >🧠 Implementar bucle <code>for...of</code> para validación
-          masiva</label
+          QA
+        </div>
+
+        <h2
+          class="text-2xl font-black text-blue-400 mb-8 flex items-center relative z-10"
         >
+          <span class="bg-blue-500/20 p-2 rounded-xl mr-3 text-2xl">📖</span>
+          Biblioteca Técnica: Sesión 8
+        </h2>
+
+        <div class="space-y-8 relative z-10 text-slate-200">
+          <div class="bg-slate-800/50 p-6 rounded-3xl border border-slate-700">
+            <h3
+              class="text-blue-300 font-bold uppercase tracking-widest mb-3 text-xs flex items-center"
+            >
+              <span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
+              Concepto 1: Deep Equality (Igualdad Profunda)
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A diferencia de <code>toBe()</code>, que compara si dos cosas son
+              exactamente el mismo objeto en memoria (o valores simples),
+              <strong><code>toEqual()</code></strong> entra en la estructura. En
+              un Array, verifica que:
+            </p>
+            <ul class="mt-4 space-y-2 text-slate-400 text-sm italic">
+              <li class="flex items-start">
+                <span class="text-blue-400 mr-2">✔</span> Tengan la misma
+                longitud (6 items).
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-400 mr-2">✔</span> El contenido sea
+                idéntico (nombres sin errores).
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-400 mr-2">✔</span> El
+                <strong>orden</strong> sea el mismo que en el catálogo.
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-slate-800/50 p-6 rounded-3xl border border-slate-700">
+            <h3
+              class="text-blue-300 font-bold uppercase tracking-widest mb-3 text-xs flex items-center"
+            >
+              <span class="w-2 h-2 bg-blue-400 rounded-full mr-2"></span>
+              Concepto 2: Source of Truth (Fuente de Verdad)
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              En automatización, la <strong>Lista Maestra</strong> es nuestro
+              contrato. Si el desarrollador cambia accidentalmente un nombre en
+              el código, nuestro test fallará porque la "realidad" ya no
+              coincide con la "verdad" definida en el test.
+            </p>
+            <div
+              class="mt-4 bg-black/40 p-4 rounded-xl font-mono text-xs text-green-400 border border-slate-700"
+            >
+              <span class="text-slate-500">// La lista que esperamos ver</span
+              ><br />
+              const expected = ["Backpack", "Bike Light", ...];<br />
+              expect(actual).toEqual(expected);
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div
+              class="bg-blue-900/20 p-5 rounded-2xl border border-blue-800/50"
+            >
+              <span
+                class="block text-blue-400 font-black text-xs uppercase mb-2"
+                >Herramienta</span
+              >
+              <p class="text-slate-200 text-xs font-bold font-mono">
+                allTextContents()
+              </p>
+              <p class="text-slate-400 text-[10px] mt-1 italic">
+                Extrae todos los textos del DOM y nos entrega un Array de
+                JavaScript listo para comparar.
+              </p>
+            </div>
+            <div
+              class="bg-indigo-900/20 p-5 rounded-2xl border border-indigo-800/50"
+            >
+              <span
+                class="block text-indigo-400 font-black text-xs uppercase mb-2"
+                >Ordenamiento</span
+              >
+              <p class="text-slate-200 text-xs font-bold font-mono">
+                Array Indexing
+              </p>
+              <p class="text-slate-400 text-[10px] mt-1 italic">
+                Playwright captura los elementos en el orden en que aparecen en
+                el HTML (de arriba a abajo).
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="task">
-        <input type="checkbox" />
-        <label>💾 Git: Commit con formato Conventional Commits</label>
+
+      <!-- FOOTER / FRASES -->
+      <div class="flex flex-col items-center justify-center space-y-4 pb-12">
+        <div class="h-px w-24 bg-slate-300"></div>
+        <p class="text-slate-500 font-bold italic text-sm text-center">
+          "La calidad no se negocia, se construye."
+        </p>
+        <div
+          class="flex space-x-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest"
+        >
+          <span>Natalia Camero</span>
+          <span>Mentoría QA 2026</span>
+          <span>Playwright Journey</span>
+        </div>
       </div>
     </div>
+
+    <script>
+      const checkboxes = document.querySelectorAll(".task-check");
+      const progressBar = document.getElementById("progress-bar");
+      const progressText = document.getElementById("progress-text");
+
+      function updateProgress() {
+        const total = checkboxes.length;
+        const checked = Array.from(checkboxes).filter(
+          (cb) => cb.checked,
+        ).length;
+        const percentage = Math.round((checked / total) * 100);
+        progressBar.style.width = percentage + "%";
+        progressText.innerText = percentage + "%";
+      }
+
+      checkboxes.forEach((cb) => {
+        cb.addEventListener("change", updateProgress);
+      });
+
+      // Inicializar al cargar
+      updateProgress();
+    </script>
   </body>
 </html>
