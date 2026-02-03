@@ -35,7 +35,7 @@ Bienvenido a mi repositorio de aprendizaje y especialización en QA Automation. 
 
 ### Fase 3: Integridad de Datos (Siguiente)
 
-- [ ] **TC-05:** Validación dinámica de precios y nombres.
+- [x] **TC-05:** Validación dinámica de precios y nombres.
 - [ ] **Filtros Avanzados:** Uso de `.filter()` para búsqueda de productos.
 
 ## 🚀 Cómo ejecutar las pruebas
