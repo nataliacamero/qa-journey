@@ -8,6 +8,7 @@ export class ProductPage {
   readonly pageTitle: Locator;
   readonly itemPrices: Locator;
   readonly itemNames: Locator;
+  readonly selectSortPrices: Locator;
 
   // Constructor
   constructor(page: Page) {
@@ -23,7 +24,10 @@ export class ProductPage {
     this.itemPrices = page.locator(".inventory_item_price");
     // Lista de nombres de los productos.
     this.itemNames = page.locator(".inventory_item_name");
+    // Selector para ordenar los precios
+    this.selectSortPrices = page.locator(".product_sort_container");
   }
+
   // Methods
   async validateOnPage() {
     await this.pageTitle.waitFor();
@@ -40,5 +44,9 @@ export class ProductPage {
 
   async getAllProductNames() {
     return await this.itemNames.allTextContents();
+  }
+  /**'lohi' (precio bajo a alto), 'hilo' (precio alto a bajo) */
+  async selectSortingPrices(option: string) {
+    return await this.selectSortPrices.selectOption(option);
   }
 }
