@@ -38,6 +38,14 @@ Bienvenido a mi repositorio de aprendizaje y especialización en QA Automation. 
 - [x] **TC-05:** Validación dinámica de precios y nombres.
 - [ ] **Filtros Avanzados:** Uso de `.filter()` para búsqueda de productos.
 
+### Fase 4: Funcionalidades de Catálogo y Lógica de Filtros
+
+- [x] **TC-07:** Ordenamiento por precio (Bajo -> Alto).
+- [x] **TC-08:** Ordenamiento por precio (Alto -> Bajo).
+- [x] **Data Cleaning:** Implementación de transformación de tipos para integridad de precios (String to Float).
+
+> Nota de Ingeniería: Se implementó una validación de flujo de datos basada en la relación matemática $n \leq n+1$ (ascendente) y $n \geq n+1$ (descendente). Esta lógica asegura la integridad del ordenamiento dinámico, previniendo errores de desbordamiento de índice (index out of bounds) mediante el control de límites en la iteración del array de objetos.
+
 ## 🚀 Cómo ejecutar las pruebas
 
 Para correr los tests en tu máquina local, sigue estos pasos:
@@ -55,9 +63,11 @@ Para correr los tests en tu máquina local, sigue estos pasos:
    npx playwright test tests/inventory.spec.ts
    ```
 4. **Ejecutar los tests en modo visual (Headed):**
+
    ```bash
-   npx playwright test --headed
+
    ```
+
 5. **Ejecutar con la interfaz de usuario de Playwright (UI Mode):**
    ```bash
     npx playwright test --ui

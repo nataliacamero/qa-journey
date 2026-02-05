@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infografía: Lógica de Datos - Natalia Camero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-900 p-6 md:p-12">
+    <main class="max-w-5xl mx-auto space-y-20">
+      <header class="text-center space-y-4">
+        <h1
+          class="text-6xl font-black tracking-tighter text-indigo-600 italic uppercase"
+        >
+          Algorithm Logic
+        </h1>
+        <p class="text-slate-500 text-xl italic font-medium">
+          Develando el misterio del índice n + 1.
+        </p>
+      </header>
+
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div class="space-y-8">
+          <h2 class="text-3xl font-black italic">1. La "Ficha" de Datos</h2>
+          <p class="text-slate-600 leading-relaxed italic">
+            Para validar SauceDemo, convertiste una lista de strings en un
+            <strong>Array de Objetos</strong>. Cada objeto es una ficha técnica
+            que permite al test saber qué precio está comparando y en qué
+            posición se encuentra.
+          </p>
+          <div
+            class="bg-indigo-600 p-8 rounded-[2rem] shadow-2xl text-white font-mono text-xs italic"
+          >
+            <span class="text-indigo-200">// Tu estructura ganadora:</span
+            ><br />
+            const cleanNumericPrices = [<br />
+            &nbsp;&nbsp;{ index: 0, value: 7.99 },<br />
+            &nbsp;&nbsp;{ index: 1, value: 9.99 }<br />
+            ];
+          </div>
+        </div>
+        <div
+          class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100"
+        >
+          <h3
+            class="text-xs font-black uppercase tracking-widest text-slate-400 mb-6 italic"
+          >
+            Comparativa de Pares
+          </h3>
+          <div class="space-y-4">
+            <div
+              class="flex items-center space-x-4 p-4 bg-green-50 rounded-2xl border border-green-100"
+            >
+              <div
+                class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xs"
+              >
+                1
+              </div>
+              <p class="text-[11px] font-bold text-green-800 italic uppercase">
+                Comparar Índice 0 vs Índice 1
+              </p>
+            </div>
+            <div
+              class="flex items-center space-x-4 p-4 bg-green-50 rounded-2xl border border-green-100"
+            >
+              <div
+                class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xs"
+              >
+                2
+              </div>
+              <p class="text-[11px] font-bold text-green-800 italic uppercase">
+                Comparar Índice 1 vs Índice 2
+              </p>
+            </div>
+            <div
+              class="flex items-center space-x-4 p-4 bg-red-50 rounded-2xl border border-red-100 border-dashed"
+            >
+              <div
+                class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold text-xs"
+              >
+                !
+              </div>
+              <p class="text-[11px] font-bold text-red-800 italic uppercase">
+                DETENERSE en n - 1 (Evitar Undefined)
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

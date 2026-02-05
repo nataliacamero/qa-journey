@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infografía: Lógica de Datos en QA Automation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 400px;
+        max-height: 450px;
+      }
+      @media (max-width: 768px) {
+        .chart-container {
+          height: 300px;
+        }
+      }
+      .data-card {
+        transition: transform 0.3s ease;
+      }
+      .data-card:hover {
+        transform: translateY(-5px);
+      }
+      .limit-box {
+        border: 2px dashed #cbd5e1;
+        background: #f8fafc;
+      }
+    </style>
+    <!-- 
+      PLAN NARRATIVO:
+      1. El Desafío: Visualizar el inventario de SauceDemo como datos crudos.
+      2. Estructuras: Comparar Array Simple vs Array de Objetos (tu duda actual).
+      3. El Problema de los Límites: Visualizar por qué n+1 no debe llegar a undefined.
+      4. Perfil SDET: Cómo esta lógica algorítmica te posiciona en el mercado.
+      
+      SELECCIÓN DE VISUALIZACIONES:
+      - Bar Chart: Precios crudos.
+      - Radar Chart: Habilidades SDET.
+      - Scatter Plot: Tendencia de ordenamiento.
+      - Diagrama de Flujo (HTML/CSS): El recorrido del bucle evitando el undefined.
+
+      CONFIRMACIÓN: Ni Mermaid JS ni SVG han sido utilizados.
+      PALETA: "Vibrant Indigo" (#4f46e5).
+    -->
+  </head>
+  <body class="bg-slate-50 text-slate-900 font-sans selection:bg-indigo-100">
+    <nav
+      class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 p-4"
+    >
+      <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <span class="text-indigo-600 font-black tracking-tighter text-xl italic"
+          >DATA.LOGIC</span
+        >
+        <div
+          class="hidden md:flex space-x-6 text-xs font-bold uppercase tracking-widest text-slate-500"
+        >
+          <a href="#estructuras" class="hover:text-indigo-600 transition-colors"
+            >Estructuras</a
+          >
+          <a href="#limites" class="hover:text-indigo-600 transition-colors"
+            >Límites (n+1)</a
+          >
+          <a href="#algoritmo" class="hover:text-indigo-600 transition-colors"
+            >Algoritmo</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-6 space-y-20 my-10">
+      <!-- INTRODUCCIÓN -->
+      <header class="text-center space-y-4 max-w-3xl mx-auto">
+        <h1
+          class="text-5xl md:text-6xl font-black text-slate-900 leading-none tracking-tight"
+        >
+          Lógica de <span class="text-indigo-600 italic">Límites</span>
+        </h1>
+        <p class="text-slate-500 text-lg md:text-xl leading-relaxed">
+          Resolviendo el dilema del índice <code>n + 1</code> y evitando el
+          error de <code>undefined</code> en validaciones de colecciones.
+        </p>
+      </header>
+
+      <!-- SECCIÓN 1: ESTRUCTURAS -->
+      <section id="estructuras" class="space-y-10">
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="text-3xl font-black mb-4 tracking-tight italic">
+            Estructuras de <span class="text-indigo-600">Datos</span>
+          </h2>
+          <p class="text-slate-500 text-sm">
+            ¿Cómo organizamos la información para que sea procesable?
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm data-card"
+          >
+            <h3 class="text-xl font-bold mb-4 text-slate-400">
+              Array de Strings (Crudo)
+            </h3>
+            <div
+              class="bg-slate-50 p-6 rounded-2xl font-mono text-sm border border-slate-100 italic"
+            >
+              ["$29.99", "$9.99", "$15.99"]
+            </div>
+          </div>
+          <div
+            class="bg-indigo-600 p-8 rounded-[2rem] shadow-xl data-card text-white"
+          >
+            <h3 class="text-xl font-bold mb-4">Array de Objetos (Procesado)</h3>
+            <div
+              class="bg-indigo-900/50 p-6 rounded-2xl font-mono text-sm border border-indigo-400/30 text-indigo-100"
+            >
+              [ { index: 0, val: 29.99 }, ... ]
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 2: EL PROBLEMA DE LOS LÍMITES (NUEVA) -->
+      <section id="limites" class="space-y-10">
+        <div
+          class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-100"
+        >
+          <h2 class="text-3xl font-black mb-8 italic text-center">
+            El Dilema del <span class="text-indigo-600">Último Elemento</span>
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+            <div
+              class="p-6 bg-green-50 rounded-2xl border border-green-200 text-center"
+            >
+              <span class="text-2xl font-black text-green-700">OK</span>
+              <p class="text-xs mt-2 text-green-600 font-bold italic">
+                Índice 0 vs Índice 1
+              </p>
+            </div>
+            <div
+              class="p-6 bg-green-50 rounded-2xl border border-green-200 text-center"
+            >
+              <span class="text-2xl font-black text-green-700">OK</span>
+              <p class="text-xs mt-2 text-green-600 font-bold italic">
+                Índice 1 vs Índice 2
+              </p>
+            </div>
+            <div
+              class="p-6 bg-red-50 rounded-2xl border border-red-200 text-center"
+            >
+              <span class="text-2xl font-black text-red-700">ERROR</span>
+              <p class="text-xs mt-2 text-red-600 font-bold italic">
+                Índice 5 vs UNDEFINED
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-slate-900 p-10 rounded-[2rem] text-white">
+            <h3 class="text-xl font-bold mb-6 text-indigo-400 italic">
+              La Solución Algorítmica
+            </h3>
+            <p class="text-sm text-slate-400 mb-6 leading-relaxed">
+              Para evitar el error, debemos recorrer el array hasta
+              <code>longitud - 1</code>. Esto asegura que la última comparación
+              sea entre el penúltimo y el último, sin saltar al vacío.
+            </p>
+            <div class="chart-container">
+              <canvas id="limitChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN 3: ALGORITMO -->
+      <section id="algoritmo" class="space-y-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div
+            class="chart-container bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100"
+          >
+            <canvas id="skillsRadar"></canvas>
+          </div>
+          <div class="space-y-6">
+            <h2 class="text-3xl font-black leading-tight italic">
+              Tu Perfil <span class="text-indigo-600">SDET Readiness</span>
+            </h2>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Entender cómo manejar arrays y sus límites te separa del QA
+              tradicional. Estás aprendiendo a escribir código que previene
+              fallos de memoria y errores lógicos.
+            </p>
+            <div
+              class="p-6 bg-indigo-50 rounded-2xl border border-indigo-100 italic"
+            >
+              <p class="text-xs text-indigo-900 font-bold">
+                "El test no debe ser igual de frágil que la aplicación; debe ser
+                la roca que la sostiene."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER & META 2026 -->
+      <footer class="bg-white border-t border-slate-100 py-16 text-center">
+        <span class="text-4xl mb-4 block">🌙</span>
+        <h2
+          class="text-xl font-black uppercase tracking-[0.4em] italic text-indigo-600"
+        >
+          Meta 2026: Dormir Temprano
+        </h2>
+        <p
+          class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mt-8"
+        >
+          "La calidad no se negocia, se construye." • Natalia Camero
+        </p>
+      </footer>
+    </main>
+
+    <script>
+      const palette = {
+        primary: "#4f46e5",
+        secondary: "#818cf8",
+        accent: "#f43f5e",
+        slate300: "#cbd5e1",
+      };
+
+      const tooltipConfig = {
+        plugins: {
+          tooltip: {
+            callbacks: {
+              title: function (tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                return Array.isArray(label) ? label.join(" ") : label;
+              },
+            },
+          },
+        },
+      };
+
+      window.onload = function () {
+        // Radar Chart
+        const ctxRadar = document
+          .getElementById("skillsRadar")
+          .getContext("2d");
+        new Chart(ctxRadar, {
+          type: "radar",
+          data: {
+            labels: [
+              "Playwright",
+              "TypeScript",
+              "POM Logic",
+              "Data Integrity",
+              "Boundary Testing",
+              "Logic Logic",
+            ],
+            datasets: [
+              {
+                label: "Junior Base",
+                data: [60, 50, 40, 30, 20, 10],
+                borderColor: palette.slate300,
+                backgroundColor: palette.slate300 + "22",
+              },
+              {
+                label: "Natalia (Now)",
+                data: [95, 90, 85, 90, 80, 85],
+                borderColor: palette.primary,
+                backgroundColor: palette.primary + "33",
+                borderWidth: 3,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            ...tooltipConfig,
+            scales: {
+              r: {
+                ticks: { display: false },
+                pointLabels: { font: { size: 10, weight: "bold" } },
+              },
+            },
+          },
+        });
+
+        // Limit Chart (Barra de comparación)
+        const ctxLimit = document.getElementById("limitChart").getContext("2d");
+        new Chart(ctxLimit, {
+          type: "bar",
+          data: {
+            labels: [
+              "0 vs 1",
+              "1 vs 2",
+              "2 vs 3",
+              "3 vs 4",
+              "4 vs 5",
+              "5 vs ?",
+            ],
+            datasets: [
+              {
+                label: "Validez de la comparación",
+                data: [100, 100, 100, 100, 100, 0],
+                backgroundColor: (ctx) =>
+                  ctx.index === 5 ? palette.accent : palette.primary,
+                borderRadius: 10,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            ...tooltipConfig,
+            scales: {
+              y: { display: false },
+              x: { grid: { display: false }, ticks: { color: "#94a3b8" } },
+            },
+            plugins: { legend: { display: false } },
+          },
+        });
+      };
+    </script>
+  </body>
+</html>
