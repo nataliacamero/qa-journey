@@ -98,17 +98,10 @@ test("TC-07: Validar que el filtro de menor a mayor ordena numéricamente de for
   const prices = await productPage.getAllPrices();
 
   // c. Logica para validar row por row su valor y si es menor que el siguiente.
-  
-  const cleanedPrice = (price: string) => {
-    const clean = price.replace("$", "");
-    const numericPrice = parseFloat(clean);
-    console.log("cleanedPrice", numericPrice);
-    return numericPrice;
-  };
 
   //Array limpio.
   const cleanNumericPrices = prices.map((price, index) => {
-    return { index, value: cleanedPrice(price) };
+    return { index, value: productPage.cleanPrice(price) };
   });
 
   // Validar que se ordenan los precios menor a mayor (Asercion).
@@ -145,19 +138,13 @@ test("TC-08: Validar que el filtro de mayor a menor ordena numéricamente de for
   const prices = await productPage.getAllPrices();
 
   // c. Logica para validar row por row su valor y si es menor que el siguiente.
-  const cleanedPrice = (price: string) => {
-    const clean = price.replace("$", "");
-    const numericPrice = parseFloat(clean);
-    console.log("cleanedPrice", numericPrice);
-    return numericPrice;
-  };
 
   //Array limpio.
   const cleanNumericPrices = prices.map((price, index) => {
-    return { index, value: cleanedPrice(price) };
+    return { index, value: productPage.cleanPrice(price) };
   });
 
-  // Validar que se ordenan los precios menor a mayor (Asercion).
+  // 4. Validar que se ordenan los precios menor a mayor (Asercion).
   for (const price of cleanNumericPrices) {
     if (price?.index + 1 <= cleanNumericPrices?.length - 1) {
       const currentValue = price?.value;

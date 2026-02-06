@@ -49,4 +49,11 @@ export class ProductPage {
   async selectSortingPrices(option: string) {
     return await this.selectSortPrices.selectOption(option);
   }
+
+  cleanPrice(price: string): number {
+    const clean = price.replace("$", "");
+    const numericPrice = parseFloat(clean);
+    console.log("cleanedPrice", numericPrice);
+    return numericPrice;
+  }
 }
