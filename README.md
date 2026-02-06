@@ -63,9 +63,8 @@ Para correr los tests en tu máquina local, sigue estos pasos:
    npx playwright test tests/inventory.spec.ts
    ```
 4. **Ejecutar los tests en modo visual (Headed):**
-
    ```bash
-
+   npx playwright test --headed
    ```
 
 5. **Ejecutar con la interfaz de usuario de Playwright (UI Mode):**
