@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "@pages/LoginPage";
 import { ProductPage } from "@pages/ProductPage";
-/*
+
 test("TC-04: Validar carga de productos (Happy Path)", async ({ page }) => {
   // Instanciamos la clase LoginPage
   const loginPage = new LoginPage(page);
@@ -62,7 +62,7 @@ test("TC-06: Validar nombres de productos contra lista maestra", async ({
   expect(titleText).toBe("Products");
   // 4. Validar que los productos tienen los nombres correctos.
   const actualNames = await productPage.getAllProductNames();
-  const expectedNames = [
+  const mainList = [
     "Sauce Labs Backpack",
     "Sauce Labs Bike Light",
     "Sauce Labs Bolt T-Shirt",
@@ -72,9 +72,8 @@ test("TC-06: Validar nombres de productos contra lista maestra", async ({
   ];
   // Se valida longitud de la lista, contenido, y orden exacto.
   console.log("Comparando nombres reales contra lista esperada...");
-  expect(actualNames).toEqual(expectedNames);
+  expect(actualNames).toEqual(mainList);
 });
-*/
 
 test("TC-07: Validar que el filtro de menor a mayor ordena numéricamente de forma ascendente.", async ({
   page,
@@ -99,7 +98,7 @@ test("TC-07: Validar que el filtro de menor a mayor ordena numéricamente de for
   const prices = await productPage.getAllPrices();
 
   // c. Logica para validar row por row su valor y si es menor que el siguiente.
-
+  
   const cleanedPrice = (price: string) => {
     const clean = price.replace("$", "");
     const numericPrice = parseFloat(clean);
