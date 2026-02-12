@@ -45,11 +45,17 @@ export class ProductPage {
   async getAllProductNames() {
     return await this.itemNames.allTextContents();
   }
-  /**'lohi' (precio bajo a alto), 'hilo' (precio alto a bajo) */
+  /**'lohi' (precio bajo a alto), 'hilo' (precio alto a bajo).
+   * 'az' (ordenado de la A a la Z), y 'za' (ordenado de la Z a la A).
+   */
   async selectSortingPrices(option: string) {
     return await this.selectSortPrices.selectOption(option);
   }
 
+  /**
+   * @param price as string
+   * @returns a number
+   */
   cleanPrice(price: string): number {
     const clean = price.replace("$", "");
     const numericPrice = parseFloat(clean);
