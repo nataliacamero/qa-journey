@@ -153,3 +153,73 @@ test("TC-08: Validar que el filtro de mayor a menor ordena numéricamente de for
     }
   }
 });
+
+test("TC-09: Validar que el filtro (A to Z) ordena alfabéticamente de forma ascendente.", async ({
+  page,
+}) => {
+  // Instanciamos la clase LoginPage.
+  const loginPage = new LoginPage(page);
+  // Instanciamos la clase ProductPage.
+  const productPage = new ProductPage(page);
+
+  // 1. Navegar a la pagina de Login.
+  await loginPage.navigateTo();
+  // 2. Hacer login con usuario y contraseña valido.
+  await loginPage.login("standard_user", "secret_sauce");
+  // 3. Validar que se carga la pagina de products.
+  const titleText = await productPage.validateOnPage();
+  expect(titleText).toBe("Products");
+
+  // a. Seleccionamos los productos de la A a la Z.
+  const sortPrices = await productPage.selectSortingPrices("az");
+  console.log("Orden de precios:", sortPrices);
+
+  // b. Traemos todos los nombres de los productos.
+  const productNames = await productPage.getAllProductNames();
+
+  console.log("productNames", productNames);
+
+  // 4. Validar que se ordenan los precios menor a mayor (Asercion).
+  for (const [index, name] of productNames.entries()) {
+    if (index + 1 <= productNames?.length - 1) {
+      const currentValue = name;
+      const nextValue = productNames[index + 1];
+      expect(currentValue.localeCompare(nextValue)).toBeLessThanOrEqual(0);
+    }
+  }
+});
+
+test("TC-10: Validar que el filtro (Z to A) ordena alfabéticamente de forma descendente.", async ({
+  page,
+}) => {
+  // Instanciamos la clase LoginPage.
+  const loginPage = new LoginPage(page);
+  // Instanciamos la clase ProductPage.
+  const productPage = new ProductPage(page);
+
+  // 1. Navegar a la pagina de Login.
+  await loginPage.navigateTo();
+  // 2. Hacer login con usuario y contraseña valido.
+  await loginPage.login("standard_user", "secret_sauce");
+  // 3. Validar que se carga la pagina de products.
+  const titleText = await productPage.validateOnPage();
+  expect(titleText).toBe("Products");
+
+  // a. Seleccionamos los productos de la A a la Z.
+  const sortPrices = await productPage.selectSortingPrices("za");
+  console.log("Orden de precios:", sortPrices);
+
+  // b. Traemos todos los nombres de los productos.
+  const productNames = await productPage.getAllProductNames();
+
+  console.log("productNames", productNames);
+
+  // 4. Validar que se ordenan los precios menor a mayor (Asercion).
+  for (const [index, name] of productNames.entries()) {
+    if (index + 1 <= productNames?.length - 1) {
+      const currentValue = name;
+      const nextValue = productNames[index + 1];
+      expect(currentValue.localeCompare(nextValue)).toBeGreaterThanOrEqual(0);
+    }
+  }
+});
