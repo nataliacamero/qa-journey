@@ -223,3 +223,32 @@ test("TC-10: Validar que el filtro (Z to A) ordena alfabéticamente de forma des
     }
   }
 });
+
+test("TC-11: Validar incremento del contador del carrito (Badge)", async ({
+  page,
+}) => {
+  // Instanciamos las clases LoginPage y ProductPage.
+  const loginPage = new LoginPage(page);
+  const productPage = new ProductPage(page);
+
+  // 1. Navegar a la pagina de Login.
+  await loginPage.navigateTo();
+  // 2. Hacer login con usuario y contraseña valido.
+  await loginPage.login("standard_user", "secret_sauce");
+  // 3. Validar que se carga la pagina de products.
+  const titleText = await productPage.validateOnPage();
+  expect(titleText).toBe("Products");
+
+  // 1. Verificar estado inicial (Baseline): El badge no debe ser visible.
+  // SauceDemo no renderiza el badge si el carrito está vacío.
+  const cartBadgeSelector = productPage.getCartBadge();
+  await expect(cartBadgeSelector).toBeHidden();
+
+  // 2. Acción: Añadir un producto específico.
+  await productPage.addingProductToCart("Sauce Labs Backpack");
+
+  // 3. Verificación de estado final (Efecto secundario visual).
+  // Validamos que el elemento aparezca y que el sistema "recuerde" el estado (1).
+  await expect(cartBadgeSelector).toBeVisible();
+  await expect(cartBadgeSelector).toHaveText("1");
+});
