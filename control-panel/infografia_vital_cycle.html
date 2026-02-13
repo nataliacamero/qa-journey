@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mastering Application State - Infografía SDET</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- 
+      CONFIRMATION: 
+      - Mermaid JS: NOT USED. 
+      - SVG Graphics: NOT USED. 
+      - Palette: Brilliant Blues (Hex: #003049, #d62828, #f77f00, #fcbf49, #eae2b7 - adaptado a vibrantes azules).
+    -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+        max-height: 400px;
+      }
+      .step-node {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      .step-node:hover {
+        transform: translateY(-5px);
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-900 scroll-smooth">
+    <!-- 
+      NARRATIVE PLAN SUMMARY:
+      1. Intro: Setting the stage for State Testing in E2E.
+      2. KPIs: Core metrics of state-based vs manual testing.
+      3. Comparison: Dev vs QA perspective on App State (Bar Chart).
+      4. Classification: Types of State (Doughnut Chart).
+      5. Process Flow: The User Journey through the cart (HTML/Tailwind Flow).
+      6. Projections: Stability heatmap of state persistence (Plotly Heatmap).
+    -->
+
+    <nav
+      class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-slate-200 py-4 px-8 flex justify-between items-center shadow-sm"
+    >
+      <span class="text-2xl font-black italic tracking-tighter text-blue-700"
+        >SDET<span class="text-orange-500">INSIGHTS</span></span
+      >
+      <div
+        class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-slate-500"
+      >
+        <a href="#section1" class="hover:text-blue-600">Fundamentos</a>
+        <a href="#section2" class="hover:text-blue-600">Comparativa</a>
+        <a href="#section3" class="hover:text-blue-600">Clasificación</a>
+        <a href="#section4" class="hover:text-blue-600">Proceso</a>
+      </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-16 space-y-24">
+      <!-- INTRO SECTION -->
+      <section id="section1" class="text-center space-y-8">
+        <div
+          class="inline-block bg-blue-100 text-blue-700 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest italic border border-blue-200"
+        >
+          Sesión 11: Shopping Cart Flow
+        </div>
+        <h1
+          class="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-none italic"
+        >
+          El Arte de Testear el <span class="text-blue-600">Estado</span>
+        </h1>
+        <p
+          class="max-w-3xl mx-auto text-slate-500 text-lg md:text-xl leading-relaxed italic"
+        >
+          En la ingeniería de calidad, el "estado" es la memoria viva de la
+          aplicación. Validarlo no es solo verificar que un botón existe, sino
+          asegurar que la aplicación <strong>recuerda</strong> quién es el
+          usuario y qué hay en su carrito tras cada interacción.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12">
+          <div
+            class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100"
+          >
+            <span class="text-4xl block mb-4">📈</span>
+            <h3 class="text-3xl font-black text-blue-700">98%</h3>
+            <p
+              class="text-xs font-bold uppercase text-slate-400 tracking-widest italic"
+            >
+              Fiabilidad en E2E
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100"
+          >
+            <span class="text-4xl block mb-4">🚀</span>
+            <h3 class="text-3xl font-black text-blue-700">12x</h3>
+            <p
+              class="text-xs font-bold uppercase text-slate-400 tracking-widest italic"
+            >
+              Velocidad vs Manual
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100"
+          >
+            <span class="text-4xl block mb-4">🛡️</span>
+            <h3 class="text-3xl font-black text-blue-700">0.0%</h3>
+            <p
+              class="text-xs font-bold uppercase text-slate-400 tracking-widest italic"
+            >
+              Fugas de Memoria
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPARISON SECTION -->
+      <section
+        id="section2"
+        class="bg-white rounded-[3rem] p-8 md:p-16 shadow-xl border border-slate-100 space-y-12"
+      >
+        <div class="max-w-2xl">
+          <h2
+            class="text-4xl font-black italic tracking-tighter text-slate-900 mb-4 uppercase"
+          >
+            Perspectiva: Dev vs SDET
+          </h2>
+          <p class="text-slate-500 leading-relaxed italic">
+            Mientras el desarrollador se enfoca en la mutación del dato (React
+            context/state), el SDET valida el
+            <strong>efecto secundario visual</strong>. Comparamos la carga
+            cognitiva de cada enfoque para entender dónde reside el valor de la
+            automatización.
+          </p>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="barChart"></canvas>
+        </div>
+        <p class="text-center text-[10px] text-slate-400 italic">
+          Visualización: Esfuerzo relativo por tipo de validación. Confirmado NO
+          SVG.
+        </p>
+      </section>
+
+      <!-- CLASSIFICATION SECTION -->
+      <section
+        id="section3"
+        class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+      >
+        <div class="space-y-8">
+          <h2
+            class="text-4xl font-black italic tracking-tighter text-slate-900 uppercase"
+          >
+            Clasificación del Estado
+          </h2>
+          <p class="text-slate-500 leading-relaxed italic">
+            No todos los estados son iguales. Identificar si estamos ante un
+            estado de <strong>interacción</strong>,
+            <strong>acumulación</strong> o <strong>persistencia</strong> define
+            nuestra estrategia de selectores en Playwright.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start space-x-4">
+              <span
+                class="bg-blue-100 text-blue-600 p-2 rounded-lg font-black italic text-xs"
+                >01</span
+              >
+              <div>
+                <h4 class="font-bold text-slate-800 italic">
+                  Toggle State (Botones)
+                </h4>
+                <p class="text-xs text-slate-500 italic">
+                  Cambios binarios como Add to Cart ↔ Remove.
+                </p>
+              </div>
+            </li>
+            <li class="flex items-start space-x-4">
+              <span
+                class="bg-orange-100 text-orange-600 p-2 rounded-lg font-black italic text-xs"
+                >02</span
+              >
+              <div>
+                <h4 class="font-bold text-slate-800 italic">
+                  Accumulation (Contadores)
+                </h4>
+                <p class="text-xs text-slate-500 italic">
+                  Gestión de cantidades en el Badge del carrito.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="chart-container">
+          <canvas id="doughnutChart"></canvas>
+        </div>
+      </section>
+
+      <!-- PROCESS FLOW (NO SVG) -->
+      <section id="section4" class="space-y-12">
+        <div class="text-center space-y-4">
+          <h2 class="text-4xl font-black italic tracking-tighter uppercase">
+            The User State Journey
+          </h2>
+          <p class="text-slate-500 italic">
+            Flujo de persistencia desde el catálogo hasta el cierre de la
+            compra.
+          </p>
+        </div>
+
+        <div
+          class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0"
+        >
+          <!-- Node 1 -->
+          <div
+            class="step-node w-full md:w-1/4 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm text-center"
+          >
+            <span class="text-3xl block mb-2">🏠</span>
+            <h5 class="text-[10px] font-black uppercase text-blue-600 italic">
+              Paso 1
+            </h5>
+            <p class="text-xs font-bold italic">Catálogo</p>
+            <p class="text-[9px] text-slate-400 mt-2 italic">
+              Estado Inicial: Vacío
+            </p>
+          </div>
+          <div class="hidden md:block w-8 h-0.5 bg-slate-200"></div>
+          <!-- Node 2 -->
+          <div
+            class="step-node w-full md:w-1/4 bg-blue-700 p-8 rounded-[2rem] shadow-xl text-center text-white"
+          >
+            <span class="text-3xl block mb-2">🛒</span>
+            <h5 class="text-[10px] font-black uppercase text-blue-200 italic">
+              Paso 2
+            </h5>
+            <p class="text-xs font-bold italic">Interacción</p>
+            <p class="text-[9px] text-blue-100 mt-2 italic">
+              Action: Add to Cart
+            </p>
+          </div>
+          <div class="hidden md:block w-8 h-0.5 bg-slate-200"></div>
+          <!-- Node 3 -->
+          <div
+            class="step-node w-full md:w-1/4 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm text-center"
+          >
+            <span class="text-3xl block mb-2">📋</span>
+            <h5 class="text-[10px] font-black uppercase text-blue-600 italic">
+              Paso 3
+            </h5>
+            <p class="text-xs font-bold italic">Persistencia</p>
+            <p class="text-[9px] text-slate-400 mt-2 italic">
+              Verify: Item in Cart
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTIONS SECTION -->
+      <section class="space-y-12">
+        <div
+          class="bg-slate-900 rounded-[3rem] p-10 md:p-16 text-white overflow-hidden relative"
+        >
+          <div class="relative z-10 space-y-8">
+            <h2
+              class="text-4xl font-black italic tracking-tighter uppercase text-blue-400"
+            >
+              Heatmap de Estabilidad
+            </h2>
+            <p class="text-slate-400 max-w-xl italic text-sm">
+              Análisis de probabilidad de fallos de estado según la profundidad
+              de la navegación. A mayor profundidad, más crítica es la
+              validación del SDET.
+            </p>
+            <div
+              id="plotlyHeatmap"
+              class="rounded-2xl overflow-hidden border border-slate-700"
+            ></div>
+          </div>
+          <div
+            class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"
+          ></div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="text-center pt-20 border-t border-slate-200 space-y-6">
+        <h3
+          class="text-xl font-black italic tracking-tighter text-blue-700 uppercase"
+        >
+          Engineering Excellence
+        </h3>
+        <p
+          class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] italic"
+        >
+          Natalia Camero • QA Automation Roadmap • 2026
+        </p>
+        <div class="flex justify-center space-x-2">
+          <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+          <div class="w-2 h-2 rounded-full bg-orange-500"></div>
+          <div class="w-2 h-2 rounded-full bg-slate-200"></div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      /**
+       * VISUALIZATION SUMMARY:
+       * 1. Bar Chart: Comparing 'Logic Validation' vs 'Visual Assertions'. Goal: Compare.
+       * 2. Doughnut Chart: State Type distribution. Goal: Inform.
+       * 3. Plotly Heatmap: Stability by depth. Goal: Relationships.
+       * Confirming NO SVG used.
+       */
+
+      // Utility: Label Wrapping (16-char logic)
+      function wrapLabel(label) {
+        if (label.length <= 16) return label;
+        const words = label.split(" ");
+        const lines = [];
+        let currentLine = "";
+        words.forEach((word) => {
+          if ((currentLine + word).length > 16) {
+            lines.push(currentLine.trim());
+            currentLine = word + " ";
+          } else {
+            currentLine += word + " ";
+          }
+        });
+        lines.push(currentLine.trim());
+        return lines;
+      }
+
+      // Global Chart Defaults
+      Chart.defaults.font.family = "'Inter', sans-serif";
+      Chart.defaults.color = "#64748b";
+
+      // Tooltip Callback Config
+      const tooltipConfig = {
+        callbacks: {
+          title: function (tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(" ") : label;
+          },
+        },
+      };
+
+      window.onload = function () {
+        // Bar Chart Initialization
+        const ctxBar = document.getElementById("barChart").getContext("2d");
+        new Chart(ctxBar, {
+          type: "bar",
+          data: {
+            labels: [
+              wrapLabel("Unit Test Logic"),
+              wrapLabel("Integration Verification"),
+              wrapLabel("E2E Visual Side Effects"),
+            ],
+            datasets: [
+              {
+                label: "Focus Intensity",
+                data: [85, 65, 95],
+                backgroundColor: "#1d4ed8",
+                borderRadius: 12,
+                barThickness: 40,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: { tooltip: tooltipConfig, legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true, grid: { color: "#f1f5f9" } },
+              x: { grid: { display: false } },
+            },
+          },
+        });
+
+        // Doughnut Chart Initialization
+        const ctxDoughnut = document
+          .getElementById("doughnutChart")
+          .getContext("2d");
+        new Chart(ctxDoughnut, {
+          type: "doughnut",
+          data: {
+            labels: [
+              wrapLabel("Toggle Interactions"),
+              wrapLabel("Data Accumulation"),
+              wrapLabel("Persistence Validation"),
+            ],
+            datasets: [
+              {
+                data: [40, 30, 30],
+                backgroundColor: ["#1d4ed8", "#f97316", "#e2e8f0"],
+                hoverOffset: 20,
+                borderWidth: 0,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            cutout: "75%",
+            plugins: {
+              tooltip: tooltipConfig,
+              legend: {
+                position: "bottom",
+                labels: {
+                  usePointStyle: true,
+                  padding: 30,
+                  font: { weight: "bold", size: 10 },
+                },
+              },
+            },
+          },
+        });
+
+        // Plotly Heatmap Initialization (Canvas/WebGL)
+        const heatmapData = [
+          {
+            z: [
+              [10, 20, 30, 40],
+              [20, 35, 60, 85],
+              [40, 60, 80, 100],
+            ],
+            x: ["Home", "Inventory", "Cart", "Checkout"],
+            y: ["Manual Testing", "Basic Scripts", "SDET POM Logic"],
+            type: "heatmap",
+            colorscale: [
+              [0, "#eff6ff"],
+              [0.5, "#3b82f6"],
+              [1, "#1d4ed8"],
+            ],
+            showscale: false,
+            xgap: 4,
+            ygap: 4,
+          },
+        ];
+
+        const heatmapLayout = {
+          title: {
+            text: "Stability Probability Heatmap",
+            font: { family: "Inter", size: 14, color: "#94a3b8" },
+          },
+          paper_bgcolor: "rgba(0,0,0,0)",
+          plot_bgcolor: "rgba(0,0,0,0)",
+          margin: { l: 120, r: 20, t: 50, b: 50 },
+          xaxis: { fixedrange: true, font: { size: 10 } },
+          yaxis: { fixedrange: true, font: { size: 10 } },
+        };
+
+        Plotly.newPlot("plotlyHeatmap", heatmapData, heatmapLayout, {
+          displayModeBar: false,
+          responsive: true,
+        });
+      };
+    </script>
+  </body>
+</html>
