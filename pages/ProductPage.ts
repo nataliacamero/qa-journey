@@ -9,6 +9,7 @@ export class ProductPage {
   readonly itemPrices: Locator;
   readonly itemNames: Locator;
   readonly selectSortPrices: Locator;
+  readonly cartbadge: Locator;
 
   // Constructor
   constructor(page: Page) {
@@ -26,6 +27,8 @@ export class ProductPage {
     this.itemNames = page.locator(".inventory_item_name");
     // Selector para ordenar los precios
     this.selectSortPrices = page.locator(".product_sort_container");
+    // El badge es el componente dinámico que muestra la cantidad.
+    this.cartbadge = page.locator(".shopping_cart_badge");
   }
 
   // Methods
@@ -61,5 +64,18 @@ export class ProductPage {
     const numericPrice = parseFloat(clean);
     console.log("cleanedPrice", numericPrice);
     return numericPrice;
+  }
+
+  getCartBadge() {
+    return this.cartbadge;
+  }
+
+  async addingProductToCart(productName: string) {
+    // Traemos el contenedor padre del producto.
+    const container = this.page.locator(".inventory_item", {
+      hasText: productName,
+    });
+    // Clicamos en el boton.
+    await container.locator(".btn_inventory").click();
   }
 }
