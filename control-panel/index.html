@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard S10 - Natalia Camero</title>
+    <title>Panel de Control - Sesión 11 | Natalia Camero</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -17,38 +17,42 @@
     class="bg-slate-50 min-h-screen p-4 md:p-10 flex justify-center items-start text-slate-800"
   >
     <div class="max-w-5xl w-full space-y-8">
-      <!-- HEADER SOFT INDIGO -->
+      <!-- HEADER SESIÓN 11: SHOPPING CART (DISEÑO SUAVE) -->
       <header
-        class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden text-white"
+        class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-200 relative overflow-hidden"
       >
         <div class="relative z-10">
           <div class="flex items-center space-x-3 mb-4">
             <span
-              class="bg-white/20 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/30 italic"
-              >Sesión 10</span
+              class="bg-orange-50 px-4 py-1 rounded-full text-[10px] font-black text-orange-600 uppercase tracking-widest border border-orange-100 italic"
+              >Sesión 11</span
             >
             <span
-              class="text-indigo-100 text-sm italic font-medium tracking-tight"
-              >• Alphabetical Validation</span
+              class="text-orange-400 text-sm italic font-medium tracking-tight"
+              >• Shopping Cart Flow</span
             >
           </div>
-          <h1 class="text-4xl md:text-5xl font-black tracking-tighter italic">
-            Refactorización & Filtros
+          <h1
+            class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter italic"
+          >
+            Gestión del Carrito
           </h1>
           <p
-            class="text-indigo-100 mt-3 text-lg max-w-2xl leading-relaxed italic opacity-90"
+            class="text-slate-500 mt-3 text-lg max-w-2xl leading-relaxed italic"
           >
-            Dominando el ordenamiento alfabético y aplicando Clean Code (DRY).
+            Validando la persistencia de datos y la interactividad del usuario
+            en el flujo de compra.
           </p>
         </div>
+        <!-- Decoración sutil -->
         <div
-          class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-3xl"
+          class="absolute -right-10 -bottom-10 w-64 h-64 bg-orange-50 rounded-full blur-3xl opacity-50"
         ></div>
       </header>
 
       <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div class="lg:col-span-1 space-y-8">
-          <!-- MISIONES -->
+          <!-- MISIONES DEL CARRITO -->
           <section
             class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200"
           >
@@ -56,50 +60,54 @@
               class="text-lg font-bold text-slate-800 mb-6 flex items-center italic"
             >
               <span
-                class="bg-indigo-100 text-indigo-600 p-2 rounded-lg mr-3 font-black text-sm"
+                class="bg-orange-100 text-orange-600 p-2 rounded-lg mr-3 font-black text-sm"
                 >#</span
               >
-              Misiones de Hoy
+              Nuevas Misiones
             </h2>
 
             <div class="space-y-4 mb-8" id="todo-list">
               <div
-                class="flex items-center p-3 bg-green-50 rounded-xl border border-green-200 opacity-60"
+                class="flex items-center p-3 bg-orange-50/50 rounded-xl border border-orange-100 hover:border-orange-300 transition-all cursor-pointer group"
+                onclick="toggleTask(0)"
               >
-                <span class="text-green-600 mr-3 text-xs">✔</span>
+                <div
+                  class="w-5 h-5 rounded border-2 border-orange-200 flex items-center justify-center"
+                  id="check-0"
+                ></div>
                 <label
-                  class="text-slate-400 font-medium text-xs line-through italic uppercase tracking-widest font-bold"
-                  >Quiz SDET Mastery</label
+                  class="ml-3 text-xs font-bold text-orange-900 italic cursor-pointer"
+                  >🏗️ POM: Métodos para Add to Cart</label
                 >
               </div>
               <div
-                class="flex items-center p-3 bg-indigo-50/50 rounded-xl border border-indigo-100 hover:border-indigo-300 transition-all cursor-pointer group"
+                class="flex items-center p-3 bg-orange-50/50 rounded-xl border border-orange-100 hover:border-orange-300 transition-all cursor-pointer group"
                 onclick="toggleTask(1)"
               >
                 <div
-                  class="w-5 h-5 rounded border-2 border-indigo-200 flex items-center justify-center"
+                  class="w-5 h-5 rounded border-2 border-orange-200 flex items-center justify-center"
                   id="check-1"
                 ></div>
                 <label
-                  class="ml-3 text-xs font-bold text-indigo-900 italic cursor-pointer italic"
-                  >🏗️ POM: Método cleanPrice()</label
+                  class="ml-3 text-xs font-bold text-orange-900 italic cursor-pointer"
+                  >🧪 TC-11: Validar Cart Badge (Badge Count)</label
                 >
               </div>
               <div
-                class="flex items-center p-3 bg-indigo-50/50 rounded-xl border border-indigo-100 hover:border-indigo-300 transition-all cursor-pointer group"
+                class="flex items-center p-3 bg-orange-50/50 rounded-xl border border-orange-100 hover:border-orange-300 transition-all cursor-pointer group"
                 onclick="toggleTask(2)"
               >
                 <div
-                  class="w-5 h-5 rounded border-2 border-indigo-200 flex items-center justify-center"
+                  class="w-5 h-5 rounded border-2 border-orange-200 flex items-center justify-center"
                   id="check-2"
                 ></div>
                 <label
-                  class="ml-3 text-xs font-bold text-indigo-900 italic cursor-pointer italic"
-                  >🧪 TEST: TC-09 (Name A-Z)</label
+                  class="ml-3 text-xs font-bold text-orange-900 italic cursor-pointer"
+                  >🧪 TC-12: Navegación al Carrito</label
                 >
               </div>
               <div
-                class="flex items-center p-3 bg-slate-50 rounded-xl border border-slate-200 hover:border-indigo-200 transition-all cursor-pointer group"
+                class="flex items-center p-3 bg-slate-50 rounded-xl border border-slate-200 hover:border-orange-200 transition-all cursor-pointer group"
                 onclick="toggleTask(3)"
               >
                 <div
@@ -107,8 +115,8 @@
                   id="check-3"
                 ></div>
                 <label
-                  class="ml-3 text-xs font-bold text-slate-600 italic cursor-pointer italic"
-                  >🧹 Refactor TC-07/TC-08</label
+                  class="ml-3 text-xs font-bold text-slate-600 italic cursor-pointer"
+                  >🧪 TC-13: Remover desde el Carrito</label
                 >
               </div>
             </div>
@@ -117,12 +125,12 @@
               <div class="flex justify-between items-center mb-2">
                 <span
                   class="text-[10px] font-black text-slate-400 uppercase tracking-widest italic"
-                  >Progreso Tarde</span
+                  >Progreso S11</span
                 >
                 <span
                   id="progress-text"
-                  class="text-sm font-black text-indigo-600 italic"
-                  >25%</span
+                  class="text-sm font-black text-orange-600 italic"
+                  >0%</span
                 >
               </div>
               <div
@@ -130,51 +138,55 @@
               >
                 <div
                   id="progress-bar"
-                  class="bg-indigo-500 h-full transition-all rounded-full"
-                  style="width: 25%"
+                  class="bg-orange-500 h-full transition-all rounded-full"
+                  style="width: 0%"
                 ></div>
               </div>
             </div>
           </section>
 
           <section
-            class="bg-slate-900 rounded-[2rem] p-6 shadow-xl text-white text-center border-b-4 border-indigo-500"
+            class="bg-slate-900 rounded-[2rem] p-6 shadow-xl text-white text-center border-b-4 border-orange-500"
           >
             <span class="text-2xl mb-2 block">🌙</span>
             <h2
-              class="text-xs font-black uppercase tracking-[0.2em] mb-2 italic text-indigo-400"
+              class="text-xs font-black uppercase tracking-[0.2em] mb-2 italic text-orange-400"
             >
               Meta 2026
             </h2>
             <p class="text-slate-400 text-[10px] italic leading-relaxed">
-              "Descansar hoy es asegurar el éxito de mañana."
+              "Un carrito vacío de errores significa una noche de sueño
+              profundo."
             </p>
           </section>
         </div>
 
         <div class="lg:col-span-2 space-y-8">
+          <!-- TEORÍA DEL CARRITO -->
           <article
             class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-200"
           >
             <h2
-              class="text-3xl font-black text-slate-900 mb-6 italic tracking-tighter italic"
+              class="text-3xl font-black text-slate-900 mb-6 italic tracking-tighter text-orange-600"
             >
-              Lógica Alfabética
+              Lógica de Estado
             </h2>
             <div class="space-y-6 text-slate-600 text-sm leading-relaxed">
               <p>
-                Para comparar nombres, usaremos el método
-                <code>localeCompare()</code>.
+                Interactuar con el carrito no es solo hacer click. Es validar
+                que el <strong>Estado de la Aplicación</strong> cambie
+                correctamente.
               </p>
               <div
-                class="bg-indigo-50 border-l-4 border-indigo-400 p-6 rounded-r-2xl font-mono text-[10px] text-indigo-900"
+                class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-2xl font-mono text-[11px] text-orange-900"
               >
-                // Si retorna <= 0, el orden es correcto (A -> Z)<br />
-                actual.localeCompare(siguiente) <= 0
+                // El "Badge" es dinámico<br />
+                const badge = await page.locator('.shopping_cart_badge');<br />
+                await expect(badge).toHaveText('1');
               </div>
               <p class="italic text-xs font-medium">
-                Este método es el estándar de oro en JavaScript para validación
-                de textos internacionales.
+                Validaremos que al agregar productos, el contador aumente, y al
+                entrar al carrito, los nombres coincidan.
               </p>
             </div>
           </article>
@@ -182,17 +194,19 @@
           <div
             class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-200 text-center"
           >
-            <h2 class="text-xl font-black text-slate-900 mb-6 italic italic">
-              SDET Skill Radar
+            <h2
+              class="text-xl font-black text-slate-900 mb-6 italic text-orange-600"
+            >
+              User Flow Mapping
             </h2>
             <div
-              class="h-64 flex items-center justify-center bg-slate-50 rounded-2xl border border-dashed border-slate-200"
+              class="h-48 flex items-center justify-center bg-slate-50 rounded-2xl border border-dashed border-slate-200"
             >
               <p
-                class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em] px-10 leading-relaxed italic"
+                class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em] px-10 leading-relaxed italic text-center"
               >
-                Tu arquitectura POM está evolucionando a
-                <span class="text-indigo-600">Nivel Intermedio</span>.
+                Home -> Product -> Cart -> Checkout <br />
+                <span class="text-orange-600">Siguiente Gran Reto</span>
               </p>
             </div>
           </div>
@@ -201,11 +215,10 @@
     </div>
 
     <script>
-      const STORAGE_KEY = "natalia-s10-v2-tasks";
-      let tasks = [true, false, false, false];
+      const STORAGE_KEY = "natalia-s11-tasks";
+      let tasks = [false, false, false, false];
 
       function toggleTask(i) {
-        if (i === 0) return; // Quiz ya hecho
         tasks[i] = !tasks[i];
         updateUI();
         save();
@@ -215,12 +228,10 @@
         tasks.forEach((t, i) => {
           const el = document.getElementById(`check-${i}`);
           if (!el) return;
-          el.innerHTML = t
-            ? '<div class="w-3 h-3 bg-indigo-500 rounded-sm"></div>'
-            : "";
+          el.innerHTML = t ? "✓" : "";
           el.className = t
-            ? "w-5 h-5 rounded border-2 border-indigo-500 flex items-center justify-center"
-            : "w-5 h-5 rounded border-2 border-indigo-200 flex items-center justify-center";
+            ? "w-5 h-5 rounded border-2 border-orange-500 bg-orange-500 flex items-center justify-center text-white text-[10px]"
+            : "w-5 h-5 rounded border-2 border-orange-200 flex items-center justify-center";
         });
         const p = Math.round(
           (tasks.filter((t) => t).length / tasks.length) * 100,
