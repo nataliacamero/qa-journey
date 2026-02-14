@@ -10,6 +10,8 @@ export class ProductPage {
   readonly itemNames: Locator;
   readonly selectSortPrices: Locator;
   readonly cartbadge: Locator;
+  readonly shoppingCartButton: Locator;
+  readonly productNameInCart: Locator;
 
   // Constructor
   constructor(page: Page) {
@@ -29,6 +31,10 @@ export class ProductPage {
     this.selectSortPrices = page.locator(".product_sort_container");
     // El badge es el componente dinámico que muestra la cantidad.
     this.cartbadge = page.locator(".shopping_cart_badge");
+    // Boton del carrito
+    this.shoppingCartButton = page.locator(".shopping_cart_link");
+    // Nombre del producto en el carrito de compras.
+    this.productNameInCart = page.locator(".inventory_item_name");
   }
 
   // Methods
