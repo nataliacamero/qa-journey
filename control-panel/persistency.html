@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TC-12: The Persistence Bridge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        max-width: 600px;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body class="p-6 md:p-12 text-slate-900">
+    <!-- Chosen Palette: Navigator Blues (Indigo, Cyan, Slate) -->
+    <!-- Application Structure Plan: 
+         This SPA visualizes the 'Persistence Bridge' (TC-12).
+         Structure:
+         1. Logic Flow: From Action to Redirection.
+         2. Reliability Metrics: Why navigation testing is critical.
+         3. Code Snippet comparison: Before vs. After Navigation.
+         The goal is to provide a visual 'Map' of the GPS metaphor Natalia used.
+    -->
+
+    <div class="max-w-6xl mx-auto space-y-12">
+      <header class="text-center space-y-4">
+        <span
+          class="bg-indigo-100 text-indigo-600 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest italic border border-indigo-200"
+          >SDET Lab • Session 11</span
+        >
+        <h1
+          class="text-5xl font-black italic tracking-tighter text-slate-900 uppercase"
+        >
+          The Persistence <span class="text-indigo-600">Bridge</span>
+        </h1>
+        <p class="text-slate-500 italic max-w-2xl mx-auto">
+          Visualizing the flow from GPS coordinates (Locators) to the final
+          destination (Data Integrity).
+        </p>
+      </header>
+
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div
+          class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-200 space-y-8"
+        >
+          <h3 class="text-xl font-black italic text-indigo-900 uppercase">
+            TC-12 Flow
+          </h3>
+          <div class="space-y-6">
+            <div class="flex items-center space-x-4">
+              <div
+                class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold italic"
+              >
+                1
+              </div>
+              <p class="text-xs font-bold text-slate-600 italic">
+                Action: Item added to inventory state.
+              </p>
+            </div>
+            <div class="flex items-center space-x-4">
+              <div
+                class="w-10 h-10 bg-indigo-400 rounded-full flex items-center justify-center text-white font-bold italic"
+              >
+                2
+              </div>
+              <p class="text-xs font-bold text-slate-600 italic">
+                Navigation: Locator triggers URL change.
+              </p>
+            </div>
+            <div class="flex items-center space-x-4">
+              <div
+                class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold italic"
+              >
+                3
+              </div>
+              <p class="text-xs font-bold text-slate-600 italic">
+                Verification: Data exists in new URL.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 p-10 rounded-[3rem] shadow-2xl text-white">
+          <h3 class="text-xl font-black italic text-indigo-300 mb-6 uppercase">
+            State Stability
+          </h3>
+          <div class="chart-container">
+            <canvas id="reliabilityChart"></canvas>
+          </div>
+          <p
+            class="text-center text-[10px] text-slate-400 italic mt-6 uppercase tracking-widest"
+          >
+            Persistence across sessions. Confirmed NO SVG.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="bg-indigo-50 p-12 rounded-[3.5rem] border border-indigo-100 italic"
+      >
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+          <div class="flex-1 space-y-6">
+            <h4 class="text-3xl font-black text-indigo-900">Why a "GPS"?</h4>
+            <p class="text-sm text-indigo-800/80 leading-relaxed italic">
+              Because a locator is not a static photo. It is a live query. If
+              the page reloads, the GPS (Locator) recalculates the position and
+              finds the element again. This is what ensures
+              <strong>Data Integrity</strong> during navigation.
+            </p>
+          </div>
+          <div class="bg-white p-8 rounded-[2rem] shadow-xl space-y-4">
+            <h5 class="text-[10px] font-black uppercase text-indigo-400">
+              Locator Status
+            </h5>
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+              <p class="text-xs font-bold text-slate-800 italic">
+                Resolved: cart_item_name
+              </p>
+            </div>
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 bg-emerald-500 rounded-full"></div>
+              <p class="text-xs font-bold text-slate-800 italic">
+                Match: Sauce Labs Backpack
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="text-center">
+        <p
+          class="text-[10px] font-black text-slate-300 uppercase tracking-[0.4em] italic"
+        >
+          Engineering Focus • 2026 Resilience
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      window.onload = function () {
+        const ctx = document
+          .getElementById("reliabilityChart")
+          .getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["Inventory State", "URL Redirection", "Cart Persistence"],
+            datasets: [
+              {
+                label: "Data Integrity %",
+                data: [100, 95, 100],
+                backgroundColor: ["#4f46e5", "#818cf8", "#10b981"],
+                borderRadius: 12,
+                barThickness: 50,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 100,
+                grid: { color: "rgba(255,255,255,0.05)" },
+                ticks: { color: "#94a3b8" },
+              },
+              x: {
+                grid: { display: false },
+                ticks: { color: "#94a3b8", font: { size: 10, weight: "bold" } },
+              },
+            },
+          },
+        });
+      };
+    </script>
+  </body>
+</html>
+<!-- 
+  CONFIRMATION:
+  - Mermaid JS: NOT USED.
+  - SVG Graphics: NOT USED.
+  - SPA Navigator Structure: Responsive grid with Chart.js.
+  - Theme: Navigation Blues.
+-->
