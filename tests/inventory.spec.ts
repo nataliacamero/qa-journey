@@ -1,6 +1,13 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "@pages/LoginPage";
 import { ProductPage } from "@pages/ProductPage";
+import {
+  MAIN_LIST,
+  PRODUCT_NAME,
+  TEXT_TO_HAVE_ONE_PRODUCT,
+  TITLE_PRODUCT_PAGE,
+  VALID_CREDENTIALS,
+} from "./constants";
 
 test("TC-04: Validar carga de productos (Happy Path)", async ({ page }) => {
   // Instanciamos la clase LoginPage
@@ -12,11 +19,14 @@ test("TC-04: Validar carga de productos (Happy Path)", async ({ page }) => {
   await loginPage.navigateTo();
 
   // 2. Login con usuario y contraseña valido.
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
 
   // 3. Validar que entramos a pagina de productos.
   const titleText = await productPage.validateOnPage();
-  expect(titleText).toBe("Products");
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
 
   // 4. Validar que se cargan los productos correctamente.
   const itemsCount = await productPage.getProductCount();
@@ -32,10 +42,13 @@ test("TC-05: Validar el formato de precios ($)", async ({ page }) => {
   // 1. Navegar a la pagina de Login.
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
   // 3. Validar que se carga la pagina de Products.
   const titleText = await productPage.validateOnPage();
-  expect(titleText).toBe("Products");
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
   // 4. Validar que los productos tienen el formato de moneda correcto.
   const prices = await productPage.getAllPrices();
 
@@ -56,23 +69,18 @@ test("TC-06: Validar nombres de productos contra lista maestra", async ({
   // 1. Navegar a la pagina de Login.
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
-  expect(titleText).toBe("Products");
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
   // 4. Validar que los productos tienen los nombres correctos.
   const actualNames = await productPage.getAllProductNames();
-  const mainList = [
-    "Sauce Labs Backpack",
-    "Sauce Labs Bike Light",
-    "Sauce Labs Bolt T-Shirt",
-    "Sauce Labs Fleece Jacket",
-    "Sauce Labs Onesie",
-    "Test.allTheThings() T-Shirt (Red)",
-  ];
   // Se valida longitud de la lista, contenido, y orden exacto.
   console.log("Comparando nombres reales contra lista esperada...");
-  expect(actualNames).toEqual(mainList);
+  expect(actualNames).toEqual(MAIN_LIST);
 });
 
 test("TC-07: Validar que el filtro de menor a mayor ordena numéricamente de forma ascendente.", async ({
@@ -86,10 +94,13 @@ test("TC-07: Validar que el filtro de menor a mayor ordena numéricamente de for
   // 1. Navegar a la pagina de Login.
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
-  expect(titleText).toBe("Products");
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
 
   // a. Seleccionamos los precios de menor a mayor.
   const sortPrices = await productPage.selectSortingPrices("lohi");
@@ -125,10 +136,13 @@ test("TC-08: Validar que el filtro de mayor a menor ordena numéricamente de for
   // 1. Navegar a la pagina de Login.
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
-  expect(titleText).toBe("Products");
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
 
   // a. Seleccionamos los precios de mayor a menor.
   const sortPrices = await productPage.selectSortingPrices("hilo");
@@ -165,10 +179,13 @@ test("TC-09: Validar que el filtro (A to Z) ordena alfabéticamente de forma asc
   // 1. Navegar a la pagina de Login.
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
-  expect(titleText).toBe("Products");
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
 
   // a. Seleccionamos los productos de la A a la Z.
   const sortPrices = await productPage.selectSortingPrices("az");
@@ -200,10 +217,13 @@ test("TC-10: Validar que el filtro (Z to A) ordena alfabéticamente de forma des
   // 1. Navegar a la pagina de Login.
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
-  expect(titleText).toBe("Products");
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
 
   // a. Seleccionamos los productos de la A a la Z.
   const sortPrices = await productPage.selectSortingPrices("za");
@@ -234,10 +254,13 @@ test("TC-11: Validar incremento del contador del carrito (Badge)", async ({
   // 1. Navegar a la pagina de Login.
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
-  await loginPage.login("standard_user", "secret_sauce");
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
-  expect(titleText).toBe("Products");
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
 
   // 1. Verificar estado inicial (Baseline): El badge no debe ser visible.
   // SauceDemo no renderiza el badge si el carrito está vacío.
@@ -245,10 +268,46 @@ test("TC-11: Validar incremento del contador del carrito (Badge)", async ({
   await expect(cartBadgeSelector).toBeHidden();
 
   // 2. Acción: Añadir un producto específico.
-  await productPage.addingProductToCart("Sauce Labs Backpack");
+  await productPage.addingProductToCart(PRODUCT_NAME);
 
   // 3. Verificación de estado final (Efecto secundario visual).
   // Validamos que el elemento aparezca y que el sistema "recuerde" el estado (1).
   await expect(cartBadgeSelector).toBeVisible();
-  await expect(cartBadgeSelector).toHaveText("1");
+  await expect(cartBadgeSelector).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
+});
+
+test("TC-12: Validar la persistencia de productos en el carrito", async ({
+  page,
+}) => {
+  // Instanciamos las clases LoginPage y ProductPage.
+  const loginPage = new LoginPage(page);
+  const productPage = new ProductPage(page);
+
+  // 1. Navegamos a la pagina de login.
+  await loginPage.navigateTo();
+  // 2. Nos logueamos con credenciales validas.
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
+  // 3. Validamos si estamos en la pagina de productos.
+  const titleText = await productPage.validateOnPage();
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
+  // 4. Verificamos el estado inicial del carrito.
+  const cartBadge = productPage.getCartBadge();
+  await expect(cartBadge).toBeHidden();
+  // 5. Añadimos un producto al carrito.
+  await productPage.addingProductToCart(PRODUCT_NAME);
+  // 6. Validamos los efectos secundarios del triguer.
+  await expect(cartBadge).toBeVisible();
+  await expect(cartBadge).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
+  // 7. Click al boton del carrito de compras.
+  await productPage.shoppingCartButton.click();
+  // 8. Validamos el titulo de la pagina del carrito de compras
+  const cartTitleText = await productPage.validateOnPage();
+  expect(cartTitleText).toBe("Your Cart");
+  //9. validamos que el nombre del producto seleccionado esta en el carrito de compra.
+  const productName = productPage.productNameInCart;
+  await expect(productName).toBeVisible();
+  await expect(productName).toHaveText(PRODUCT_NAME);
 });
