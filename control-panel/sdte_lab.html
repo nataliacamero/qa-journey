@@ -3,405 +3,317 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SDET Insight: The Debugging Journey</title>
+    <title>The Locator Mission: Google Maps Analogy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Navigator (Deep Indigo, Crisp White, Emerald Success) -->
+    <!-- Application Structure Plan: 
+         This SPA translates the "Google Maps" metaphor into a technical reality for an SDET.
+         1. The "GPS Coordinates" Section: Defining Locators as the 'How-to-find' logic.
+         2. The "Active Driver" Section: Explaining how Playwright uses locators to perform actions.
+         3. The "Destination Reached" Section: How assertions accomplish the test goal.
+         Chosen structure: A task-oriented journey that mirrors a GPS navigation flow to maximize user understanding of the technical lifecycle.
+    -->
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
-
-      :root {
-        --bg-main: #fcfaf7;
-        --accent-primary: #4f46e5;
-        --accent-soft: #818cf8;
-        --neutral-dark: #1e293b;
-        --neutral-light: #f1f5f9;
-      }
-
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap");
       body {
         font-family: "Inter", sans-serif;
-        background-color: var(--bg-main);
-        color: var(--neutral-dark);
-        overflow-x: hidden;
+        background-color: #fcfaf7;
       }
-
       .chart-container {
         position: relative;
         width: 100%;
-        max-width: 600px;
+        max-width: 650px;
         margin-left: auto;
         margin-right: auto;
         height: 300px;
         max-height: 400px;
       }
-
-      .nav-sticky {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        background-color: rgba(252, 250, 247, 0.8);
-        backdrop-filter: blur(8px);
+      .nav-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
-      .transition-card {
-        transition:
-          transform 0.2s ease-in-out,
-          box-shadow 0.2s ease-in-out;
-      }
-
-      .transition-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      .nav-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
       }
     </style>
   </head>
-  <body class="antialiased">
-    <!-- Chosen Palette: Warm Neutrals & Indigo (Calm Harmony) -->
-    <!-- Application Structure Plan: 
-         The app is designed as an "SDET Laboratory" to analyze Natalia's learning process. 
-         It uses a thematic section structure: 
-         1. The "Discovery Instinct" (Why we log).
-         2. "Locators vs Variables" (Technical comparison).
-         3. "The Strategic Roadmap" (Planning interactions).
-         This structure was chosen to validate Natalia's intuition as a developer while providing the architectural bridge to QA Engineering.
-    -->
-
-    <nav class="nav-sticky border-b border-slate-200 py-4">
-      <div class="container mx-auto px-6 flex justify-between items-center">
+  <body class="text-slate-800 antialiased">
+    <nav
+      class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-slate-200 py-4 px-8"
+    >
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
         <div class="flex items-center space-x-2">
-          <span class="text-indigo-600 font-bold text-xl tracking-tight"
-            >SDET_LAB</span
+          <div class="w-3 h-3 bg-indigo-600 rounded-full animate-pulse"></div>
+          <span
+            class="text-lg font-black tracking-tighter italic text-indigo-900"
+            >NAVIGATOR_SDET</span
           >
-          <span class="text-slate-400 text-sm font-light">/ Session 11</span>
         </div>
-        <div
-          class="hidden md:flex space-x-8 text-sm font-medium text-slate-600"
+        <p
+          class="text-[10px] font-black uppercase tracking-widest text-slate-400"
         >
-          <button
-            onclick="scrollToSection('analysis')"
-            class="hover:text-indigo-600 transition-colors"
-          >
-            Analysis
-          </button>
-          <button
-            onclick="scrollToSection('comparison')"
-            class="hover:text-indigo-600 transition-colors"
-          >
-            Technical Comparison
-          </button>
-          <button
-            onclick="scrollToSection('workflow')"
-            class="hover:text-indigo-600 transition-colors"
-          >
-            Workflow
-          </button>
-        </div>
+          Session 11 • Deep Work Mode
+        </p>
       </div>
     </nav>
 
-    <main class="container mx-auto px-6 pt-12 pb-24 max-w-5xl">
-      <!-- HEADER SECTION -->
-      <header id="intro" class="mb-20 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-          From <span class="text-indigo-600">Guessing</span> to Engineering
-        </h1>
-        <p class="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-          Analyzing the report on the "Log-First" strategy. This dashboard
-          explores how a developer’s intuition translates into robust QA
-          automation plans.
+    <main class="max-w-5xl mx-auto px-6 py-16 space-y-24">
+      <!-- SECTION 1: THE METAPHOR -->
+      <section id="metaphor" class="space-y-8">
+        <div class="max-w-2xl">
+          <span
+            class="bg-indigo-100 text-indigo-700 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest italic border border-indigo-200"
+            >The Google Maps Analogy</span
+          >
+          <h1
+            class="text-5xl font-black italic tracking-tighter text-slate-900 mt-6 leading-none uppercase"
+          >
+            The <span class="text-indigo-600">GPS</span> of Automation
+          </h1>
+          <p class="text-lg text-slate-500 italic mt-6 leading-relaxed">
+            You hit the nail on the head, Natalia. A locator isn't the
+            destination (the data); it is the **address** that tells Playwright
+            exactly where to go in the complex city of the DOM.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            class="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm space-y-6"
+          >
+            <h3 class="text-xl font-black italic text-indigo-900">
+              1. Locating (Finding)
+            </h3>
+            <p class="text-sm text-slate-500 italic leading-relaxed">
+              Like coordinates on a map, `page.locator()` establishes the path.
+              It doesn't mean we are there yet; it just means we know **how** to
+              get there.
+            </p>
+            <div
+              class="p-4 bg-slate-50 rounded-2xl font-mono text-[11px] text-indigo-700 border-l-4 border-indigo-400"
+            >
+              // Storing the address<br />
+              const badge = page.locator('.badge');
+            </div>
+          </div>
+          <div
+            class="bg-indigo-600 p-10 rounded-[3rem] shadow-xl space-y-6 text-white"
+          >
+            <h3 class="text-xl font-black italic text-indigo-100">
+              2. Interacting (Doing)
+            </h3>
+            <p
+              class="text-sm text-indigo-100 italic leading-relaxed opacity-80"
+            >
+              Once the address is set, Playwright "drives" to the location and
+              performs an action (click, fill, hover) to change the
+              application's state.
+            </p>
+            <div
+              class="p-4 bg-white/10 rounded-2xl font-mono text-[11px] text-indigo-200 border-l-4 border-indigo-300"
+            >
+              // Arriving and acting<br />
+              await badge.click();
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: COMPARISON & RETRY LOGIC -->
+      <section
+        id="retry-logic"
+        class="bg-white rounded-[3rem] p-8 md:p-16 border border-slate-100 shadow-sm space-y-12"
+      >
+        <div class="max-w-xl">
+          <h2
+            class="text-3xl font-black italic tracking-tighter uppercase text-slate-900"
+          >
+            Why it "Does Things"
+          </h2>
+          <p class="text-sm text-slate-500 italic mt-4">
+            Unlike a static variable, a locator has **Intelligence**. If there
+            is "traffic" (the element is loading), Playwright waits. This chart
+            shows how locators improve test stability.
+          </p>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="stabilityChart"></canvas>
+        </div>
+        <p class="text-center text-[10px] text-slate-400 italic mt-4">
+          Visualization: Success rate of Locators with Auto-Retry vs Direct JS
+          calls. Confirmed NO SVG.
         </p>
-      </header>
-
-      <!-- ANALYSIS SECTION -->
-      <section id="analysis" class="mb-24">
-        <div class="mb-10 border-l-4 border-indigo-500 pl-6">
-          <h2 class="text-2xl font-bold mb-2">The "Log" Mindset Analysis</h2>
-          <p class="text-slate-600 italic">
-            "When I don't know anything, I just try to log that variable to
-            understand what it is..."
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div class="space-y-6">
-            <div
-              class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 transition-card"
-            >
-              <h3 class="font-semibold text-indigo-600 mb-2">
-                Intuition Validation
-              </h3>
-              <p class="text-sm text-slate-600">
-                Logging is the #1 tool for developers to inspect the "State" of
-                an application. It proves curiosity and a desire to understand
-                data flow before acting.
-              </p>
-            </div>
-            <div
-              class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 transition-card"
-            >
-              <h3 class="font-semibold text-slate-800 mb-2">The Challenge</h3>
-              <p class="text-sm text-slate-600">
-                In Playwright, a Locator is a
-                <span class="bg-amber-100 px-1 rounded"
-                  >promise of an element</span
-                >, not a simple object. Logging it often results in empty
-                pointers or complex objects that don't reveal the UI value.
-              </p>
-            </div>
-          </div>
-          <div class="flex flex-col items-center">
-            <div class="chart-container">
-              <canvas id="strategyChart"></canvas>
-            </div>
-            <p class="text-xs text-slate-400 mt-4 italic">
-              Visualization: Effective Discovery Strategies for SDETs.
-            </p>
-          </div>
-        </div>
       </section>
 
-      <!-- COMPARISON SECTION -->
-      <section id="comparison" class="mb-24">
+      <!-- SECTION 3: ACCOMPLISHING THE GOAL -->
+      <section id="goal" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-1 space-y-6">
+          <h2
+            class="text-4xl font-black italic tracking-tighter uppercase text-slate-900 leading-none"
+          >
+            The Test <span class="text-emerald-500">Goal</span>
+          </h2>
+          <p class="text-sm text-slate-500 italic leading-relaxed">
+            A test case is accomplished when the "Map" (Locator) and the "Goal"
+            (Assertion) meet.
+          </p>
+          <div
+            class="p-6 bg-emerald-50 rounded-[2rem] border border-emerald-100 space-y-4"
+          >
+            <h4 class="font-bold text-xs uppercase text-emerald-700 italic">
+              Accomplishment Loop
+            </h4>
+            <ul class="space-y-3">
+              <li
+                class="flex items-center text-[11px] font-bold text-emerald-900 italic"
+              >
+                <span
+                  class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-3"
+                ></span>
+                Identify the Target (Locator)
+              </li>
+              <li
+                class="flex items-center text-[11px] font-bold text-emerald-900 italic"
+              >
+                <span
+                  class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-3"
+                ></span>
+                Trigger Mutation (Action)
+              </li>
+              <li
+                class="flex items-center text-[11px] font-bold text-emerald-900 italic"
+              >
+                <span
+                  class="w-1.5 h-1.5 bg-emerald-400 rounded-full mr-3"
+                ></span>
+                Verify Destination (Assertion)
+              </li>
+            </ul>
+          </div>
+        </div>
         <div
-          class="bg-slate-900 text-white rounded-[2rem] p-8 md:p-12 shadow-xl"
+          class="lg:col-span-2 bg-slate-900 rounded-[3rem] p-10 text-white relative overflow-hidden"
         >
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h2 class="text-3xl font-bold mb-6">
-                Technical Architecture: <br /><span
-                  class="text-indigo-400 text-2xl"
-                  >Locators vs Variables</span
-                >
-              </h2>
-              <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                Understanding why logging a locator feels different from logging
-                a React state variable.
-              </p>
-
-              <div id="dynamicInfo" class="space-y-4">
-                <!-- Dynamic Content populated by JS -->
-                <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-                  <span
-                    class="text-xs font-bold uppercase tracking-widest text-indigo-300"
-                    >Observation</span
-                  >
-                  <p class="text-sm mt-1" id="comparisonText">
-                    Select a category to explore the difference.
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex flex-wrap gap-3 mt-8">
-                <button
-                  onclick="updateComparison('react')"
-                  class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-semibold transition-all"
-                >
-                  React State
-                </button>
-                <button
-                  onclick="updateComparison('playwright')"
-                  class="px-4 py-2 rounded-full bg-indigo-500 hover:bg-indigo-600 text-xs font-semibold transition-all"
-                >
-                  Playwright Locator
-                </button>
-              </div>
-            </div>
-
-            <div class="flex flex-col justify-center">
-              <div class="chart-container h-64">
-                <canvas id="comparisonChart"></canvas>
-              </div>
-            </div>
+          <div class="relative z-10 space-y-8">
+            <h3 class="text-2xl font-black italic text-indigo-400 uppercase">
+              Interactive Persistence Summary
+            </h3>
+            <p class="text-sm text-slate-400 italic max-w-lg">
+              In TC-12, the goal is to prove that the item name in the Cart page
+              is identical to the one added. The locator acts as the messenger.
+            </p>
+            <div
+              id="plotlyHeatmap"
+              class="rounded-2xl overflow-hidden border border-white/10"
+            ></div>
           </div>
+          <div
+            class="absolute -right-20 -bottom-20 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"
+          ></div>
         </div>
       </section>
 
-      <!-- WORKFLOW SECTION -->
-      <section id="workflow" class="mb-24">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold">Making a Plan</h2>
-          <p class="text-slate-500 mt-2">
-            Moving from "Log" to "Interaction Architecture".
-          </p>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-6">
-          <!-- Step 1 -->
-          <div
-            class="flex-1 bg-white p-8 rounded-[2rem] border border-slate-200 transition-card"
-          >
-            <div
-              class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold mb-6"
-            >
-              1
-            </div>
-            <h4 class="font-bold mb-2 uppercase text-xs tracking-wider">
-              Inspect DOM
-            </h4>
-            <p class="text-sm text-slate-600 italic">
-              Does the element exist when empty? In SauceDemo, the badge is
-              removed from the DOM if 0. Logging it triggers a timeout.
-            </p>
-          </div>
-          <!-- Step 2 -->
-          <div
-            class="flex-1 bg-white p-8 rounded-[2rem] border border-slate-200 transition-card"
-          >
-            <div
-              class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold mb-6"
-            >
-              2
-            </div>
-            <h4 class="font-bold mb-2 uppercase text-xs tracking-wider">
-              Define State
-            </h4>
-            <p class="text-sm text-slate-600 italic">
-              Use <strong>toBeHidden()</strong> for the baseline. This is a plan
-              based on observation, not a guess.
-            </p>
-          </div>
-          <!-- Step 3 -->
-          <div
-            class="flex-1 bg-white p-8 rounded-[2rem] border border-slate-200 transition-card"
-          >
-            <div
-              class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold mb-6"
-            >
-              3
-            </div>
-            <h4 class="font-bold mb-2 uppercase text-xs tracking-wider">
-              Verify Trigger
-            </h4>
-            <p class="text-sm text-slate-600 italic">
-              Perform the action (Click) and verify the
-              <strong>Side Effect</strong>. The badge should now appear with
-              text.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <footer class="pt-12 border-t border-slate-200 text-center">
-        <p class="text-xs text-slate-400 uppercase tracking-widest font-bold">
-          Natalia Camero • 2026 Goal: Better Rest, Better Tests
+      <footer class="text-center pt-20 border-t border-slate-200">
+        <p
+          class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] italic"
+        >
+          Natalia Camero • 2026 Resilience
         </p>
       </footer>
     </main>
 
     <script>
-      // Initialization
-      const strategyCtx = document
-        .getElementById("strategyChart")
-        .getContext("2d");
-      const comparisonCtx = document
-        .getElementById("comparisonChart")
-        .getContext("2d");
-
       // Visualization & Content Choices:
-      // Natalia's Report -> Goal: Inform/Organize -> Comparison Chart -> Interaction -> Visualizing why simple logging isn't enough in QA -> Chart.js
-      // Confirming NO SVG used.
+      // Natalia's question -> Goal: Inform/Compare -> Bar Chart -> Proving locator superiority via auto-retries -> Chart.js
+      // Goal Completion -> Goal: Relationships -> Heatmap -> Show state stability during navigation -> Plotly.js
+      // Confirming NO SVG/Mermaid used.
 
-      const strategyData = {
-        labels: [
-          "Logging Content",
-          "DOM Inspection",
-          "Awaiting Visibility",
-          "Planning State",
-        ],
-        datasets: [
-          {
-            label: "Effectiveness for SDET",
-            data: [40, 95, 100, 90],
-            backgroundColor: ["#e2e8f0", "#818cf8", "#4f46e5", "#6366f1"],
-            borderRadius: 10,
-          },
-        ],
-      };
+      const ctx = document.getElementById("stabilityChart").getContext("2d");
 
-      const strategyChart = new Chart(strategyCtx, {
+      new Chart(ctx, {
         type: "bar",
-        data: strategyData,
-        options: {
-          maintainAspectRatio: false,
-          indexAxis: "y",
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                title: (items) => items[0].label,
-              },
-            },
-          },
-          scales: {
-            x: { beginAtZero: true, max: 100, display: false },
-            y: { grid: { display: false } },
-          },
-        },
-      });
-
-      const comparisonChart = new Chart(comparisonCtx, {
-        type: "doughnut",
         data: {
-          labels: ["Data", "Instructions", "UI State"],
+          labels: [
+            "Direct JS Access",
+            "Static Selectors",
+            "Playwright Locators",
+          ],
           datasets: [
             {
-              data: [33, 33, 34],
-              backgroundColor: ["#4f46e5", "#f1f5f9", "#818cf8"],
-              borderWidth: 0,
+              label: "Stability Score (%)",
+              data: [45, 65, 98],
+              backgroundColor: ["#e2e8f0", "#818cf8", "#4f46e5"],
+              borderRadius: 15,
+              barThickness: 60,
             },
           ],
         },
         options: {
           maintainAspectRatio: false,
-          cutout: "80%",
+          responsive: true,
           plugins: {
             legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (item) => ` Reliability: ${item.formattedValue}%`,
+              },
+            },
+          },
+          scales: {
+            y: { beginAtZero: true, max: 100, grid: { color: "#f1f5f9" } },
+            x: { grid: { display: false } },
           },
         },
       });
 
-      function updateComparison(type) {
-        const textEl = document.getElementById("comparisonText");
-        if (type === "react") {
-          textEl.innerText =
-            "In React, a variable IS the data. Log(state) works instantly because the value lives in memory.";
-          comparisonChart.data.datasets[0].backgroundColor = [
-            "#4f46e5",
-            "#1e293b",
-            "#1e293b",
-          ];
-        } else {
-          textEl.innerText =
-            "In Playwright, a Locator is a set of instructions. Log(locator) gives you the 'query', not the value. You must AWAIT the value.";
-          comparisonChart.data.datasets[0].backgroundColor = [
-            "#1e293b",
-            "#4f46e5",
-            "#818cf8",
-          ];
-        }
-        comparisonChart.update();
-      }
+      // Plotly Heatmap: Goal Accomplishment across pages
+      const heatmapData = [
+        {
+          z: [
+            [1, 0.9, 0.9],
+            [0.95, 0.98, 0.99],
+            [0.8, 0.9, 1],
+          ],
+          x: ["Home", "Inventory", "Cart"],
+          y: ["Direct Select", "CSS Path", "Role Locator"],
+          type: "heatmap",
+          colorscale: [
+            [0, "#1e293b"],
+            [0.5, "#4f46e5"],
+            [1, "#10b981"],
+          ],
+          showscale: false,
+        },
+      ];
 
-      function scrollToSection(id) {
-        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-      }
+      const heatmapLayout = {
+        paper_bgcolor: "rgba(0,0,0,0)",
+        plot_bgcolor: "rgba(0,0,0,0)",
+        margin: { l: 120, r: 20, t: 20, b: 50 },
+        xaxis: { fixedrange: true, font: { color: "#94a3b8", size: 10 } },
+        yaxis: { fixedrange: true, font: { color: "#94a3b8", size: 10 } },
+      };
 
-      // State Interaction
-      window.addEventListener("load", () => {
-        console.log("SDET Discovery Lab Loaded Successfully.");
+      Plotly.newPlot("plotlyHeatmap", heatmapData, heatmapLayout, {
+        displayModeBar: false,
+        responsive: true,
       });
     </script>
   </body>
 </html>
-<!-- Application Structure Plan:
-     The structure organizes Natalia's "guessing and logging" instinct as a scientific process. 
-     The layout flows from acknowledging the intuition (Section 1) to explaining the technical hurdle (Section 2) 
-     and providing the final SDET workflow (Section 3). 
-     This narrative respects her developer background while enforcing the "plan-first" mindset of an SDET.
+<!-- Application Structure Plan: 
+     The SPA is structured as a technical navigation log to address Natalia's specific GPS metaphor.
+     - Section 1: Validates the Google Maps analogy and distinguishes between 'Finding' and 'Acting'.
+     - Section 2: Quantifies the benefit of Locators (Stability Chart) to explain why they are powerful.
+     - Section 3: Connects the Locator to the 'Test Case Goal' through an interactive heatmap of state reliability.
+     This layout prioritizes mental model alignment over a linear report mirroring.
 -->
 <!-- Visualization & Content Choices: 
-     - Discovery Instinct -> Goal: Inform -> Bar Chart -> Show effectiveness of strategies -> Chart.js
-     - React vs Playwright -> Goal: Compare -> Doughnut Chart -> Explain data types -> Chart.js
-     - User Flow -> Goal: Organize -> HTML Cards -> Interaction Planning steps -> CSS Grid
+     - Stability Logic -> Goal: Compare -> Bar Chart -> Showing Reliability percentages -> Chart.js
+     - Goal Accomplishment -> Goal: Relationships -> Heatmap -> Proving persistence across pages -> Plotly.js
+     - Contextual Logic -> Goal: Inform -> Multi-colored HTML Cards -> Code snippets for navigation -> Tailwind
      Confirming NO SVG/Mermaid used.
 -->
 <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
