@@ -12,6 +12,7 @@ export class ProductPage {
   readonly cartbadge: Locator;
   readonly shoppingCartButton: Locator;
   readonly productNameInCart: Locator;
+  readonly continueShoppingButton: Locator;
 
   // Constructor
   constructor(page: Page) {
@@ -35,6 +36,10 @@ export class ProductPage {
     this.shoppingCartButton = page.locator(".shopping_cart_link");
     // Nombre del producto en el carrito de compras.
     this.productNameInCart = page.locator(".inventory_item_name");
+    // Boton para retornar a lista de productos
+    this.continueShoppingButton = page.locator(
+      '[data-test="continue-shopping"]',
+    );
   }
 
   // Methods
@@ -76,12 +81,41 @@ export class ProductPage {
     return this.cartbadge;
   }
 
-  async addingProductToCart(productName: string) {
+  /**
+   * Agrega un producto al carrito desde la página de inventario.
+   */
+  async addProductToCart(productName: string) {
     // Traemos el contenedor padre del producto.
     const container = this.page.locator(".inventory_item", {
       hasText: productName,
     });
     // Clicamos en el boton.
     await container.locator(".btn_inventory").click();
+  }
+
+  /**
+   * Navega a la página del carrito.
+   */
+  async goToCart() {
+    await this.shoppingCartButton.click();
+  }
+
+  /**
+   * Remueve un producto específicamente desde la página del carrito.
+   */
+  async removeProductFromCart(productName: string) {
+    // Traemos el contenedor del padre.
+    const container = this.page.locator(".cart_item", {
+      hasText: productName,
+    });
+    // Clicamos en el boton.
+    await container.getByRole("button", { name: "Remove" }).click();
+  }
+
+  /**
+   * Navega de vuelta a la lista de productos.
+   */
+  async clickContinueShopping() {
+    await this.continueShoppingButton.click();
   }
 }
