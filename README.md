@@ -97,3 +97,11 @@ Para correr los tests en tu máquina local, sigue estos pasos:
    ```bash
    npx playwright show-report
    ```
+
+## 🚀 Cómo correr codegen
+
+Para correr codegen en tu máquina local, ejecuta el siguiente comando:
+
+```bash
+   npx playwright codegen
+```
