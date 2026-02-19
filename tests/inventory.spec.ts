@@ -268,7 +268,7 @@ test("TC-11: Validar incremento del contador del carrito (Badge)", async ({
   await expect(cartBadgeSelector).toBeHidden();
 
   // 2. Acción: Añadir un producto específico.
-  await productPage.addingProductToCart(PRODUCT_NAME);
+  await productPage.addProductToCart(PRODUCT_NAME);
 
   // 3. Verificación de estado final (Efecto secundario visual).
   // Validamos que el elemento aparezca y que el sistema "recuerde" el estado (1).
@@ -297,7 +297,7 @@ test("TC-12: Validar la persistencia de productos en el carrito", async ({
   const cartBadge = productPage.getCartBadge();
   await expect(cartBadge).toBeHidden();
   // 5. Añadimos un producto al carrito.
-  await productPage.addingProductToCart(PRODUCT_NAME);
+  await productPage.addProductToCart(PRODUCT_NAME);
   // 6. Validamos los efectos secundarios del triguer.
   await expect(cartBadge).toBeVisible();
   await expect(cartBadge).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
@@ -310,4 +310,54 @@ test("TC-12: Validar la persistencia de productos en el carrito", async ({
   const productName = productPage.productNameInCart;
   await expect(productName).toBeVisible();
   await expect(productName).toHaveText(PRODUCT_NAME);
+});
+
+test("TC-13: Verificar la eliminación del producto del carrito.", async ({
+  page,
+}) => {
+  // Instanciamos las clases LoginPage y ProductPage.
+  const loginPage = new LoginPage(page);
+  const productPage = new ProductPage(page);
+
+  // 1. Setup y Login
+  await loginPage.navigateTo();
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
+
+  // 2. Estado Inicial: Validar página y carrito vacío
+  const titleText = await productPage.validateOnPage();
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
+  const cartBadge = productPage.getCartBadge();
+  await expect(cartBadge).toBeHidden();
+
+  // 3. Acción: Agregar producto y validar Badge
+  await productPage.addProductToCart(PRODUCT_NAME);
+  //  Validamos los efectos secundarios del triguer.
+  await expect(cartBadge).toBeVisible();
+  await expect(cartBadge).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
+
+  // 4. Navegación: Ir al carrito
+  await productPage.goToCart();
+  //  Validamos el titulo de la pagina del carrito de compras
+  const cartTitleText = await productPage.validateOnPage();
+  expect(cartTitleText).toBe("Your Cart");
+
+  // 5. Validación de persistencia: El producto está en el carrito
+  const productName = productPage.productNameInCart;
+  await expect(productName).toBeVisible();
+  await expect(productName).toHaveText(PRODUCT_NAME);
+
+  // 6. Acción: Remover el producto
+  await productPage.removeProductFromCart(PRODUCT_NAME);
+
+  // 7. Navegación de retorno: Volver a la lista de productos
+  await productPage.clickContinueShopping();
+
+  // 8. Verificación Final: El badge debe estar oculto tras la eliminación
+  await expect(cartBadge).toBeHidden();
+
+  // Opcional: Validar que volvimos a la URL de inventario
+  await expect(page).toHaveURL(/.*inventory.html/);
 });
