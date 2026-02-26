@@ -344,6 +344,8 @@ test("TC-13: Verificar la eliminación del producto del carrito.", async ({
   const cartTitleText = await productPage.validateOnPage();
   expect(cartTitleText).toBe("Your Cart");
 
+  await expect(page).toHaveURL(/.*cart.html/);
+
   // 5. Validación de persistencia: El producto está en el carrito
   const productName = productPage.productNameInCart;
   await expect(productName).toBeVisible();
@@ -358,6 +360,65 @@ test("TC-13: Verificar la eliminación del producto del carrito.", async ({
   // 8. Verificación Final: El badge debe estar oculto tras la eliminación
   await expect(cartBadge).toBeHidden();
 
-  // Opcional: Validar que volvimos a la URL de inventario
+  // Importante: Siempre validar que volvimos a la URL de inventario
   await expect(page).toHaveURL(/.*inventory.html/);
+});
+
+test("TC-14: Verificar la cancelacion del checkout, sin perder progreso en el carrito. Pruebas negativas.", async ({
+  page,
+}) => {
+  // Instanciamos las clases LoginPage y ProductPage.
+  const loginPage = new LoginPage(page);
+  const productPage = new ProductPage(page);
+
+  // 1. Setup, Login and add product to cart;
+
+  // a. Navegamos a la pagina de login.
+  await loginPage.navigateTo();
+  await loginPage.login(
+    VALID_CREDENTIALS.usuario,
+    VALID_CREDENTIALS.contraseña,
+  );
+  // b. Validamos si estamos en la pagina de productos.
+  const titleText = await productPage.validateOnPage();
+  expect(titleText).toBe(TITLE_PRODUCT_PAGE);
+  // c. Verificamos el estado inicial del carrito.
+  const cartBadge = productPage.getCartBadge();
+  await expect(cartBadge).toBeHidden();
+  // d. Añadimos un producto al carrito.
+  await productPage.addProductToCart(PRODUCT_NAME);
+  // e. Validamos los efectos secundarios del triguer.
+  await expect(cartBadge).toBeVisible();
+  await expect(cartBadge).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
+
+  // 2. Navegar al carrito y click en checkout.
+
+  // a. Click al boton del carrito de compras.
+  await productPage.goToCart();
+  // b. Validamos el titulo de la pagina del carrito de compras
+  const cartTitleText = await productPage.validateOnPage();
+  expect(cartTitleText).toBe("Your Cart");
+  await expect(page).toHaveURL(/.*cart.html/);
+  // c. Validar que el producto este en el carrito.
+  const productName = productPage.productNameInCart;
+  await expect(productName).toBeVisible();
+  await expect(productName).toHaveText(PRODUCT_NAME);
+  // d. Click en el boton de checkout.
+  await productPage.goToCheckout();
+  // e. Validamos que estamos en la pagina del checkout.
+  const checkoutTitle = await productPage.validateOnPage();
+  expect(checkoutTitle).toBe("Checkout: Your Information");
+  await expect(page).toHaveURL(/.*checkout-step-one.html/);
+
+  // 3. Acción: Cancelar el checkout.
+
+  // a. Click en el boton de cancel
+  await productPage.cancelCheckout();
+  // b. Validamos que volvemos a la pagina del carrito.
+  expect(cartTitleText).toBe("Your Cart");
+  await expect(page).toHaveURL(/.*cart.html/);
+
+  // 4. Verificación Final: El producto sigue en el carrito y el badge refleja la cantidad correcta.
+  await expect(productName).toBeVisible();
+  await expect(productName).toHaveText(PRODUCT_NAME);
 });

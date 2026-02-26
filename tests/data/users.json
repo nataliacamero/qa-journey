@@ -1,0 +1,22 @@
+{
+  "validUser": {
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "description": "Usuario estándar con acceso total"
+  },
+  "lockedOutUser": {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "description": "Usuario bloqueado para pruebas negativas de login"
+  },
+  "problemUser": {
+    "username": "problem_user",
+    "password": "secret_sauce",
+    "description": "Usuario con errores de carga de imágenes"
+  },
+  "checkoutData": {
+    "firstName": "Lolita",
+    "lastName": "Franck",
+    "zipCode": "33020"
+  }
+}
