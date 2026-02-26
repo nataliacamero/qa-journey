@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel de Control - Sesión 11 | Natalia Camero</title>
+    <title>Dashboard S12 | Natalia Camero</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap");
       body {
         font-family: "Inter", sans-serif;
+      }
+      .orange-glow {
+        box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.2);
       }
     </style>
   </head>
@@ -17,221 +19,173 @@
     class="bg-slate-50 min-h-screen p-4 md:p-10 flex justify-center items-start text-slate-800"
   >
     <div class="max-w-5xl w-full space-y-8">
-      <!-- HEADER SESIÓN 11: SHOPPING CART (DISEÑO SUAVE) -->
+      <!-- HEADER -->
       <header
         class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-200 relative overflow-hidden"
       >
-        <div class="relative z-10">
-          <div class="flex items-center space-x-3 mb-4">
-            <span
-              class="bg-orange-50 px-4 py-1 rounded-full text-[10px] font-black text-orange-600 uppercase tracking-widest border border-orange-100 italic"
-              >Sesión 11</span
-            >
-            <span
-              class="text-orange-400 text-sm italic font-medium tracking-tight"
-              >• Shopping Cart Flow</span
-            >
-          </div>
-          <h1
-            class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter italic"
-          >
-            Gestión del Carrito
-          </h1>
-          <p
-            class="text-slate-500 mt-3 text-lg max-w-2xl leading-relaxed italic"
-          >
-            Validando la persistencia de datos y la interactividad del usuario
-            en el flujo de compra.
-          </p>
-        </div>
-        <!-- Decoración sutil -->
         <div
-          class="absolute -right-10 -bottom-10 w-64 h-64 bg-orange-50 rounded-full blur-3xl opacity-50"
-        ></div>
+          class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
+          <div>
+            <span
+              class="bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest italic"
+              >Sesión 12</span
+            >
+            <h1
+              class="text-4xl md:text-6xl font-black text-slate-900 leading-none mt-4 italic uppercase"
+            >
+              ROADMAP &<br /><span class="text-orange-500">CONVERSION</span>
+            </h1>
+            <p class="text-slate-500 mt-4 font-medium italic">
+              Consolidando datos y flujos resilientes.
+            </p>
+          </div>
+          <div
+            class="bg-slate-50 p-6 rounded-3xl border border-slate-100 text-center min-w-[160px]"
+          >
+            <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">
+              Completado
+            </p>
+            <p
+              id="progress-text"
+              class="text-5xl font-black text-orange-500 italic"
+            >
+              0%
+            </p>
+          </div>
+        </div>
+        <div
+          class="w-full bg-slate-100 h-1.5 rounded-full mt-10 overflow-hidden"
+        >
+          <div
+            id="progress-bar"
+            class="bg-orange-500 h-full transition-all duration-1000 w-0"
+          ></div>
+        </div>
       </header>
 
-      <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="lg:col-span-1 space-y-8">
-          <!-- MISIONES DEL CARRITO -->
-          <section
-            class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200"
-          >
-            <h2
-              class="text-lg font-bold text-slate-800 mb-6 flex items-center italic"
-            >
-              <span
-                class="bg-orange-100 text-orange-600 p-2 rounded-lg mr-3 font-black text-sm"
-                >#</span
-              >
-              Nuevas Misiones
-            </h2>
-
-            <div class="space-y-4 mb-8" id="todo-list">
-              <div
-                class="flex items-center p-3 bg-orange-50/50 rounded-xl border border-orange-100 hover:border-orange-300 transition-all cursor-pointer group"
-                onclick="toggleTask(0)"
-              >
-                <div
-                  class="w-5 h-5 rounded border-2 border-orange-200 flex items-center justify-center"
-                  id="check-0"
-                ></div>
-                <label
-                  class="ml-3 text-xs font-bold text-orange-900 italic cursor-pointer"
-                  >🏗️ POM: Métodos para Add to Cart</label
-                >
-              </div>
-              <div
-                class="flex items-center p-3 bg-orange-50/50 rounded-xl border border-orange-100 hover:border-orange-300 transition-all cursor-pointer group"
-                onclick="toggleTask(1)"
-              >
-                <div
-                  class="w-5 h-5 rounded border-2 border-orange-200 flex items-center justify-center"
-                  id="check-1"
-                ></div>
-                <label
-                  class="ml-3 text-xs font-bold text-orange-900 italic cursor-pointer"
-                  >🧪 TC-11: Validar Cart Badge (Badge Count)</label
-                >
-              </div>
-              <div
-                class="flex items-center p-3 bg-orange-50/50 rounded-xl border border-orange-100 hover:border-orange-300 transition-all cursor-pointer group"
-                onclick="toggleTask(2)"
-              >
-                <div
-                  class="w-5 h-5 rounded border-2 border-orange-200 flex items-center justify-center"
-                  id="check-2"
-                ></div>
-                <label
-                  class="ml-3 text-xs font-bold text-orange-900 italic cursor-pointer"
-                  >🧪 TC-12: Navegación al Carrito</label
-                >
-              </div>
-              <div
-                class="flex items-center p-3 bg-slate-50 rounded-xl border border-slate-200 hover:border-orange-200 transition-all cursor-pointer group"
-                onclick="toggleTask(3)"
-              >
-                <div
-                  class="w-5 h-5 rounded border-2 border-slate-200 flex items-center justify-center"
-                  id="check-3"
-                ></div>
-                <label
-                  class="ml-3 text-xs font-bold text-slate-600 italic cursor-pointer"
-                  >🧪 TC-13: Remover desde el Carrito</label
-                >
-              </div>
-            </div>
-
-            <div class="pt-6 border-t border-slate-100">
-              <div class="flex justify-between items-center mb-2">
-                <span
-                  class="text-[10px] font-black text-slate-400 uppercase tracking-widest italic"
-                  >Progreso S11</span
-                >
-                <span
-                  id="progress-text"
-                  class="text-sm font-black text-orange-600 italic"
-                  >0%</span
-                >
-              </div>
-              <div
-                class="w-full bg-slate-100 h-2 rounded-full overflow-hidden p-0.5 border border-slate-200"
-              >
-                <div
-                  id="progress-bar"
-                  class="bg-orange-500 h-full transition-all rounded-full"
-                  style="width: 0%"
-                ></div>
-              </div>
-            </div>
-          </section>
-
-          <section
-            class="bg-slate-900 rounded-[2rem] p-6 shadow-xl text-white text-center border-b-4 border-orange-500"
-          >
-            <span class="text-2xl mb-2 block">🌙</span>
-            <h2
-              class="text-xs font-black uppercase tracking-[0.2em] mb-2 italic text-orange-400"
-            >
-              Meta 2026
-            </h2>
-            <p class="text-slate-400 text-[10px] italic leading-relaxed">
-              "Un carrito vacío de errores significa una noche de sueño
-              profundo."
-            </p>
-          </section>
-        </div>
-
-        <div class="lg:col-span-2 space-y-8">
-          <!-- TEORÍA DEL CARRITO -->
-          <article
-            class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-200"
-          >
-            <h2
-              class="text-3xl font-black text-slate-900 mb-6 italic tracking-tighter text-orange-600"
-            >
-              Lógica de Estado
-            </h2>
-            <div class="space-y-6 text-slate-600 text-sm leading-relaxed">
-              <p>
-                Interactuar con el carrito no es solo hacer click. Es validar
-                que el <strong>Estado de la Aplicación</strong> cambie
-                correctamente.
-              </p>
-              <div
-                class="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-2xl font-mono text-[11px] text-orange-900"
-              >
-                // El "Badge" es dinámico<br />
-                const badge = await page.locator('.shopping_cart_badge');<br />
-                await expect(badge).toHaveText('1');
-              </div>
-              <p class="italic text-xs font-medium">
-                Validaremos que al agregar productos, el contador aumente, y al
-                entrar al carrito, los nombres coincidan.
-              </p>
-            </div>
-          </article>
+      <main class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-8 space-y-4">
+          <h2 class="text-xl font-black text-slate-900 italic uppercase">
+            Checklist de la Sesión
+          </h2>
 
           <div
-            class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-200 text-center"
+            onclick="toggleTask(0)"
+            class="group bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:border-orange-200 transition-all cursor-pointer flex items-center space-x-5"
           >
-            <h2
-              class="text-xl font-black text-slate-900 mb-6 italic text-orange-600"
-            >
-              User Flow Mapping
-            </h2>
             <div
-              class="h-48 flex items-center justify-center bg-slate-50 rounded-2xl border border-dashed border-slate-200"
-            >
-              <p
-                class="text-[10px] text-slate-400 font-bold uppercase tracking-[0.3em] px-10 leading-relaxed italic text-center"
-              >
-                Home -> Product -> Cart -> Checkout <br />
-                <span class="text-orange-600">Siguiente Gran Reto</span>
+              id="check-0"
+              class="w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center transition-all bg-slate-50"
+            ></div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-900 leading-tight italic">
+                Exportar Roadmap a CSV
+              </h3>
+              <p class="text-xs text-slate-500 mt-0.5">
+                Convertir los objetivos de la S12 para Excel.
               </p>
             </div>
+          </div>
+
+          <div
+            onclick="toggleTask(1)"
+            class="group bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:border-orange-200 transition-all cursor-pointer flex items-center space-x-5"
+          >
+            <div
+              id="check-1"
+              class="w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center transition-all bg-slate-50"
+            ></div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-900 leading-tight italic">
+                Implementar TC-14: Cancel
+              </h3>
+              <p class="text-xs text-slate-500 mt-0.5">
+                Validar redirección y persistencia de items.
+              </p>
+            </div>
+          </div>
+
+          <div
+            onclick="toggleTask(2)"
+            class="group bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:border-orange-200 transition-all cursor-pointer flex items-center space-x-5"
+          >
+            <div
+              id="check-2"
+              class="w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center transition-all bg-slate-50"
+            ></div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-900 leading-tight italic">
+                Setup users.json
+              </h3>
+              <p class="text-xs text-slate-500 mt-0.5">
+                Mover credenciales a archivo externo.
+              </p>
+            </div>
+          </div>
+
+          <div
+            onclick="toggleTask(3)"
+            class="group bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:border-orange-200 transition-all cursor-pointer flex items-center space-x-5"
+          >
+            <div
+              id="check-3"
+              class="w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center transition-all bg-slate-50"
+            ></div>
+            <div class="flex-1">
+              <h3 class="font-bold text-slate-900 leading-tight italic">
+                Push via SSH & Audit
+              </h3>
+              <p class="text-xs text-slate-500 mt-0.5">
+                Sincronizar cambios en GitHub.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 space-y-6">
+          <div class="bg-slate-900 rounded-[2.5rem] p-8 text-white orange-glow">
+            <h3
+              class="text-orange-400 font-black italic text-xs uppercase mb-4 tracking-widest"
+            >
+              SDET Wisdom
+            </h3>
+            <p class="text-slate-400 text-xs leading-relaxed italic">
+              "Un archivo CSV es el puente entre la gestión de negocio y la
+              ejecución técnica. Úsalo para que tus stakeholders vean tu
+              progreso."
+            </p>
+          </div>
+          <div
+            class="bg-orange-50 rounded-[2.5rem] p-8 border border-orange-100"
+          >
+            <p class="text-slate-600 text-sm italic font-medium">
+              "Recuerda cerrar a tiempo para disfrutar de tu familia y
+              descansar, Natalia."
+            </p>
           </div>
         </div>
       </main>
     </div>
 
     <script>
-      const STORAGE_KEY = "natalia-s11-tasks";
       let tasks = [false, false, false, false];
-
       function toggleTask(i) {
         tasks[i] = !tasks[i];
         updateUI();
-        save();
       }
-
       function updateUI() {
         tasks.forEach((t, i) => {
           const el = document.getElementById(`check-${i}`);
-          if (!el) return;
-          el.innerHTML = t ? "✓" : "";
-          el.className = t
-            ? "w-5 h-5 rounded border-2 border-orange-500 bg-orange-500 flex items-center justify-center text-white text-[10px]"
-            : "w-5 h-5 rounded border-2 border-orange-200 flex items-center justify-center";
+          if (t) {
+            el.innerHTML = "✓";
+            el.className =
+              "w-8 h-8 rounded-xl bg-orange-500 border-orange-500 flex items-center justify-center text-white font-bold transition-all shadow-lg shadow-orange-100";
+          } else {
+            el.innerHTML = "";
+            el.className =
+              "w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center transition-all bg-slate-50";
+          }
         });
         const p = Math.round(
           (tasks.filter((t) => t).length / tasks.length) * 100,
@@ -239,16 +193,6 @@
         document.getElementById("progress-bar").style.width = p + "%";
         document.getElementById("progress-text").innerText = p + "%";
       }
-
-      function save() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
-      }
-
-      window.onload = function () {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) tasks = JSON.parse(saved);
-        updateUI();
-      };
     </script>
   </body>
 </html>
