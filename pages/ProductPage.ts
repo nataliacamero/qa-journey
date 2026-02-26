@@ -13,6 +13,8 @@ export class ProductPage {
   readonly shoppingCartButton: Locator;
   readonly productNameInCart: Locator;
   readonly continueShoppingButton: Locator;
+  readonly checkoutbutton: Locator;
+  readonly cancelCheckoutButton: Locator;
 
   // Constructor
   constructor(page: Page) {
@@ -40,6 +42,10 @@ export class ProductPage {
     this.continueShoppingButton = page.locator(
       '[data-test="continue-shopping"]',
     );
+    // Boton para navegar al la pagina del checkout.
+    this.checkoutbutton = page.locator('[data-test="checkout"]');
+    // Boton para cancelar el checkout.
+    this.cancelCheckoutButton = page.locator('[data-test="cancel"]');
   }
 
   // Methods
@@ -117,5 +123,13 @@ export class ProductPage {
    */
   async clickContinueShopping() {
     await this.continueShoppingButton.click();
+  }
+
+  async goToCheckout() {
+    await this.checkoutbutton.click();
+  }
+
+  async cancelCheckout() {
+    await this.cancelCheckoutButton.click();
   }
 }
