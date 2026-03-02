@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)https://html.onlineviewer.net/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="ace-chrome">.ace-chrome .ace_gutter {
+  background: #ebebeb;
+  color: #333;
+  overflow : hidden;
+}
+
+.ace-chrome .ace_print-margin {
+  width: 1px;
+  background: #e8e8e8;
+}
+
+.ace-chrome {
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.ace-chrome .ace_cursor {
+  color: black;
+}
+
+.ace-chrome .ace_invisible {
+  color: rgb(191, 191, 191);
+}
+
+.ace-chrome .ace_constant.ace_buildin {
+  color: rgb(88, 72, 246);
+}
+
+.ace-chrome .ace_constant.ace_language {
+  color: rgb(88, 92, 246);
+}
+
+.ace-chrome .ace_constant.ace_library {
+  color: rgb(6, 150, 14);
+}
+
+.ace-chrome .ace_invalid {
+  background-color: rgb(153, 0, 0);
+  color: white;
+}
+
+.ace-chrome .ace_fold {
+}
+
+.ace-chrome .ace_support.ace_function {
+  color: rgb(60, 76, 114);
+}
+
+.ace-chrome .ace_support.ace_constant {
+  color: rgb(6, 150, 14);
+}
+
+.ace-chrome .ace_support.ace_type,
+.ace-chrome .ace_support.ace_class
+.ace-chrome .ace_support.ace_other {
+  color: rgb(109, 121, 222);
+}
+
+.ace-chrome .ace_variable.ace_parameter {
+  font-style:italic;
+  color:#FD971F;
+}
+.ace-chrome .ace_keyword.ace_operator {
+  color: rgb(104, 118, 135);
+}
+
+.ace-chrome .ace_comment {
+  color: #236e24;
+}
+
+.ace-chrome .ace_comment.ace_doc {
+  color: #236e24;
+}
+
+.ace-chrome .ace_comment.ace_doc.ace_tag {
+  color: #236e24;
+}
+
+.ace-chrome .ace_constant.ace_numeric {
+  color: rgb(0, 0, 205);
+}
+
+.ace-chrome .ace_variable {
+  color: rgb(49, 132, 149);
+}
+
+.ace-chrome .ace_xml-pe {
+  color: rgb(104, 104, 91);
+}
+
+.ace-chrome .ace_entity.ace_name.ace_function {
+  color: #0000A2;
+}
+
+
+.ace-chrome .ace_heading {
+  color: rgb(12, 7, 255);
+}
+
+.ace-chrome .ace_list {
+  color:rgb(185, 6, 144);
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+  background: rgb(181, 213, 255);
+}
+
+.ace-chrome .ace_marker-layer .ace_step {
+  background: rgb(252, 255, 0);
+}
+
+.ace-chrome .ace_marker-layer .ace_stack {
+  background: rgb(164, 229, 101);
+}
+
+.ace-chrome .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.ace-chrome .ace_marker-layer .ace_active-line {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ace-chrome .ace_gutter-active-line {
+    background-color : #dcdcdc;
+}
+
+.ace-chrome .ace_marker-layer .ace_selected-word {
+  background: rgb(250, 250, 255);
+  border: 1px solid rgb(200, 200, 250);
+}
+
+.ace-chrome .ace_storage,
+.ace-chrome .ace_keyword,
+.ace-chrome .ace_meta.ace_tag {
+  color: rgb(147, 15, 128);
+}
+
+.ace-chrome .ace_string.ace_regex {
+  color: rgb(255, 0, 0)
+}
+
+.ace-chrome .ace_string {
+  color: #1A1AA6;
+}
+
+.ace-chrome .ace_entity.ace_other.ace_attribute-name {
+  color: #994409;
+}
+
+.ace-chrome .ace_indent-guide {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
+}
+  
+.ace-chrome .ace_indent-guide-active {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAZSURBVHjaYvj///9/hivKyv8BAAAA//8DACLqBhbvk+/eAAAAAElFTkSuQmCC") right repeat-y;
+}
+
+/*# sourceURL=ace/css/ace-chrome */</style><style id="error_marker.css">
+    .error_widget_wrapper {
+        background: inherit;
+        color: inherit;
+        border:none
+    }
+    .error_widget {
+        border-top: solid 2px;
+        border-bottom: solid 2px;
+        margin: 5px 0;
+        padding: 10px 40px;
+        white-space: pre-wrap;
+    }
+    .error_widget.ace_error, .error_widget_arrow.ace_error{
+        border-color: #ff5a5a
+    }
+    .error_widget.ace_warning, .error_widget_arrow.ace_warning{
+        border-color: #F1D817
+    }
+    .error_widget.ace_info, .error_widget_arrow.ace_info{
+        border-color: #5a5a5a
+    }
+    .error_widget.ace_ok, .error_widget_arrow.ace_ok{
+        border-color: #5aaa5a
+    }
+    .error_widget_arrow {
+        position: absolute;
+        border: solid 5px;
+        border-top-color: transparent!important;
+        border-right-color: transparent!important;
+        border-left-color: transparent!important;
+        top: -5px;
+    }
+
+/*# sourceURL=ace/css/error_marker.css */</style><style id="ace-tm">.ace-tm .ace_gutter {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.ace-tm .ace_print-margin {
+  width: 1px;
+  background: #e8e8e8;
+}
+
+.ace-tm .ace_fold {
+    background-color: #6B72E6;
+}
+
+.ace-tm {
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.ace-tm .ace_cursor {
+  color: black;
+}
+        
+.ace-tm .ace_invisible {
+  color: rgb(191, 191, 191);
+}
+
+.ace-tm .ace_storage,
+.ace-tm .ace_keyword {
+  color: blue;
+}
+
+.ace-tm .ace_constant {
+  color: rgb(197, 6, 11);
+}
+
+.ace-tm .ace_constant.ace_buildin {
+  color: rgb(88, 72, 246);
+}
+
+.ace-tm .ace_constant.ace_language {
+  color: rgb(88, 92, 246);
+}
+
+.ace-tm .ace_constant.ace_library {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_invalid {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: red;
+}
+
+.ace-tm .ace_support.ace_function {
+  color: rgb(60, 76, 114);
+}
+
+.ace-tm .ace_support.ace_constant {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_support.ace_type,
+.ace-tm .ace_support.ace_class {
+  color: rgb(109, 121, 222);
+}
+
+.ace-tm .ace_keyword.ace_operator {
+  color: rgb(104, 118, 135);
+}
+
+.ace-tm .ace_string {
+  color: rgb(3, 106, 7);
+}
+
+.ace-tm .ace_comment {
+  color: rgb(76, 136, 107);
+}
+
+.ace-tm .ace_comment.ace_doc {
+  color: rgb(0, 102, 255);
+}
+
+.ace-tm .ace_comment.ace_doc.ace_tag {
+  color: rgb(128, 159, 191);
+}
+
+.ace-tm .ace_constant.ace_numeric {
+  color: rgb(0, 0, 205);
+}
+
+.ace-tm .ace_variable {
+  color: rgb(49, 132, 149);
+}
+
+.ace-tm .ace_xml-pe {
+  color: rgb(104, 104, 91);
+}
+
+.ace-tm .ace_entity.ace_name.ace_function {
+  color: #0000A2;
+}
+
+
+.ace-tm .ace_heading {
+  color: rgb(12, 7, 255);
+}
+
+.ace-tm .ace_list {
+  color:rgb(185, 6, 144);
+}
+
+.ace-tm .ace_meta.ace_tag {
+  color:rgb(0, 22, 142);
+}
+
+.ace-tm .ace_string.ace_regex {
+  color: rgb(255, 0, 0)
+}
+
+.ace-tm .ace_marker-layer .ace_selection {
+  background: rgb(181, 213, 255);
+}
+.ace-tm.ace_multiselect .ace_selection.ace_start {
+  box-shadow: 0 0 3px 0px white;
+}
+.ace-tm .ace_marker-layer .ace_step {
+  background: rgb(252, 255, 0);
+}
+
+.ace-tm .ace_marker-layer .ace_stack {
+  background: rgb(164, 229, 101);
+}
+
+.ace-tm .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.ace-tm .ace_marker-layer .ace_active-line {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ace-tm .ace_gutter-active-line {
+    background-color : #dcdcdc;
+}
+
+.ace-tm .ace_marker-layer .ace_selected-word {
+  background: rgb(250, 250, 255);
+  border: 1px solid rgb(200, 200, 250);
+}
+
+.ace-tm .ace_indent-guide {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
+}
+
+.ace-tm .ace_indent-guide-active {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAZSURBVHjaYvj///9/hivKyv8BAAAA//8DACLqBhbvk+/eAAAAAElFTkSuQmCC") right repeat-y;
+}
+
+/*# sourceURL=ace/css/ace-tm */</style><style id="ace_editor.css">
+.ace_br1 {border-top-left-radius    : 3px;}
+.ace_br2 {border-top-right-radius   : 3px;}
+.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}
+.ace_br4 {border-bottom-right-radius: 3px;}
+.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}
+.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}
+.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}
+.ace_br8 {border-bottom-left-radius : 3px;}
+.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}
+.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}
+.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}
+.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+
+
+.ace_editor {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Source Code Pro', 'source-code-pro', monospace;
+    direction: ltr;
+    text-align: left;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    forced-color-adjust: none;
+}
+
+.ace_scroller {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: text;
+}
+
+.ace_content {
+    position: absolute;
+    box-sizing: border-box;
+    min-width: 100%;
+    contain: style size layout;
+    font-variant-ligatures: no-common-ligatures;
+}
+.ace_invisible {
+    font-variant-ligatures: none;
+}
+
+.ace_keyboard-focus:focus {
+    box-shadow: inset 0 0 0 2px #5E9ED6;
+    outline: none;
+}
+
+.ace_dragging .ace_scroller:before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    background: rgba(250, 250, 250, 0.01);
+    z-index: 1000;
+}
+.ace_dragging.ace_dark .ace_scroller:before{
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.ace_gutter {
+    position: absolute;
+    overflow : hidden;
+    width: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    cursor: default;
+    z-index: 4;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    contain: style size layout;
+}
+
+.ace_gutter-active-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.ace_scroller.ace_scroll-left:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;
+    pointer-events: none;
+}
+
+.ace_gutter-cell, .ace_gutter-cell_svg-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-left: 19px;
+    padding-right: 6px;
+    background-repeat: no-repeat;
+}
+
+.ace_gutter-cell_svg-icons .ace_gutter_annotation {
+    margin-left: -14px;
+    float: left;
+}
+
+.ace_gutter-cell .ace_gutter_annotation {
+    margin-left: -19px;
+    float: left;
+}
+
+.ace_gutter-cell.ace_error, .ace_icon.ace_error, .ace_icon.ace_error_fold, .ace_gutter-cell.ace_security, .ace_icon.ace_security, .ace_icon.ace_security_fold {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_warning, .ace_icon.ace_warning, .ace_icon.ace_warning_fold {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_info, .ace_icon.ace_info, .ace_gutter-cell.ace_hint, .ace_icon.ace_hint {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_dark .ace_gutter-cell.ace_info, .ace_dark .ace_icon.ace_info, .ace_dark .ace_gutter-cell.ace_hint, .ace_dark .ace_icon.ace_hint {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");
+}
+
+.ace_icon_svg.ace_error {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJyZWQiIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIj4KPGNpcmNsZSBmaWxsPSJub25lIiBjeD0iOCIgY3k9IjgiIHI9IjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPGxpbmUgeDE9IjExIiB5MT0iNSIgeDI9IjUiIHkyPSIxMSIvPgo8bGluZSB4MT0iMTEiIHkxPSIxMSIgeDI9IjUiIHkyPSI1Ii8+CjwvZz4KPC9zdmc+");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_security {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iZGFya29yYW5nZSIgZmlsbD0ibm9uZSIgc2hhcGUtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdHJva2UtbGluZWpvaW4tcm91bmQiIGQ9Ik04IDE0LjgzMDdDOCAxNC44MzA3IDIgMTIuOTA0NyAyIDguMDg5OTJWMy4yNjU0OEM1LjMxIDMuMjY1NDggNy45ODk5OSAxLjM0OTE4IDcuOTg5OTkgMS4zNDkxOEM3Ljk4OTk5IDEuMzQ5MTggMTAuNjkgMy4yNjU0OCAxNCAzLjI2NTQ4VjguMDg5OTJDMTQgMTIuOTA0NyA4IDE0LjgzMDcgOCAxNC44MzA3WiIvPgogICAgICAgIDxwYXRoIGQ9Ik0yIDguMDg5OTJWMy4yNjU0OEM1LjMxIDMuMjY1NDggNy45ODk5OSAxLjM0OTE4IDcuOTg5OTkgMS4zNDkxOCIvPgogICAgICAgIDxwYXRoIGQ9Ik0xMy45OSA4LjA4OTkyVjMuMjY1NDhDMTAuNjggMy4yNjU0OCA4IDEuMzQ5MTggOCAxLjM0OTE4Ii8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0cm9rZS1saW5lam9pbi1yb3VuZCIgZD0iTTggNFY5Ii8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0cm9rZS1saW5lam9pbi1yb3VuZCIgZD0iTTggMTBWMTIiLz4KICAgIDwvZz4KPC9zdmc+");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_warning {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJkYXJrb3JhbmdlIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+Cjxwb2x5Z29uIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHBvaW50cz0iOCAxIDE1IDE1IDEgMTUgOCAxIi8+CjxyZWN0IHg9IjgiIHk9IjEyIiB3aWR0aD0iMC4wMSIgaGVpZ2h0PSIwLjAxIi8+CjxsaW5lIHgxPSI4IiB5MT0iNiIgeDI9IjgiIHkyPSIxMCIvPgo8L2c+Cjwvc3ZnPg==");
+    background-color: darkorange;
+}
+.ace_icon_svg.ace_info {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibHVlIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+CjxjaXJjbGUgZmlsbD0ibm9uZSIgY3g9IjgiIGN5PSI4IiByPSI3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjxwb2x5bGluZSBwb2ludHM9IjggMTEgOCA4Ii8+Cjxwb2x5bGluZSBwb2ludHM9IjkgOCA2IDgiLz4KPGxpbmUgeDE9IjEwIiB5MT0iMTEiIHgyPSI2IiB5Mj0iMTEiLz4KPHJlY3QgeD0iOCIgeT0iNSIgd2lkdGg9IjAuMDEiIGhlaWdodD0iMC4wMSIvPgo8L2c+Cjwvc3ZnPg==");
+    background-color: royalblue;
+}
+.ace_icon_svg.ace_hint {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0ic2lsdmVyIiBmaWxsPSJub25lIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+CiAgICAgICAgPHBhdGggY2xhc3M9InN0cm9rZS1saW5lam9pbi1yb3VuZCIgZD0iTTYgMTRIMTAiLz4KICAgICAgICA8cGF0aCBkPSJNOCAxMUg5QzkgOS40NzAwMiAxMiA4LjU0MDAyIDEyIDUuNzYwMDJDMTIuMDIgNC40MDAwMiAxMS4zOSAzLjM2MDAyIDEwLjQzIDIuNjcwMDJDOSAxLjY0MDAyIDcuMDAwMDEgMS42NDAwMiA1LjU3MDAxIDIuNjcwMDJDNC42MTAwMSAzLjM2MDAyIDMuOTggNC40MDAwMiA0IDUuNzYwMDJDNCA4LjU0MDAyIDcuMDAwMDEgOS40NzAwMiA3LjAwMDAxIDExSDhaIi8+CiAgICA8L2c+Cjwvc3ZnPg==");
+    background-color: silver;
+}
+
+.ace_icon_svg.ace_error_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiIgZmlsbD0ibm9uZSI+CiAgPHBhdGggZD0ibSAxOC45Mjk4NTEsNy44Mjk4MDc2IGMgMC4xNDYzNTMsNi4zMzc0NjA0IC02LjMyMzE0Nyw3Ljc3Nzg0NDQgLTcuNDc3OTEyLDcuNzc3ODQ0NCAtMi4xMDcyNzI2LC0wLjEyODc1IDUuMTE3Njc4LDAuMzU2MjQ5IDUuMDUxNjk4LC03Ljg3MDA2MTggLTAuNjA0NjcyLC04LjAwMzk3MzQ5IC03LjA3NzI3MDYsLTcuNTYzMTE4OSAtNC44NTczLC03LjQzMDM5NTU2IDEuNjA2LC0wLjExNTE0MjI1IDYuODk3NDg1LDEuMjYyNTQ1OTYgNy4yODM1MTQsNy41MjI2MTI5NiB6IiBmaWxsPSJjcmltc29uIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0ibSA4LjExNDc1NjIsMi4wNTI5ODI4IGMgMy4zNDkxNjk4LDAgNi4wNjQxMzI4LDIuNjc2ODYyNyA2LjA2NDEzMjgsNS45Nzg5NTMgMCwzLjMwMjExMjIgLTIuNzE0OTYzLDUuOTc4OTIwMiAtNi4wNjQxMzI4LDUuOTc4OTIwMiAtMy4zNDkxNDczLDAgLTYuMDY0MTc3MiwtMi42NzY4MDggLTYuMDY0MTc3MiwtNS45Nzg5MjAyIDAuMDA1MzksLTMuMjk5ODg2MSAyLjcxNzI2NTYsLTUuOTczNjQwOCA2LjA2NDE3NzIsLTUuOTc4OTUzIHogbSAwLC0xLjczNTgyNzE5IGMgLTQuMzIxNDgzNiwwIC03LjgyNDc0MDM4LDMuNDU0MDE4NDkgLTcuODI0NzQwMzgsNy43MTQ3ODAxOSAwLDQuMjYwNzI4MiAzLjUwMzI1Njc4LDcuNzE0NzQ1MiA3LjgyNDc0MDM4LDcuNzE0NzQ1MiA0LjMyMTQ0OTgsMCA3LjgyNDY5OTgsLTMuNDU0MDE3IDcuODI0Njk5OCwtNy43MTQ3NDUyIDAsLTIuMDQ2MDkxNCAtMC44MjQzOTIsLTQuMDA4MzY3MiAtMi4yOTE3NTYsLTUuNDU1MTc0NiBDIDEyLjE4MDIyNSwxLjEyOTk2NDggMTAuMTkwMDEzLDAuMzE3MTU1NjEgOC4xMTQ3NTYyLDAuMzE3MTU1NjEgWiBNIDYuOTM3NDU2Myw4LjI0MDU5ODUgNC42NzE4Njg1LDEwLjQ4NTg1MiA2LjAwODY4MTQsMTEuODc2NzI4IDguMzE3MDAzNSw5LjYwMDc5MTEgMTAuNjI1MzM3LDExLjg3NjcyOCAxMS45NjIxMzgsMTAuNDg1ODUyIDkuNjk2NTUwOCw4LjI0MDU5ODUgMTEuOTYyMTM4LDYuMDA2ODA2NiAxMC41NzMyNDYsNC42Mzc0MzM1IDguMzE3MDAzNSw2Ljg3MzQyOTcgNi4wNjA3NjA3LDQuNjM3NDMzNSA0LjY3MTg2ODUsNi4wMDY4MDY2IFoiIGZpbGw9ImNyaW1zb24iIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4=");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_security_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTcgMTQiIGZpbGw9Im5vbmUiPgogICAgPHBhdGggZD0iTTEwLjAwMDEgMTMuNjk5MkMxMC4wMDAxIDEzLjY5OTIgMTEuOTI0MSAxMy40NzYzIDEzIDEyLjY5OTJDMTQuNDEzOSAxMS42NzgxIDE2IDEwLjUgMTYuMTI1MSA2LjgxMTI2VjIuNTg5ODdDMTYuMTI1MSAyLjU0NzY4IDE2LjEyMjEgMi41MDYxOSAxNi4xMTY0IDIuNDY1NTlWMS43MTQ4NUgxNS4yNDE0TDE1LjIzMDcgMS43MTQ4NEwxNC42MjUxIDEuNjk5MjJWNi44MTEyM0MxNC42MjUxIDguNTEwNjEgMTQuNjI1MSA5LjQ2NDYxIDEyLjc4MjQgMTEuNzIxQzEyLjE1ODYgMTIuNDg0OCAxMC4wMDAxIDEzLjY5OTIgMTAuMDAwMSAxMy42OTkyWiIgZmlsbD0iY3JpbXNvbiIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTcuMzM2MDkgMC4zNjc0NzVDNy4wMzIxNCAwLjE1MjY1MiA2LjYyNTQ4IDAuMTUzNjE0IDYuMzIyNTMgMC4zNjk5OTdMNi4zMDg2OSAwLjM3OTU1NEM2LjI5NTUzIDAuMzg4NTg4IDYuMjczODggMC40MDMyNjYgNi4yNDQxNyAwLjQyMjc4OUM2LjE4NDcxIDAuNDYxODYgNi4wOTMyMSAwLjUyMDE3MSA1Ljk3MzEzIDAuNTkxMzczQzUuNzMyNTEgMC43MzQwNTkgNS4zNzk5IDAuOTI2ODY0IDQuOTQyNzkgMS4xMjAwOUM0LjA2MTQ0IDEuNTA5NyAyLjg3NTQxIDEuODgzNzcgMS41ODk4NCAxLjg4Mzc3SDAuNzE0ODQ0VjIuNzU4NzdWNi45ODAxNUMwLjcxNDg0NCA5LjQ5Mzc0IDIuMjg4NjYgMTEuMTk3MyAzLjcwMjU0IDEyLjIxODVDNC40MTg0NSAxMi43MzU1IDUuMTI4NzQgMTMuMTA1MyA1LjY1NzMzIDEzLjM0NTdDNS45MjI4NCAxMy40NjY0IDYuMTQ1NjYgMTMuNTU1OSA2LjMwNDY1IDEzLjYxNjFDNi4zODQyMyAxMy42NDYyIDYuNDQ4MDUgMTMuNjY5IDYuNDkzNDkgMTMuNjg0OEM2LjUxNjIyIDEzLjY5MjcgNi41MzQzOCAxMy42OTg5IDYuNTQ3NjQgMTMuNzAzM0w2LjU2MzgyIDEzLjcwODdMNi41NjkwOCAxMy43MTA0TDYuNTcwOTkgMTMuNzExTDYuODM5ODQgMTMuNzUzM0w2LjU3MjQyIDEzLjcxMTVDNi43NDYzMyAxMy43NjczIDYuOTMzMzUgMTMuNzY3MyA3LjEwNzI3IDEzLjcxMTVMNy4xMDg3IDEzLjcxMUw3LjExMDYxIDEzLjcxMDRMNy4xMTU4NyAxMy43MDg3TDcuMTMyMDUgMTMuNzAzM0M3LjE0NTMxIDEzLjY5ODkgNy4xNjM0NiAxMy42OTI3IDcuMTg2MTkgMTMuNjg0OEM3LjIzMTY0IDEzLjY2OSA3LjI5NTQ2IDEzLjY0NjIgNy4zNzUwMyAxMy42MTYxQzcuNTM0MDMgMTMuNTU1OSA3Ljc1Njg1IDEzLjQ2NjQgOC4wMjIzNiAxMy4zNDU3QzguNTUwOTUgMTMuMTA1MyA5LjI2MTIzIDEyLjczNTUgOS45NzcxNSAxMi4yMTg1QzExLjM5MSAxMS4xOTczIDEyLjk2NDggOS40OTM3NyAxMi45NjQ4IDYuOTgwMThWMi43NTg4QzEyLjk2NDggMi43MTY2IDEyLjk2MTkgMi42NzUxMSAxMi45NTYxIDIuNjM0NTFWMS44ODM3N0gxMi4wODExQzEyLjA3NzUgMS44ODM3NyAxMi4wNzQgMS44ODM3NyAxMi4wNzA0IDEuODgzNzdDMTAuNzk3OSAxLjg4MDA0IDkuNjE5NjIgMS41MTEwMiA4LjczODk0IDEuMTI0ODZDOC43MzUzNCAxLjEyMzI3IDguNzMxNzQgMS4xMjE2OCA4LjcyODE0IDEuMTIwMDlDOC4yOTEwMyAwLjkyNjg2NCA3LjkzODQyIDAuNzM0MDU5IDcuNjk3NzkgMC41OTEzNzNDNy41Nzc3MiAwLjUyMDE3MSA3LjQ4NjIyIDAuNDYxODYgNy40MjY3NiAwLjQyMjc4OUM3LjM5NzA1IDAuNDAzMjY2IDcuMzc1MzkgMC4zODg1ODggNy4zNjIyNCAwLjM3OTU1NEw3LjM0ODk2IDAuMzcwMzVDNy4zNDg5NiAwLjM3MDM1IDcuMzQ4NDcgMC4zNzAwMiA3LjM0NTYzIDAuMzc0MDU0TDcuMzM3NzkgMC4zNjg2NTlMNy4zMzYwOSAwLjM2NzQ3NVpNOC4wMzQ3MSAyLjcyNjkxQzguODYwNCAzLjA5MDYzIDkuOTYwNjYgMy40NjMwOSAxMS4yMDYxIDMuNTg5MDdWNi45ODAxNUgxMS4yMTQ4QzExLjIxNDggOC42Nzk1MyAxMC4xNjM3IDkuOTI1MDcgOC45NTI1NCAxMC43OTk4QzguMzU1OTUgMTEuMjMwNiA3Ljc1Mzc0IDExLjU0NTQgNy4yOTc5NiAxMS43NTI3QzcuMTE2NzEgMTEuODM1MSA2Ljk2MDYyIDExLjg5OTYgNi44Mzk4NCAxMS45NDY5QzYuNzE5MDYgMTEuODk5NiA2LjU2Mjk3IDExLjgzNTEgNi4zODE3MyAxMS43NTI3QzUuOTI1OTUgMTEuNTQ1NCA1LjMyMzczIDExLjIzMDYgNC43MjcxNSAxMC43OTk4QzMuNTE2MDMgOS45MjUwNyAyLjQ2NDg0IDguNjc5NTUgMi40NjQ4NCA2Ljk4MDE4VjMuNTg5MDlDMy43MTczOCAzLjQ2MjM5IDQuODIzMDggMy4wODYzOSA1LjY1MDMzIDIuNzIwNzFDNi4xNDIyOCAyLjUwMzI0IDYuNTQ0ODUgMi4yODUzNyA2LjgzMjU0IDIuMTE2MjRDNy4xMjE4MSAyLjI4NTM1IDcuNTI3IDIuNTAzNTIgOC4wMjE5NiAyLjcyMTMxQzguMDI2MiAyLjcyMzE3IDguMDMwNDUgMi43MjUwNCA4LjAzNDcxIDIuNzI2OTFaTTUuOTY0ODQgMy40MDE0N1Y3Ljc3NjQ3SDcuNzE0ODRWMy40MDE0N0g1Ljk2NDg0Wk01Ljk2NDg0IDEwLjQwMTVWOC42NTE0N0g3LjcxNDg0VjEwLjQwMTVINS45NjQ4NFoiIGZpbGw9ImNyaW1zb24iIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4=");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_warning_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyMCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC43NzY5IDE0LjczMzdMOC42NTE5MiAyLjQ4MzY5QzguMzI5NDYgMS44Mzg3NyA3LjQwOTEzIDEuODM4NzcgNy4wODY2NyAyLjQ4MzY5TDAuOTYxNjY5IDE0LjczMzdDMC42NzA3NzUgMTUuMzE1NSAxLjA5MzgzIDE2IDEuNzQ0MjkgMTZIMTMuOTk0M0MxNC42NDQ4IDE2IDE1LjA2NzggMTUuMzE1NSAxNC43NzY5IDE0LjczMzdaTTMuMTYwMDcgMTQuMjVMNy44NjkyOSA0LjgzMTU2TDEyLjU3ODUgMTQuMjVIMy4xNjAwN1pNOC43NDQyOSAxMS42MjVWMTMuMzc1SDYuOTk0MjlWMTEuNjI1SDguNzQ0MjlaTTYuOTk0MjkgMTAuNzVWNy4yNUg4Ljc0NDI5VjEwLjc1SDYuOTk0MjlaIiBmaWxsPSIjRUM3MjExIi8+CjxwYXRoIGQ9Ik0xMS4xOTkxIDIuOTUyMzhDMTAuODgwOSAyLjMxNDY3IDEwLjM1MzcgMS44MDUyNiA5LjcwNTUgMS41MDlMMTEuMDQxIDEuMDY5NzhDMTEuNjg4MyAwLjk0OTgxNCAxMi4zMzcgMS4yNzI2MyAxMi42MzE3IDEuODYxNDFMMTcuNjEzNiAxMS44MTYxQzE4LjM1MjcgMTMuMjkyOSAxNy41OTM4IDE1LjA4MDQgMTYuMDE4IDE1LjU3NDVDMTYuNDA0NCAxNC40NTA3IDE2LjMyMzEgMTMuMjE4OCAxNS43OTI0IDEyLjE1NTVMMTEuMTk5MSAyLjk1MjM4WiIgZmlsbD0iI0VDNzIxMSIvPgo8L3N2Zz4=");
+    background-color: darkorange;
+}
+
+.ace_scrollbar {
+    contain: strict;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+}
+
+.ace_scrollbar-inner {
+    position: absolute;
+    cursor: text;
+    left: 0;
+    top: 0;
+}
+
+.ace_scrollbar-v{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    top: 0;
+}
+
+.ace_scrollbar-h {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    left: 0;
+}
+
+.ace_print-margin {
+    position: absolute;
+    height: 100%;
+}
+
+.ace_text-input {
+    position: absolute;
+    z-index: 0;
+    width: 0.5em;
+    height: 1em;
+    opacity: 0;
+    background: transparent;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    font: inherit;
+    padding: 0 1px;
+    margin: 0 -1px;
+    contain: strict;
+    -ms-user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    /*with `pre-line` chrome inserts &nbsp; instead of space*/
+    white-space: pre!important;
+}
+.ace_text-input.ace_composition {
+    background: transparent;
+    color: inherit;
+    z-index: 1000;
+    opacity: 1;
+}
+.ace_composition_placeholder { color: transparent }
+.ace_composition_marker { 
+    border-bottom: 1px solid;
+    position: absolute;
+    border-radius: 0;
+    margin-top: 1px;
+}
+
+[ace_nocontext=true] {
+    transform: none!important;
+    filter: none!important;
+    clip-path: none!important;
+    mask : none!important;
+    contain: none!important;
+    perspective: none!important;
+    mix-blend-mode: initial!important;
+    z-index: auto;
+}
+
+.ace_layer {
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    /* workaround for chrome bug https://github.com/ajaxorg/ace/issues/2312*/
+    word-wrap: normal;
+    white-space: pre;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    /* setting pointer-events: auto; on node under the mouse, which changes
+        during scroll, will break mouse wheel scrolling in Safari */
+    pointer-events: none;
+}
+
+.ace_gutter-layer {
+    position: relative;
+    width: auto;
+    text-align: right;
+    pointer-events: auto;
+    height: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer {
+    font: inherit !important;
+    position: absolute;
+    height: 1000000px;
+    width: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer > .ace_line, .ace_text-layer > .ace_line_group {
+    contain: style size layout;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.ace_hidpi .ace_text-layer,
+.ace_hidpi .ace_gutter-layer,
+.ace_hidpi .ace_content,
+.ace_hidpi .ace_gutter {
+    contain: strict;
+}
+.ace_hidpi .ace_text-layer > .ace_line, 
+.ace_hidpi .ace_text-layer > .ace_line_group {
+    contain: strict;
+}
+
+.ace_cjk {
+    display: inline-block;
+    text-align: center;
+}
+
+.ace_cursor-layer {
+    z-index: 4;
+}
+
+.ace_cursor {
+    z-index: 4;
+    position: absolute;
+    box-sizing: border-box;
+    border-left: 2px solid;
+    /* workaround for smooth cursor repaintng whole screen in chrome */
+    transform: translatez(0);
+}
+
+.ace_multiselect .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_slim-cursors .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_overwrite-cursors .ace_cursor {
+    border-left-width: 0;
+    border-bottom: 1px solid;
+}
+
+.ace_hidden-cursors .ace_cursor {
+    opacity: 0.2;
+}
+
+.ace_hasPlaceholder .ace_hidden-cursors .ace_cursor {
+    opacity: 0;
+}
+
+.ace_smooth-blinking .ace_cursor {
+    transition: opacity 0.18s;
+}
+
+.ace_animate-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: step-end;
+    animation-name: blink-ace-animate;
+    animation-iteration-count: infinite;
+}
+
+.ace_animate-blinking.ace_smooth-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-name: blink-ace-animate-smooth;
+}
+    
+@keyframes blink-ace-animate {
+    from, to { opacity: 1; }
+    60% { opacity: 0; }
+}
+
+@keyframes blink-ace-animate-smooth {
+    from, to { opacity: 1; }
+    45% { opacity: 1; }
+    60% { opacity: 0; }
+    85% { opacity: 0; }
+}
+
+.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {
+    position: absolute;
+    z-index: 3;
+}
+
+.ace_marker-layer .ace_selection {
+    position: absolute;
+    z-index: 5;
+}
+
+.ace_marker-layer .ace_bracket {
+    position: absolute;
+    z-index: 6;
+}
+
+.ace_marker-layer .ace_error_bracket {
+    position: absolute;
+    border-bottom: 1px solid #DE5555;
+    border-radius: 0;
+}
+
+.ace_marker-layer .ace_active-line {
+    position: absolute;
+    z-index: 2;
+}
+
+.ace_marker-layer .ace_selected-word {
+    position: absolute;
+    z-index: 4;
+    box-sizing: border-box;
+}
+
+.ace_line .ace_fold {
+    box-sizing: border-box;
+
+    display: inline-block;
+    height: 11px;
+    margin-top: -2px;
+    vertical-align: middle;
+
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");
+    background-repeat: no-repeat, repeat-x;
+    background-position: center center, top left;
+    color: transparent;
+
+    border: 1px solid black;
+    border-radius: 2px;
+
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.ace_dark .ace_fold {
+}
+
+.ace_fold:hover{
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");
+}
+
+.ace_tooltip {
+    background-color: #f5f5f5;
+    border: 1px solid gray;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    color: black;
+    padding: 3px 4px;
+    position: absolute;
+    z-index: 999999;
+    box-sizing: border-box;
+    cursor: default;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    pointer-events: none;
+    overflow: auto;
+    max-width: min(33em, 66vw);
+    overscroll-behavior: contain;
+}
+.ace_tooltip pre {
+    white-space: pre-wrap;
+}
+
+.ace_tooltip.ace_dark {
+    background-color: #636363;
+    color: #fff;
+}
+
+.ace_tooltip:focus {
+    outline: 1px solid #5E9ED6;
+}
+
+.ace_icon {
+    display: inline-block;
+    width: 18px;
+    vertical-align: top;
+}
+
+.ace_icon_svg {
+    display: inline-block;
+    width: 12px;
+    vertical-align: top;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 12px;
+    -webkit-mask-position: center;
+}
+
+.ace_folding-enabled > .ace_gutter-cell, .ace_folding-enabled > .ace_gutter-cell_svg-icons {
+    padding-right: 13px;
+}
+
+.ace_fold-widget, .ace_custom-widget {
+    box-sizing: border-box;
+
+    margin: 0 -12px 0 1px;
+    display: none;
+    width: 11px;
+    vertical-align: top;
+
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    border-radius: 3px;
+    
+    border: 1px solid transparent;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.ace_custom-widget {
+    background: none;
+}
+
+.ace_folding-enabled .ace_fold-widget {
+    display: inline-block;   
+}
+
+.ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");
+}
+
+.ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");
+}
+
+.ace_fold-widget:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.ace_fold-widget:active {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+/**
+ * Dark version for fold widgets
+ */
+.ace_dark .ace_fold-widget {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");
+}
+.ace_dark .ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget:hover {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.ace_dark .ace_fold-widget:active {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.ace_inline_button {
+    border: 1px solid lightgray;
+    display: inline-block;
+    margin: -1px 8px;
+    padding: 0 5px;
+    pointer-events: auto;
+    cursor: pointer;
+}
+.ace_inline_button:hover {
+    border-color: gray;
+    background: rgba(200,200,200,0.2);
+    display: inline-block;
+    pointer-events: auto;
+}
+
+.ace_fold-widget.ace_invalid {
+    background-color: #FFB4B4;
+    border-color: #DE5555;
+}
+
+.ace_fade-fold-widgets .ace_fold-widget {
+    transition: opacity 0.4s ease 0.05s;
+    opacity: 0;
+}
+
+.ace_fade-fold-widgets:hover .ace_fold-widget {
+    transition: opacity 0.05s ease 0.05s;
+    opacity:1;
+}
+
+.ace_underline {
+    text-decoration: underline;
+}
+
+.ace_bold {
+    font-weight: bold;
+}
+
+.ace_nobold .ace_bold {
+    font-weight: normal;
+}
+
+.ace_italic {
+    font-style: italic;
+}
+
+
+.ace_error-marker {
+    background-color: rgba(255, 0, 0,0.2);
+    position: absolute;
+    z-index: 9;
+}
+
+.ace_highlight-marker {
+    background-color: rgba(255, 255, 0,0.2);
+    position: absolute;
+    z-index: 8;
+}
+
+.ace_mobile-menu {
+    position: absolute;
+    line-height: 1.5;
+    border-radius: 4px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: white;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #dcdcdc;
+    color: black;
+}
+.ace_dark > .ace_mobile-menu {
+    background: #333;
+    color: #ccc;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #444;
+
+}
+.ace_mobile-button {
+    padding: 2px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.ace_mobile-button:hover {
+    background-color: #eee;
+    opacity:1;
+}
+.ace_mobile-button:active {
+    background-color: #ddd;
+}
+
+.ace_placeholder {
+    position: relative;
+    font-family: arial;
+    transform: scale(0.9);
+    transform-origin: left;
+    white-space: pre;
+    opacity: 0.7;
+    margin: 0 10px;
+    z-index: 1;
+}
+
+.ace_ghost_text {
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.ace_ghost_text_container > div {
+    white-space: pre;
+}
+
+.ghost_text_line_wrapped::after {
+    content: "↩";
+    position: absolute;
+}
+
+.ace_lineWidgetContainer.ace_ghost_text {
+    margin: 0px 4px
+}
+
+.ace_screenreader-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}
+
+.ace_hidden_token {
+    display: none;
+}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace_scrollbar.css">.ace_editor>.ace_sb-v div, .ace_editor>.ace_sb-h div{
+  position: absolute;
+  background: rgba(128, 128, 128, 0.6);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  z-index: 8;
+}
+.ace_editor>.ace_sb-v, .ace_editor>.ace_sb-h {
+  position: absolute;
+  z-index: 6;
+  background: none;
+  overflow: hidden!important;
+}
+.ace_editor>.ace_sb-v {
+  z-index: 6;
+  right: 0;
+  top: 0;
+  width: 12px;
+}
+.ace_editor>.ace_sb-v div {
+  z-index: 8;
+  right: 0;
+  width: 100%;
+}
+.ace_editor>.ace_sb-h {
+  bottom: 0;
+  left: 0;
+  height: 12px;
+}
+.ace_editor>.ace_sb-h div {
+  bottom: 0;
+  height: 100%;
+}
+.ace_editor>.ace_sb_grabbed {
+  z-index: 8;
+  background: #000;
+}
+/*# sourceURL=ace/css/ace_scrollbar.css */</style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-97902571-5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-97902571-5');
+    </script>
+
+    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4523112948468173" crossorigin="anonymous"></script>
+
+    
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="HTML Online Viewer is a fast HTML editor and formatter with an instant live preview. View, edit and format your HTML in real-time!">
+    <meta name="keywords" content="HTML Online Viewer,Online HTML Viewer,HTML Preview,HTML Viewer,HTML Editor,Highlight HTML,HTML live">
+
+    <title>HTML Online Viewer</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.onlineviewer.net/onlineviewer.v2.css">
+    <link rel="icon" href="https://www.onlineviewer.net/favicon.ico">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.4/beautify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.4/beautify-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.4/beautify-html.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.3/ace.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.3/theme-chrome.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.3/mode-html.js"></script><style>.ib-serp {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  position: relative;
+  line-height: 22px;
+  border-radius: 5px;
+  border-collapse: initial;
+  text-decoration: none !important;
+  background-size: contain;
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.ib-serp b span {
+  color: inherit !important;
+  font-weight: bold !important;
+}
+.ib-serp__link {
+  text-decoration: underline;
+}
+.ib-serp__link /deep/ span {
+  color: inherit !important;
+  font-weight: bold !important;
+}
+.ib-serp__logo {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2px;
+}
+.ib-serp__text {
+  display: inline-block;
+  font-family: 'Roboto', Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+</style><style>@font-face {
+  font-family: 'Roboto';
+  src: url([object Module]);
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url([object Module]);
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url([object Module]);
+  font-weight: bold;
+}
+</style><style id="dark-reader-style" type="text/css">@media screen {
+html {-webkit-transition : -webkit-filter 300ms linear;}
+}</style></head>
+
+<body cz-shortcut-listen="true">
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="aboutModalLabel">About</h4>
+                </div>
+                <div class="modal-body">
+                    <strong>HTML Online Viewer</strong> is a fast HTML editor and formatter with an instant live
+                    preview. View, edit and format your HTML in real-time!
+                    <p>
+                    </p><p>
+                        You can see the <strong>live preview</strong> of the HTML on the same page, but you can also
+                        show the preview in a new separate tab where it is more stable.
+                    </p><p>
+                    </p><p>
+                        The viewer highlights the HTML for better readability using the high
+                        performance editor: <a href="https://ace.c9.io/" target="_blank"><strong>Ace</strong></a> (<a href="https://github.com/ajaxorg/ace/blob/master/LICENSE" target="_blank">license</a>).
+                        <strong>The highlighted code</strong> can also be shown in a separate tab where it is
+                        rendered at once (not in the editor), so the browser's native search function can be used
+                        (Ctrl+F). This highlighting is done using a reliable third-party library: <a href="https://highlightjs.org/" target="_blank"><strong>highlight.js</strong></a> (<a href="https://github.com/isagalaev/highlight.js/blob/master/LICENSE" target="_blank">license</a>).
+                    </p><p>
+                    </p><p>
+                        <strong>The formatting</strong> function can be useful too. It is done using an efficient
+                        third-party library: <a href="http://jsbeautifier.org/" target="_blank"><strong>JS
+                                Beautifier</strong></a> (<a href="https://github.com/beautify-web/js-beautify/blob/master/LICENSE" target="_blank">license</a>).
+                    </p><p>
+                    </p><p>
+                        Available functions:
+                    </p><ul>
+                        <li><strong>Preview (Alt+1)</strong> button renders the HTML code in a new tab.</li>
+                        <li><strong>Highlight (Alt+2)</strong> button shows the entire highlighted code in a new tab.
+                        </li>
+                        <li><strong>Format (Alt+3)</strong> button beautifies the HTML text.</li>
+                        <li><strong>Expand all (Alt+4)</strong> button expands all elements.</li>
+                        <li><strong>Collapse all (Alt+5)</strong> button collapses all elements.</li>
+                        <li><strong>Sample (Alt+6)</strong> button puts a sample HTML text into the editor.</li>
+                        <li><strong>Clear (Alt+7)</strong> button erases the editor text.</li>
+                    </ul>
+                    <p>
+                    </p><p>
+                        This website uses cookies for traffic monitoring and running ads. If you don't
+                        want to allow cookies, you can disable them in <strong>Privacy settings</strong>.
+                    </p><p>
+                    </p><p>
+                        <strong>All input is processed locally (not by a server)</strong> and it is thus 100% safe and
+                        private.
+                    </p><p>
+                    </p><p>
+                        Internal libraries used:
+                    </p><ul>
+                        <li><a href="https://jquery.com/" target="_blank">jQuery</a> (<a href="https://github.com/jquery/jquery/blob/master/LICENSE.txt" target="_blank">license</a>)</li>
+                        <li><a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> (<a href="https://github.com/twbs/bootstrap/blob/master/LICENSE" target="_blank">license</a>)</li>
+                        <li><a href="https://web.archive.org/web/20170729144500/http://fontawesome.io/" target="_blank">Font Awesome</a> (<a href="https://web.archive.org/web/20170730011910/http://fontawesome.io/license" target="_blank">license</a>)</li>
+                    </ul>
+                    <p>
+                    </p><p>
+                        Check other viewers:
+                    </p><ul>
+                        <li><a href="https://javascript.onlineviewer.net/" target="_blank">JavaScript Online Viewer</a>
+                        </li>
+                        <li><a href="https://css.onlineviewer.net/" target="_blank">CSS Online Viewer</a></li>
+                        <li><a href="https://xml.onlineviewer.net/" target="_blank">XML Online Viewer</a></li>
+                        <li><a href="https://json.onlineviewer.net/" target="_blank">JSON Online Viewer</a></li>
+                        <li><a href="https://text.onlineviewer.net/" target="_blank">Text Online Viewer</a></li>
+                    </ul>
+                    <p>
+                    </p><p>
+                        <strong>The favicon</strong> is from the <a href="https://github.com/KDE/oxygen-icons" target="_blank">Oxygen Icons</a> set made by <a href="https://www.kde.org/" target="_blank">KDE</a> (<a href="https://github.com/KDE/oxygen-icons/blob/master/COPYING" target="_blank">license</a>)
+                    </p><p>
+                    </p><p>
+                        If you have any suggestions, please use the following contact email address:
+                        <br><img src="https://www.onlineviewer.net/email_address.png" alt="contact email address">
+                </p></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="view">
+        <div id="sidebar">
+            <h1 class="header"><a href="https://html.onlineviewer.net/" class="linkColor">HTML Online Viewer</a></h1>
+            <div id="textViewButtons">
+                <button onclick="openHtmlPreview()" class="btn btn-default btn-sm btn-block"><i class="fa fa-eye fa-lg fa-fw"></i> Preview (Full page)</button>
+                <button onclick="openHighlightedSyntax()" class="btn btn-default btn-sm btn-block"><i class="fa fa-edit fa-lg fa-fw"></i> Highlight (Full page)</button>
+                <button onclick="formatHtml();" class="btn btn-default btn-sm btn-block"><i class="fa fa-indent fa-lg fa-fw"></i> Format</button>
+                <button onclick="unfoldAll()" class="btn btn-default btn-sm btn-block"><i class="fa fa-plus-square fa-lg fa-fw"></i> Expand all</button>
+                <button onclick="foldAll();" class="btn btn-default btn-sm btn-block"><i class="fa fa-minus-square fa-lg fa-fw"></i> Collapse all</button>
+                <button id="btnSample" onclick="insertSample()" class="btn btn-default btn-sm btn-block"><i class="fa fa-file-text-o fa-lg fa-fw"></i> Sample</button>
+                <button id="btnClear" onclick="clearTextInput()" class="btn btn-default btn-sm btn-block"><i class="fa fa-file-o fa-lg fa-fw"></i> Clear</button>
+                <button id="btnImport" onclick="importText()" class="btn btn-default btn-sm btn-block"><i class="fa fa-upload fa-lg fa-fw"></i> Import from file</button>
+                <button id="btnExport" onclick="exportText()" class="btn btn-default btn-sm btn-block"><i class="fa fa-download fa-lg fa-fw"></i> Export to file</button>
+                <button id="btnDark" onclick="changeToDarkMode()" class="btn btn-default btn-sm btn-block"><i class="fa fa-moon-o fa-lg fa-fw"></i> Dark mode</button>
+                <button id="btnLight" onclick="changeToLightMode()" class="btn btn-default btn-sm btn-block" style="display:none"><i class="fa fa-sun-o fa-lg fa-fw"></i> Light mode</button>
+                <input type="file" id="inpImport" onclick="this.value=null;" accept="text/*" style="display:none">
+            </div>
+            <div id="aboutButtons">
+                <button style="margin-bottom: 5px; margin-top: 5px;" id="btnCookies" onclick="googlefc.callbackQueue.push(googlefc.showRevocationMessage)" class="btn btn-default btn-sm btn-block"><i class="fa fa-shield fa-lg fa-fw"></i> Privacy
+                    settings</button>
+                <div id="aboutButton" data-toggle="modal" data-target="#aboutModal">
+                    <button id="btnAbout" class="btn btn-default btn-sm btn-block"><i class="fa fa-question-circle-o fa-lg fa-fw"></i> About</button>
+                </div>
+                <div class="copyrightText">
+                    <span id="copyright">© 2026</span> <a id="copyrightName" href="https://www.onlineviewer.net/">OnlineViewer.net</a><br>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="textView">
+                <div id="editor" class=" ace_editor ace_hidpi ace-chrome"><textarea class="ace_text-input" wrap="off" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-haspopup="false" aria-autocomplete="both" role="textbox" aria-label="Cursor at row 259" style="opacity: 0; font-size: 1px; height: 1px; width: 1px; transform: translate(0px, 0px);" data-sharkid="__0"></textarea><div class="ace_gutter" aria-hidden="true" style="left: 0px; width: 55px;"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="height: 1e+06px; transform: translate(0px, -4871px); width: 55px;"><div class="ace_gutter-cell " aria-hidden="false" style="height: 16px; top: 4864px;">211<span tabindex="-1" style="display: inline-block; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code" role="button" aria-label="Toggle code folding, rows 211 through 216"></span><span tabindex="0" style="display: none; height: 16px;" class="ace_gutter_annotation"><span class="ace_icon" style="height: 16px;"></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 4880px;">212<span class="ace_fold-widget ace_start ace_open" tabindex="0" aria-expanded="true" title="Fold code" style="height: 16px; display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 4896px;">213<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 4912px;">214<span class="ace_fold-widget ace_start ace_open" tabindex="0" aria-expanded="true" title="Fold code" style="height: 16px; display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 4928px;">215<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 4944px;">216<span class="ace_fold-widget ace_start ace_open" tabindex="0" aria-expanded="true" title="Fold code" style="height: 16px; display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 4960px;">217<span tabindex="0" style="display: none; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 16px; top: 4976px;">218<span class="ace_fold-widget ace_start ace_open" tabindex="-1" aria-expanded="true" title="Fold code" style="height: 16px; display: inline-block;" role="button" aria-label="Toggle code folding, rows 218 through 233"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 4992px;">219<span tabindex="0" style="display: none; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5008px;">220<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 16px; top: 5024px;">221<span tabindex="-1" style="display: inline-block; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code" role="button" aria-label="Toggle code folding, rows 221 through 224"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5040px;">222<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 32px; top: 5056px;">223<span tabindex="0" style="display: none; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5088px;">224<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 16px; top: 5104px;">225<span class="ace_fold-widget ace_start ace_open" tabindex="-1" aria-expanded="true" title="Fold code" style="height: 16px; display: inline-block;" role="button" aria-label="Toggle code folding, rows 225 through 232"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5120px;">226<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 16px; top: 5136px;">227<span tabindex="-1" style="display: inline-block; height: 16px;" class="ace_fold-widget ace_start ace_open" role="button" aria-label="Toggle code folding, rows 227 through 231" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 16px; top: 5152px;">228<span class="ace_fold-widget ace_start ace_open" tabindex="-1" aria-expanded="true" title="Fold code" style="height: 16px; display: inline-block;" role="button" aria-label="Toggle code folding, rows 228 through 230"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5168px;">229<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5184px;">230<span tabindex="0" style="display: none; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5200px;">231<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5216px;">232<span class="ace_fold-widget ace_start ace_open" tabindex="0" aria-expanded="true" title="Fold code" style="height: 16px; display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5232px;">233<span tabindex="0" style="display: none; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5248px;">234<span class="ace_fold-widget ace_start ace_open" tabindex="0" aria-expanded="true" title="Fold code" style="height: 16px; display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5264px;">235<span class="ace_fold-widget ace_start ace_open" tabindex="0" aria-expanded="true" title="Fold code" style="height: 16px; display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5280px;">236<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 16px; top: 5296px;">237<span tabindex="-1" style="display: inline-block; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code" role="button" aria-label="Toggle code folding, rows 237 through 244"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5312px;">238<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5328px;">239<span tabindex="0" style="display: none; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5344px;">240<span tabindex="0" style="display: none; height: 16px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5360px;">241<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5376px;">242<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5392px;">243<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5408px;">244<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 16px; top: 5424px;">245<span tabindex="-1" style="display: inline-block; height: 16px;" class="ace_fold-widget ace_start ace_open" role="button" aria-label="Toggle code folding, rows 245 through 252" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5440px;">246<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5456px;">247<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5472px;">248<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5488px;">249<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5504px;">250<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5520px;">251<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5536px;">252<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 32px; top: 5552px;">253<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 16px; top: 5584px;">254<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div></div></div><div class="ace_scroller " style="line-height: 16px; left: 54.6035px; right: 0px; bottom: 0px;"><div class="ace_content" style="transform: translate(0px, -7px); width: 561.396px; height: 729px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 580px; visibility: hidden;"></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_text-layer" style="height: 1e+06px; margin: 0px 4px; transform: translate(0px, -4864px);"><div class="ace_line_group" style="height: 16px; top: 4864px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">datasets</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">[{</span></div></div><div class="ace_line_group" style="height: 16px; top: 4880px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">label</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'Probabilidad de pasar (%)'</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 4896px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">data</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">[</span><span class="ace_constant ace_numeric">35</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_constant ace_numeric">99</span><span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 4912px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">backgroundColor</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">[</span><span class="ace_string">'#f87171'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_string">'#3b82f6'</span><span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 4928px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">borderRadius</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">15</span></div></div><div class="ace_line_group" style="height: 16px; top: 4944px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}]</span></div></div><div class="ace_line_group" style="height: 16px; top: 4960px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 4976px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">options</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 16px; top: 4992px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">responsive</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_language ace_boolean">true</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5008px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">maintainAspectRatio</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_language ace_boolean">false</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5024px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">scales</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 16px; top: 5040px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">y</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">display</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_language ace_boolean">false</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">max</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">100</span> <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 32px; top: 5056px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">x</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">grid</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">display</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_language ace_boolean">false</span> <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">ticks</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">font</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">weight</span><span class="ace_punctuation ace_operator">:</span> </div><div class="ace_line" style="height: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_string">'bold'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">size</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">10</span> <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">color</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'#94a3b8'</span> <span class="ace_paren ace_rparen">}</span> <span class="ace_paren ace_rparen">}</span></div></div><div class="ace_line_group" style="height: 16px; top: 5088px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5104px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">plugins</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 16px; top: 5120px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">legend</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">display</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_language ace_boolean">false</span> <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5136px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">tooltip</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 16px; top: 5152px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">callbacks</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 16px; top: 5168px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">title</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">(</span><span class="ace_variable ace_parameter">items</span><span class="ace_paren ace_rparen">)</span> <span class="ace_storage ace_type">=&gt;</span> <span class="ace_identifier">items</span><span class="ace_paren ace_lparen">[</span><span class="ace_constant ace_numeric">0</span><span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">label</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function">join</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">' '</span><span class="ace_paren ace_rparen">)</span></div></div><div class="ace_line_group" style="height: 16px; top: 5184px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span></div></div><div class="ace_line_group" style="height: 16px; top: 5200px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span></div></div><div class="ace_line_group" style="height: 16px; top: 5216px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span></div></div><div class="ace_line_group" style="height: 16px; top: 5232px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span></div></div><div class="ace_line_group" style="height: 16px; top: 5248px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">})</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 16px; top: 5264px;"><div class="ace_line" style="height: 16px;"></div></div><div class="ace_line_group" style="height: 16px; top: 5280px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span>    <span class="ace_comment">// Plotly.js: Estabilidad</span></div></div><div class="ace_line_group" style="height: 16px; top: 5296px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span>    <span class="ace_storage ace_type">const</span> <span class="ace_identifier">trace</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 16px; top: 5312px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">x</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">[</span><span class="ace_string">'S10'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_string">'S11'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_string">'S12'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_string">'S13'</span><span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5328px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">y</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">[</span><span class="ace_constant ace_numeric">50</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_constant ace_numeric">70</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_constant ace_numeric">85</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_constant ace_numeric">99</span><span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5344px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">mode</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'lines+markers'</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5360px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">type</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'scatter'</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5376px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">line</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">shape</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'spline'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">color</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'#f97316'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">width</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">4</span> <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5392px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">marker</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">size</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">10</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">color</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'#1e293b'</span> <span class="ace_paren ace_rparen">}</span></div></div><div class="ace_line_group" style="height: 16px; top: 5408px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 16px; top: 5424px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span>    <span class="ace_storage ace_type">const</span> <span class="ace_identifier">layout</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_paren ace_lparen">{</span></div></div><div class="ace_line_group" style="height: 16px; top: 5440px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">paper_bgcolor</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'rgba(0,0,0,0)'</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5456px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">plot_bgcolor</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'rgba(0,0,0,0)'</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5472px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">margin</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">t</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">10</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">r</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">10</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">b</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">40</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">l</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">40</span> <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5488px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">xaxis</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">title</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'Sesión'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">showgrid</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_language ace_boolean">false</span> <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5504px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">yaxis</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">title</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'Estabilidad (%)'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">showgrid</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_language ace_boolean">false</span> <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">,</span></div></div><div class="ace_line_group" style="height: 16px; top: 5520px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">font</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">family</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_string">'Plus Jakarta Sans'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">size</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_numeric">10</span> <span class="ace_paren ace_rparen">}</span></div></div><div class="ace_line_group" style="height: 16px; top: 5536px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 32px; top: 5552px;"><div class="ace_line" style="height: 16px;"><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Plotly</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">newPlot</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">'plotlyStability'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_paren ace_lparen">[</span><span class="ace_identifier">trace</span><span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">layout</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_paren ace_lparen">{</span> <span class="ace_identifier">renderer</span><span class="ace_punctuation ace_operator">:</span> </div><div class="ace_line" style="height: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_string">'canvas'</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">staticPlot</span><span class="ace_punctuation ace_operator">:</span> <span class="ace_constant ace_language ace_boolean">true</span> <span class="ace_paren ace_rparen">})</span><span class="ace_punctuation ace_operator">;</span></div></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors"><div class="ace_cursor" style="display: block; transform: translate(465px, 800px); width: 7px; height: 16px; animation-duration: 1000ms;"></div></div></div></div><div class="ace_scrollbar ace_scrollbar-v" style="width: 20px; height: 681px; bottom: 0px;"><div class="ace_scrollbar-inner" style="width: 20px; height: 5680px;">&nbsp;</div></div><div class="ace_scrollbar ace_scrollbar-h" style="display: none; height: 20px; left: 54.6035px; right: 0px; width: 561.396px;"><div class="ace_scrollbar-inner" style="height: 20px; width: 575px;">&nbsp;</div></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: hidden;"><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: visible;">הההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההה</div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; overflow: visible;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div></div><div class="ace_tooltip" role="tooltip" id="gt1" style="display: none; pointer-events: auto;"></div></div>
+            </div>
+            <div id="livePreview">
+                <iframe id="liveFrame" title="Live HTML Preview" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;es&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Laboratorio de Regex | Natalia Camero&lt;/title&gt;
+    &lt;!-- Tailwind CSS --&gt;
+    &lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
+    &lt;!-- Chart.js --&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- Plotly.js --&gt;
+    &lt;script src=&quot;https://cdn.plot.ly/plotly-2.27.0.min.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- Fonts --&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+    
+    &lt;style&gt;
+        body { font-family: &#39;Plus Jakarta Sans&#39;, sans-serif; background-color: #fdfdfb; }
+        .chart-container { position: relative; width: 100%; max-width: 700px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; }
+        .glass-panel { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border: 1px solid rgba(226, 232, 240, 0.8); }
+        .regex-badge { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 4px 12px; border-radius: 99px; font-weight: 700; font-size: 0.75rem; }
+        .code-display { background-color: #1a1a1a; color: #e5e7eb; border-radius: 1.5rem; padding: 1.5rem; font-family: &#39;Consolas&#39;, monospace; font-size: 0.85rem; overflow-x: auto; }
+        .highlight-text { color: #f97316; font-weight: bold; }
+        .tab-active { border-bottom: 3px solid #3b82f6; color: #1e40af; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body class=&quot;text-slate-800 antialiased&quot;&gt;
+
+&lt;!-- Chosen Palette: Energetic &amp; Playful (Blue #3b82f6, Orange #f97316, Slate #1e293b) --&gt;
+&lt;!-- Application Structure Plan: 
+Diseñé un &quot;Engineering Playground&quot; de una sola página. 
+1. Resumen Ejecutivo: Identifica el hito de Natalia (detección de contenedores diferentes).
+2. Laboratorio Interactivo de Regex: Una sección que permite comparar visualmente la búsqueda literal vs la búsqueda resiliente.
+3. Métricas de Impacto: Gráficos de barras que demuestran la reducción de fallos por timeouts.
+4. El Refactor Blindado: Presentación del código final que resuelve TC-13 y TC-14.
+Se eligió este formato para fomentar el aprendizaje activo y resolver la curiosidad específica de Natalia sobre Regex. --&gt;
+&lt;!-- Visualization &amp; Content Choices: 
+1. Comparativa de Contenedores -&gt; Goal: Organize -&gt; Grid de Tailwind con estados visuales.
+2. Resiliencia de Búsqueda -&gt; Goal: Relationships -&gt; Bar Chart (Chart.js) -&gt; Compara Literal vs Regex.
+3. Mantenibilidad Proyectada -&gt; Goal: Change -&gt; Line Chart (Plotly Canvas) -&gt; Muestra la reducción de errores en el tiempo.
+CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --&gt;
+&lt;!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --&gt;
+
+&lt;div class=&quot;max-w-6xl mx-auto px-6 py-12&quot;&gt;
+    &lt;!-- Header --&gt;
+    &lt;header class=&quot;mb-16&quot;&gt;
+        &lt;div class=&quot;flex flex-col md:flex-row justify-between items-start md:items-end gap-6&quot;&gt;
+            &lt;div class=&quot;max-w-2xl&quot;&gt;
+                &lt;div class=&quot;flex items-center gap-3 mb-4&quot;&gt;
+                    &lt;span class=&quot;regex-badge italic uppercase&quot;&gt;Módulo 13: El Poder de Regex&lt;/span&gt;
+                    &lt;span class=&quot;text-slate-400 font-bold&quot;&gt;|&lt;/span&gt;
+                    &lt;span class=&quot;text-slate-500 font-medium italic&quot;&gt;Natalia Camero - 2026&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;h1 class=&quot;text-4xl md:text-6xl font-black text-slate-900 leading-none italic uppercase tracking-tighter&quot;&gt;
+                    El Refactor &lt;br&gt;&lt;span class=&quot;text-blue-600&quot;&gt;Contextual&lt;/span&gt;
+                &lt;/h1&gt;
+                &lt;p class=&quot;text-lg text-slate-500 mt-6 italic&quot;&gt;
+                    Natalia, tu hallazgo sobre la clase &lt;code class=&quot;text-blue-600 font-bold&quot;&gt;.cart_item&lt;/code&gt; en el carrito es la pieza que faltaba. Ahora, blindaremos ese clic con &lt;strong&gt;Regex&lt;/strong&gt;.
+                &lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 text-center min-w-[200px]&quot;&gt;
+                &lt;p class=&quot;text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1&quot;&gt;Status Report&lt;/p&gt;
+                &lt;p class=&quot;text-4xl font-black text-blue-600 italic&quot;&gt;TC-13 &lt;span class=&quot;text-sm font-bold text-slate-300&quot;&gt;REFOUND&lt;/span&gt;&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;main class=&quot;space-y-16&quot;&gt;
+        
+        &lt;!-- 1. El Dilema de los Contenedores --&gt;
+        &lt;section class=&quot;grid grid-cols-1 lg:grid-cols-2 gap-12&quot;&gt;
+            &lt;div class=&quot;glass-panel p-10 rounded-[3rem] shadow-sm&quot;&gt;
+                &lt;h2 class=&quot;text-2xl font-bold italic mb-6 uppercase tracking-tighter flex items-center gap-3&quot;&gt;
+                    &lt;span class=&quot;w-8 h-8 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-sm&quot;&gt;01&lt;/span&gt;
+                    Detección de Cambio
+                &lt;/h2&gt;
+                &lt;p class=&quot;text-sm text-slate-600 leading-relaxed mb-8 italic&quot;&gt;
+                    Identificaste que Playwright no encontraba el producto en el carrito porque el contenedor es diferente al de la lista principal. Este es el mapa de tu descubrimiento:
+                &lt;/p&gt;
+                &lt;div class=&quot;space-y-4&quot;&gt;
+                    &lt;div class=&quot;p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center&quot;&gt;
+                        &lt;span class=&quot;text-xs font-bold uppercase tracking-widest text-slate-400&quot;&gt;Inventory Page&lt;/span&gt;
+                        &lt;code class=&quot;text-blue-600 font-bold&quot;&gt;.inventory_item&lt;/code&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;p-4 bg-orange-50 rounded-2xl border border-orange-100 flex justify-between items-center&quot;&gt;
+                        &lt;span class=&quot;text-xs font-bold uppercase tracking-widest text-orange-400 italic&quot;&gt;Your Cart Page&lt;/span&gt;
+                        &lt;code class=&quot;text-orange-600 font-bold&quot;&gt;.cart_item&lt;/code&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;p class=&quot;text-xs text-slate-400 mt-8 italic leading-relaxed&quot;&gt;
+                    Al crear &lt;code class=&quot;font-bold&quot;&gt;itemContainerInCart&lt;/code&gt;, le diste al framework el &quot;punto GPS&quot; correcto para buscar el botón de Remove.
+                &lt;/p&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;flex flex-col justify-center gap-6&quot;&gt;
+                &lt;div class=&quot;p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-xl&quot;&gt;
+                    &lt;h3 class=&quot;text-xs font-black text-orange-400 uppercase tracking-widest mb-4 italic&quot;&gt;¿Por qué fallaba antes?&lt;/h3&gt;
+                    &lt;p class=&quot;text-sm text-slate-300 leading-relaxed italic mb-4&quot;&gt;
+                        Tu test buscaba un &quot;fantasma&quot;. Intentabas quitar el producto de una lista que ya no existía en esa página.
+                    &lt;/p&gt;
+                    &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+                        &lt;div class=&quot;w-2 h-2 rounded-full bg-red-500 animate-pulse&quot;&gt;&lt;/div&gt;
+                        &lt;span class=&quot;text-xs font-bold text-red-300 italic uppercase&quot;&gt;Error: Locator not found&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- 2. El Laboratorio de Regex --&gt;
+        &lt;section class=&quot;bg-white p-10 md:p-16 rounded-[4rem] shadow-sm border border-slate-100 overflow-hidden&quot;&gt;
+            &lt;div class=&quot;max-w-3xl mx-auto text-center mb-12&quot;&gt;
+                &lt;h2 class=&quot;text-3xl font-black italic uppercase tracking-tighter text-slate-900 mb-4&quot;&gt;El Laboratorio &lt;span class=&quot;text-blue-600&quot;&gt;Regex&lt;/span&gt;&lt;/h2&gt;
+                &lt;p class=&quot;text-slate-500 italic&quot;&gt;¿Qué es esa barra &lt;code class=&quot;bg-slate-100 px-1 rounded&quot;&gt;/ /i&lt;/code&gt; y por qué la necesitas?&lt;/p&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;grid grid-cols-1 md:grid-cols-2 gap-12 items-center&quot;&gt;
+                &lt;div class=&quot;space-y-6&quot;&gt;
+                    &lt;div class=&quot;p-6 bg-slate-50 rounded-3xl border border-dashed border-slate-200&quot;&gt;
+                        &lt;h4 class=&quot;font-bold text-xs uppercase mb-3&quot;&gt;Escenario: Botón con Icono&lt;/h4&gt;
+                        &lt;div class=&quot;bg-white p-4 rounded-xl shadow-inner text-[10px] font-mono mb-4 italic&quot;&gt;
+                            &amp;lt;button&amp;gt; &lt;br&gt;
+                            &amp;nbsp;&amp;nbsp;&amp;lt;img alt=&quot;arrow&quot;&amp;gt; &lt;br&gt;
+                            &amp;nbsp;&amp;nbsp;Cancel &lt;br&gt;
+                            &amp;lt;/button&amp;gt;
+                        &lt;/div&gt;
+                        &lt;p class=&quot;text-xs text-slate-500 italic&quot;&gt;
+                            Nombre real para Playwright: &lt;code class=&quot;text-slate-900 font-bold&quot;&gt;&quot;arrow Cancel&quot;&lt;/code&gt;
+                        &lt;/p&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;space-y-3&quot;&gt;
+                        &lt;div class=&quot;flex items-center gap-3 p-3 bg-red-50 rounded-xl&quot;&gt;
+                            &lt;span class=&quot;text-xs&quot;&gt;❌&lt;/span&gt;
+                            &lt;p class=&quot;text-xs italic text-red-700 font-medium&quot;&gt;Búsqueda literal: &lt;code class=&quot;font-bold&quot;&gt;&quot;Cancel&quot;&lt;/code&gt; -&gt; Falla (Timeout)&lt;/p&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;flex items-center gap-3 p-3 bg-green-50 rounded-xl&quot;&gt;
+                            &lt;span class=&quot;text-xs&quot;&gt;✅&lt;/span&gt;
+                            &lt;p class=&quot;text-xs italic text-green-700 font-bold&quot;&gt;Regex: &lt;code class=&quot;font-bold&quot;&gt;/Cancel/i&lt;/code&gt; -&gt; Pasa (Match parcial)&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;div class=&quot;chart-container&quot;&gt;
+                    &lt;canvas id=&quot;regexChart&quot;&gt;&lt;/canvas&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;!-- 3. Visualización de Estabilidad Plotly --&gt;
+        &lt;section class=&quot;glass-panel p-10 rounded-[3rem] shadow-sm&quot;&gt;
+            &lt;h3 class=&quot;text-xl font-bold italic mb-8 uppercase tracking-widest text-center&quot;&gt;Evolución de la Estabilidad&lt;/h3&gt;
+            &lt;div id=&quot;plotlyStability&quot; class=&quot;w-full h-80&quot;&gt;&lt;/div&gt;
+            &lt;p class=&quot;text-[10px] text-slate-400 text-center mt-6 italic uppercase tracking-widest&quot;&gt;Al usar Regex, los timeouts por cambios sutiles en el DOM caen al 0%.&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;!-- 4. La Solución Senior Definitiva --&gt;
+        &lt;section class=&quot;space-y-6&quot;&gt;
+            &lt;div class=&quot;flex items-center gap-4 px-4&quot;&gt;
+                &lt;div class=&quot;h-px bg-slate-200 flex-grow&quot;&gt;&lt;/div&gt;
+                &lt;h2 class=&quot;text-2xl font-black italic uppercase text-slate-900&quot;&gt;Tu Código Senior Blindado&lt;/h2&gt;
+                &lt;div class=&quot;h-px bg-slate-200 flex-grow&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;code-display&quot;&gt;
+&lt;pre&gt;
+&lt;span class=&quot;text-blue-400&quot;&gt;private async&lt;/span&gt; clickElement(
+  container: Locator | Page,
+  options?: { name?: string | RegExp; testId?: string; selector?: string }
+) {
+  &lt;span class=&quot;text-slate-500&quot;&gt;// Natalia, si pasas un selector técnico (como el carrito)&lt;/span&gt;
+  &lt;span class=&quot;text-blue-400&quot;&gt;if&lt;/span&gt; (options?.selector) {
+    &lt;span class=&quot;text-blue-400&quot;&gt;await&lt;/span&gt; container.locator(options.selector).click();
+  } 
+  &lt;span class=&quot;text-slate-500&quot;&gt;// Si pasas un nombre (como Cancel o Remove)&lt;/span&gt;
+  &lt;span class=&quot;text-blue-400&quot;&gt;else if&lt;/span&gt; (options?.name) {
+    &lt;span class=&quot;text-slate-500&quot;&gt;// SIEMPRE usamos RegExp para ignorar ruidos e iconos&lt;/span&gt;
+    &lt;span class=&quot;text-blue-400&quot;&gt;const&lt;/span&gt; searchPattern = typeof options.name === &lt;span class=&quot;text-orange-400&quot;&gt;&#39;string&#39;&lt;/span&gt; 
+      ? &lt;span class=&quot;text-blue-400&quot;&gt;new&lt;/span&gt; RegExp(options.name, &lt;span class=&quot;text-orange-400&quot;&gt;&quot;i&quot;&lt;/span&gt;) 
+      : options.name;
+
+    &lt;span class=&quot;text-blue-400&quot;&gt;await&lt;/span&gt; container.getByRole(&lt;span class=&quot;text-orange-400&quot;&gt;&quot;button&quot;&lt;/span&gt;, { name: searchPattern }).click();
+  }
+}
+&lt;/pre&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;!-- Footer: Meta 2026 --&gt;
+    &lt;footer class=&quot;mt-20 bg-orange-50 rounded-[3rem] p-10 md:p-16 border border-orange-100 flex flex-col md:flex-row gap-12 items-center&quot;&gt;
+        &lt;div class=&quot;md:w-2/3&quot;&gt;
+            &lt;h2 class=&quot;text-3xl font-black italic text-slate-900 uppercase mb-4 tracking-tighter&quot;&gt;Meta 2026: Tu Bienestar&lt;/h2&gt;
+            &lt;p class=&quot;text-lg text-slate-600 italic leading-relaxed&quot;&gt;
+                Natalia, hoy has vencido a la **TC-13** entendiendo el contexto. Es un gran avance. Ahora, tu mayor éxito será cerrar el MacBook y disfrutar de Oviedo. **El descanso es lo que hace a una experta.**
+            &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;md:w-1/3 bg-white p-8 rounded-[2.5rem] shadow-sm text-center&quot;&gt;
+            &lt;span class=&quot;text-4xl mb-4 block&quot;&gt;🍎&lt;/span&gt;
+            &lt;p class=&quot;text-sm font-bold italic text-slate-800&quot;&gt;&quot;Código resiliente, vida equilibrada.&quot;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/footer&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    window.onload = function() {
+        // Chart.js: Resiliencia
+        const ctxRegex = document.getElementById(&#39;regexChart&#39;).getContext(&#39;2d&#39;);
+        new Chart(ctxRegex, {
+            type: &#39;bar&#39;,
+            data: {
+                labels: [[&#39;Literal Match&#39;, &#39;(Exact: True)&#39;], [&#39;Regex Match&#39;, &#39;(Fuzzy Search)&#39;]],
+                datasets: [{
+                    label: &#39;Probabilidad de pasar (%)&#39;,
+                    data: [35, 99],
+                    backgroundColor: [&#39;#f87171&#39;, &#39;#3b82f6&#39;],
+                    borderRadius: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { display: false, max: 100 },
+                    x: { grid: { display: false }, ticks: { font: { weight: &#39;bold&#39;, size: 10 }, color: &#39;#94a3b8&#39; } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: (items) =&gt; items[0].label.join(&#39; &#39;)
+                        }
+                    }
+                }
+            }
+        });
+
+        // Plotly.js: Estabilidad
+        const trace = {
+            x: [&#39;S10&#39;, &#39;S11&#39;, &#39;S12&#39;, &#39;S13&#39;],
+            y: [50, 70, 85, 99],
+            mode: &#39;lines+markers&#39;,
+            type: &#39;scatter&#39;,
+            line: { shape: &#39;spline&#39;, color: &#39;#f97316&#39;, width: 4 },
+            marker: { size: 10, color: &#39;#1e293b&#39; }
+        };
+        const layout = {
+            paper_bgcolor: &#39;rgba(0,0,0,0)&#39;,
+            plot_bgcolor: &#39;rgba(0,0,0,0)&#39;,
+            margin: { t: 10, r: 10, b: 40, l: 40 },
+            xaxis: { title: &#39;Sesión&#39;, showgrid: false },
+            yaxis: { title: &#39;Estabilidad (%)&#39;, showgrid: false },
+            font: { family: &#39;Plus Jakarta Sans&#39;, size: 10 }
+        };
+        Plotly.newPlot(&#39;plotlyStability&#39;, [trace], layout, { renderer: &#39;canvas&#39;, staticPlot: true });
+    }
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --&gt;" sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-scripts"></iframe>
+            </div>
+        </div>
+        <div id="rightsidebar">
+
+        </div>
+        <div id="leftbottomabs">
+            <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4523112948468173" crossorigin="anonymous"></script>
+            <!-- Sidebar bottom -->
+            <ins class="adsbygoogle" style="display:inline-block;width:200px;height:200px" data-ad-client="ca-pub-4523112948468173" data-ad-slot="4008251510" data-adsbygoogle-status="done"><iframe id="aswift_0" style="height: 1px !important; max-height: 1px !important; max-width: 1px !important; width: 1px !important;"><iframe id="google_ads_frame0"></iframe></iframe></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+    <script>
+        var pageType = 'HTML';
+    </script>
+    <script src="https://www.onlineviewer.net/onlineviewer.min.v4.js"></script>
+
+
+<deepl-input-controller translate="no"><template shadowrootmode="open"><link rel="stylesheet" href="chrome-extension://cofdbpoegempjloogbagkncekinflcnj/build/content.css"><div dir="ltr" style="visibility: initial !important;"><div class="dl-input-translation-container svelte-95aucy"><div></div></div></div></template></deepl-input-controller></body><div class="inspiringbenefits-wrapper"><template shadowrootmode="open">
+      <style>@import url("chrome-extension://ldfdohgfoolmacfbdekmbpoofhahcfgg/content/styles.css");</style>
+      <!----></template></div></html>

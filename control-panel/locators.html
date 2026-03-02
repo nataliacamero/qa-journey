@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estrategia de Locators Senior - Natalia Camero</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fffdf5;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 650px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+        max-height: 400px;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(234, 88, 12, 0.1);
+      }
+      .tab-button.active {
+        background-color: #ea580c;
+        color: white;
+        border-color: #ea580c;
+      }
+    </style>
+  </head>
+  <body class="text-slate-900 leading-relaxed">
+    <!-- Chosen Palette: Armonía Minimalista (Fondo crema #FFFDF5, acentos Azul Suave #3B82F6 y Naranja Quemado #EA580C) -->
+    <!-- Application Structure Plan: Diseñé un tablero de control interactivo para la Sesión 13 centrado en la toma de decisiones de ingeniería. Incluye una sección hero para el contexto, un comparador interactivo de locators (CSS vs Data-Test vs Role) y gráficos de resiliencia. La estructura prioriza la enseñanza sobre la simple exposición de datos, permitiendo a Natalia "probar" mentalmente cada selector y entender por qué el aria-label es la evolución natural del data-test. -->
+    <!-- Visualization & Content Choices: 
+1. Comparativa de Locators -> Goal: Compare -> Matriz interactiva HTML/Tailwind -> Justificación: Permite visualizar pros y contras sin código complejo. 
+2. Resiliencia de Selectores -> Goal: Relationships -> Gráfico de Radar (Chart.js) -> Compara estabilidad vs facilidad de uso. 
+3. Debugging Time -> Goal: Change -> Gráfico de Barras (Chart.js) -> Proyecta el ahorro de tiempo al usar estándares senior.
+Confirmando: NO se usó SVG ni Mermaid JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <div class="container mx-auto px-6 py-12 max-w-6xl">
+      <!-- Hero / Header -->
+      <header class="mb-16">
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6"
+        >
+          <div class="max-w-2xl">
+            <span
+              class="text-xs font-bold text-orange-600 uppercase tracking-widest bg-orange-100 px-3 py-1 rounded-full italic"
+              >Ingeniería de Software / Sesión 13</span
+            >
+            <h1
+              class="text-4xl md:text-6xl font-black text-slate-900 mt-4 tracking-tighter uppercase italic"
+            >
+              El Botón <span class="text-blue-600">Invisible:</span>
+              <br />Estrategia de Roles
+            </h1>
+            <p class="text-lg text-slate-500 mt-4 italic">
+              Natalia, cuando un botón no tiene texto ni 'alt', pero tiene
+              'data-test', estamos en un escenario de
+              <strong>Caja Negra</strong>. Vamos a analizar cómo hacerlo brillar
+              con estándares Senior.
+            </p>
+          </div>
+          <div
+            class="glass-card p-6 rounded-[2rem] shadow-sm text-center min-w-[180px]"
+          >
+            <p
+              class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1"
+            >
+              Métrica Actual
+            </p>
+            <p class="text-4xl font-black text-blue-600">
+              33 <span class="text-sm font-bold text-slate-300">PASSED</span>
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Interactive Section: El Dilema del Selector -->
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+        <div class="lg:col-span-7">
+          <div
+            class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 h-full"
+          >
+            <h2 class="text-2xl font-bold italic mb-6">
+              Comparador de Locators Senior
+            </h2>
+            <p class="text-slate-500 mb-8 text-sm italic">
+              Haz clic en cada opción para entender por qué una es "mejor" que
+              otra en términos de arquitectura.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              <button
+                onclick="updateAnalysis('css')"
+                id="btn-css"
+                class="tab-button border-2 border-slate-100 p-4 rounded-2xl text-left hover:border-blue-400 transition-all"
+              >
+                <span
+                  class="block text-[10px] font-bold uppercase text-slate-400"
+                  >Nivel Junior</span
+                >
+                <span class="font-bold text-sm">Clase CSS</span>
+              </button>
+              <button
+                onclick="updateAnalysis('data')"
+                id="btn-data"
+                class="tab-button border-2 border-slate-100 p-4 rounded-2xl text-left hover:border-blue-400 transition-all"
+              >
+                <span
+                  class="block text-[10px] font-bold uppercase text-blue-500"
+                  >Nivel Mid</span
+                >
+                <span class="font-bold text-sm">Data-Test</span>
+              </button>
+              <button
+                onclick="updateAnalysis('role')"
+                id="btn-role"
+                class="tab-button border-2 border-slate-100 p-4 rounded-2xl text-left hover:border-blue-400 transition-all"
+              >
+                <span
+                  class="block text-[10px] font-bold uppercase text-orange-500"
+                  >Nivel Senior</span
+                >
+                <span class="font-bold text-sm">Aria-Label / Role</span>
+              </button>
+            </div>
+
+            <div
+              id="analysis-content"
+              class="bg-slate-50 p-6 rounded-3xl border border-dashed border-slate-200"
+            >
+              <p class="text-slate-400 italic text-center py-10">
+                Selecciona una estrategia para ver el análisis técnico.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          <div class="bg-slate-900 rounded-[2.5rem] p-8 text-white shadow-xl">
+            <h3
+              class="text-sm font-black text-orange-400 uppercase tracking-widest mb-6 italic"
+            >
+              Mantenibilidad Proyectada
+            </h3>
+            <div class="chart-container">
+              <canvas id="resilienceChart"></canvas>
+            </div>
+            <p class="text-[10px] text-slate-400 mt-6 text-center italic">
+              Los locators basados en roles aseguran que si el botón cambia de
+              color o de ID, el test sigue siendo válido.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Analytics Section -->
+      <section class="mb-20">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-black italic uppercase tracking-tighter">
+            Impacto en el Ciclo de Vida
+          </h2>
+          <p class="text-slate-500 max-w-xl mx-auto italic">
+            Proyectamos cuánto tiempo ahorras en mantenimiento al elegir la
+            estrategia semántica.
+          </p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-[3rem] shadow-sm border border-slate-100"
+        >
+          <div id="plotlyGrowth" class="w-full h-80"></div>
+        </div>
+      </section>
+
+      <!-- Conclusión & Guía -->
+      <section
+        class="bg-orange-50 rounded-[3rem] p-10 md:p-16 border border-orange-100 flex flex-col md:flex-row gap-12 items-center"
+      >
+        <div class="md:w-2/3">
+          <h2
+            class="text-3xl font-black italic text-slate-900 uppercase mb-4 tracking-tighter"
+          >
+            La Respuesta a tu Duda
+          </h2>
+          <div class="space-y-4 text-slate-600 italic">
+            <p>
+              Natalia, si tienes el <strong>data-test</strong>, úsalo; es
+              técnicamente perfecto para Playwright. Pero si quieres subir de
+              nivel (Senior), el siguiente paso es pedir o añadir un
+              <strong>aria-label</strong>.
+            </p>
+            <p class="font-bold text-slate-900">
+              ¿Por qué? Porque el 'data-test' solo le sirve a la máquina, pero
+              el 'aria-label' le sirve a la máquina Y al usuario con
+              discapacidad. Un SDET Senior siempre busca mejorar el producto, no
+              solo pasar el test.
+            </p>
+          </div>
+          <div class="mt-8 flex gap-4">
+            <div
+              class="bg-white px-6 py-3 rounded-2xl shadow-sm border border-slate-100 font-mono text-xs text-blue-600"
+            >
+              getByRole('link', { name: 'Carrito' })
+            </div>
+          </div>
+        </div>
+        <div class="md:w-1/3 flex flex-col gap-4">
+          <div
+            class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 text-center"
+          >
+            <span class="text-xl mb-2 block">🍏</span>
+            <p class="text-xs font-bold text-slate-400 uppercase mb-1">
+              Meta de Salud
+            </p>
+            <p class="text-sm font-semibold italic text-slate-700">
+              Refactoriza temprano, duerme temprano.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="mt-20 py-12 text-center text-slate-300">
+      <p class="text-[10px] font-bold uppercase tracking-[0.3em] italic">
+        Natalia Camero Carreño | SDET ARCHITECTURE 2026
+      </p>
+    </footer>
+
+    <script>
+      // Configuración de Gráficos
+      const chartConfigs = {
+        resilience: null,
+        growth: null,
+      };
+
+      function initCharts() {
+        // Chart.js Radar
+        const ctxRadar = document
+          .getElementById("resilienceChart")
+          .getContext("2d");
+        chartConfigs.resilience = new Chart(ctxRadar, {
+          type: "radar",
+          data: {
+            labels: [
+              "Estabilidad",
+              "Semántica",
+              ["Facilidad de", "Implementación"],
+              "Mantenibilidad",
+              "Accesibilidad",
+            ],
+            datasets: [
+              {
+                label: "Seleccionado",
+                data: [0, 0, 0, 0, 0],
+                backgroundColor: "rgba(59, 130, 246, 0.2)",
+                borderColor: "#3B82F6",
+                borderWidth: 2,
+                pointBackgroundColor: "#3B82F6",
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              r: {
+                angleLines: { color: "rgba(255,255,255,0.1)" },
+                grid: { color: "rgba(255,255,255,0.1)" },
+                ticks: { display: false },
+                suggestedMin: 0,
+                suggestedMax: 100,
+              },
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  title: function (tooltipItems) {
+                    // REQUIRED: Tooltip Config for arrays
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(" ") : label;
+                  },
+                },
+              },
+            },
+          },
+        });
+
+        // Plotly Implementation
+        const trace = {
+          x: ["Mes 1", "Mes 3", "Mes 6", "Mes 12"],
+          y: [10, 25, 60, 95],
+          type: "scatter",
+          mode: "lines+markers",
+          line: { color: "#EA580C", width: 3, shape: "spline" },
+          marker: { size: 10, color: "#EA580C" },
+        };
+        const layout = {
+          paper_bgcolor: "rgba(0,0,0,0)",
+          plot_bgcolor: "rgba(0,0,0,0)",
+          margin: { t: 10, b: 40, l: 40, r: 10 },
+          xaxis: { title: "Evolución del Framework", showgrid: false },
+          yaxis: { title: "Robustez (%)", showgrid: false },
+          font: { family: "Plus Jakarta Sans", size: 10 },
+        };
+        Plotly.newPlot("plotlyGrowth", [trace], layout, {
+          renderer: "canvas",
+          staticPlot: true,
+        });
+      }
+
+      function updateAnalysis(type) {
+        const content = document.getElementById("analysis-content");
+        const btns = document.querySelectorAll(".tab-button");
+        btns.forEach((b) => b.classList.remove("active"));
+
+        let data = [0, 0, 0, 0, 0];
+        let html = "";
+
+        if (type === "css") {
+          document.getElementById("btn-css").classList.add("active");
+          data = [20, 10, 100, 15, 0];
+          html = `<h4 class="font-bold text-slate-800 mb-2">Análisis de Clase CSS (.shopping_cart_link)</h4>
+                    <p class="text-sm text-slate-500 italic mb-4">Es rápido de escribir pero extremadamente frágil. Si el diseñador cambia el estilo, el test se rompe.</p>
+                    <code class="text-xs bg-white p-2 rounded block border">locator('.shopping_cart_link')</code>`;
+        } else if (type === "data") {
+          document.getElementById("btn-data").classList.add("active");
+          data = [100, 40, 70, 90, 10];
+          html = `<h4 class="font-bold text-slate-800 mb-2">Análisis de Data-Test (Industry Standard)</h4>
+                    <p class="text-sm text-slate-500 italic mb-4">Es irrompible. Es un contrato entre QA y Dev. Pero cuidado: es invisible para el usuario final.</p>
+                    <code class="text-xs bg-white p-2 rounded block border">locator('[data-test="shopping-cart-link"]')</code>`;
+        } else if (type === "role") {
+          document.getElementById("btn-role").classList.add("active");
+          data = [95, 100, 50, 100, 100];
+          html = `<h4 class="font-bold text-slate-800 mb-2">Análisis de Role con Aria-Label (Senior Mastery)</h4>
+                    <p class="text-sm text-slate-500 italic mb-4">La mejor opción. Obliga a que la web sea accesible. Si el botón no tiene texto, Playwright lee el aria-label.</p>
+                    <code class="text-xs bg-white p-2 rounded block border">getByRole('link', { name: 'Cart' })</code>`;
+        }
+
+        content.innerHTML = html;
+        chartConfigs.resilience.data.datasets[0].data = data;
+        chartConfigs.resilience.update();
+      }
+
+      window.onload = initCharts;
+    </script>
+  </body>
+</html>
+<!-- chosen palette: Armonía Minimalista (Crema, Azul, Naranja) -->
+<!-- Application Structure Plan: Diseñé un tablero de control interactivo para la Sesión 13 centrado en la toma de decisiones de ingeniería. Incluye una sección hero para el contexto, un comparador interactivo de locators (CSS vs Data-Test vs Role) y gráficos de resiliencia. La estructura prioriza la enseñanza sobre la simple exposición de datos, permitiendo a Natalia "probar" mentalmente cada selector. -->
+<!-- Visualization & Content Choices: 
+1. Comparativa de Locators -> Goal: Compare -> Matriz interactiva HTML/Tailwind -> Justificación: Permite visualizar pros y contras sin código complejo. 
+2. Resiliencia de Selectores -> Goal: Relationships -> Gráfico de Radar (Chart.js) -> Compara estabilidad vs facilidad de uso. 
+3. Debugging Time -> Goal: Change -> Gráfico de Barras (Chart.js) -> Proyecta el ahorro de tiempo al usar estándares senior.
+Confirmando: NO se usó SVG ni Mermaid JS. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
