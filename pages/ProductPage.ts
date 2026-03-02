@@ -3,8 +3,7 @@ import { Locator, Page } from "@playwright/test";
 export class ProductPage {
   // Selectors
   readonly page: Page;
-  readonly inventoryList: Locator;
-  readonly inventoryItems: Locator;
+  readonly inventoryItem: Locator;
   readonly pageTitle: Locator;
   readonly itemPrices: Locator;
   readonly itemNames: Locator;
@@ -12,18 +11,14 @@ export class ProductPage {
   readonly cartbadge: Locator;
   readonly shoppingCartButton: Locator;
   readonly productNameInCart: Locator;
-  readonly continueShoppingButton: Locator;
-  readonly checkoutbutton: Locator;
-  readonly cancelCheckoutButton: Locator;
+  readonly itemContainerInCart: Locator;
 
   // Constructor
   constructor(page: Page) {
     this.page = page;
 
-    // Localizador del contenedor principal de la lista.
-    this.inventoryList = page.locator(".inventory_list");
     // Localizador generico para cada item, (debería haber 6).
-    this.inventoryItems = page.locator(".inventory_item");
+    this.inventoryItem = page.locator(".inventory_item");
     // Titulo de la seccion.
     this.pageTitle = page.locator(".title");
     // Lista de precios de los items.
@@ -35,17 +30,11 @@ export class ProductPage {
     // El badge es el componente dinámico que muestra la cantidad.
     this.cartbadge = page.locator(".shopping_cart_badge");
     // Boton del carrito
-    this.shoppingCartButton = page.locator(".shopping_cart_link");
+    this.shoppingCartButton = page.locator('[data-test="shopping-cart-link"]');
     // Nombre del producto en el carrito de compras.
     this.productNameInCart = page.locator(".inventory_item_name");
-    // Boton para retornar a lista de productos
-    this.continueShoppingButton = page.locator(
-      '[data-test="continue-shopping"]',
-    );
-    // Boton para navegar al la pagina del checkout.
-    this.checkoutbutton = page.locator('[data-test="checkout"]');
-    // Boton para cancelar el checkout.
-    this.cancelCheckoutButton = page.locator('[data-test="cancel"]');
+    // Contenedor del item en el carrito, se usa para remover un producto específico.
+    this.itemContainerInCart = page.locator('[data-test="inventory-item"]');
   }
 
   // Methods
@@ -55,7 +44,7 @@ export class ProductPage {
   }
 
   async getProductCount() {
-    return await this.inventoryItems.count();
+    return await this.inventoryItem.count();
   }
 
   async getAllPrices() {
@@ -83,6 +72,21 @@ export class ProductPage {
     return numericPrice;
   }
 
+  /** Método genérico para hacer click en un botón dentro de un contenedor específico.
+   * @param container - El contenedor donde se encuentra el botón (puede ser un Locator o la Page).
+   * @param options - Opciones para identificar el botón, ya sea por nombre o por testId.
+   */
+  private async clickElement(
+    container: Locator | Page,
+    options?: { name?: string; testId?: string },
+  ) {
+    if (options?.testId) {
+      await container.locator(`[data-test="${options?.testId}"]`).click();
+    } else if (options?.name) {
+      await container.getByRole("button", { name: options?.name }).click();
+    }
+  }
+
   getCartBadge() {
     return this.cartbadge;
   }
@@ -91,12 +95,8 @@ export class ProductPage {
    * Agrega un producto al carrito desde la página de inventario.
    */
   async addProductToCart(productName: string) {
-    // Traemos el contenedor padre del producto.
-    const container = this.page.locator(".inventory_item", {
-      hasText: productName,
-    });
-    // Clicamos en el boton.
-    await container.locator(".btn_inventory").click();
+    const itemContainer = this.inventoryItem.filter({ hasText: productName });
+    await this.clickElement(itemContainer, { name: "Add to cart" });
   }
 
   /**
@@ -110,26 +110,24 @@ export class ProductPage {
    * Remueve un producto específicamente desde la página del carrito.
    */
   async removeProductFromCart(productName: string) {
-    // Traemos el contenedor del padre.
-    const container = this.page.locator(".cart_item", {
+    const itemContainer = this.itemContainerInCart.filter({
       hasText: productName,
     });
-    // Clicamos en el boton.
-    await container.getByRole("button", { name: "Remove" }).click();
+    await this.clickElement(itemContainer, { name: "Remove" });
   }
 
   /**
    * Navega de vuelta a la lista de productos.
    */
-  async clickContinueShopping() {
-    await this.continueShoppingButton.click();
+  async continueShopping() {
+    await this.clickElement(this.page, { name: "Continue Shopping" });
   }
 
   async goToCheckout() {
-    await this.checkoutbutton.click();
+    await this.clickElement(this.page, { name: "Checkout" });
   }
 
   async cancelCheckout() {
-    await this.cancelCheckoutButton.click();
+    await this.clickElement(this.page, { name: "Cancel" });
   }
 }

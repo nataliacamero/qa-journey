@@ -1,19 +1,3 @@
-export const VALID_CREDENTIALS: {
-  usuario: string;
-  contraseña: string;
-} = {
-  usuario: "standard_user",
-  contraseña: "secret_sauce",
-};
-
-export const INVALID_CREDENTIALS: {
-  usuario: string;
-  contraseña: string;
-} = {
-  usuario: "standard_user",
-  contraseña: "secret_sauce",
-};
-
 export const TITLE_PRODUCT_PAGE: string = "Products";
 
 export const MAIN_LIST: string[] = [
