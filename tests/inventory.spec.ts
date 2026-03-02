@@ -6,8 +6,9 @@ import {
   PRODUCT_NAME,
   TEXT_TO_HAVE_ONE_PRODUCT,
   TITLE_PRODUCT_PAGE,
-  VALID_CREDENTIALS,
 } from "./constants";
+
+import testData from "./data/users.json";
 
 test("TC-04: Validar carga de productos (Happy Path)", async ({ page }) => {
   // Instanciamos la clase LoginPage
@@ -20,8 +21,8 @@ test("TC-04: Validar carga de productos (Happy Path)", async ({ page }) => {
 
   // 2. Login con usuario y contraseña valido.
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
 
   // 3. Validar que entramos a pagina de productos.
@@ -43,8 +44,8 @@ test("TC-05: Validar el formato de precios ($)", async ({ page }) => {
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
   // 3. Validar que se carga la pagina de Products.
   const titleText = await productPage.validateOnPage();
@@ -70,8 +71,8 @@ test("TC-06: Validar nombres de productos contra lista maestra", async ({
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
@@ -95,8 +96,8 @@ test("TC-07: Validar que el filtro de menor a mayor ordena numéricamente de for
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
@@ -137,8 +138,8 @@ test("TC-08: Validar que el filtro de mayor a menor ordena numéricamente de for
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
@@ -180,8 +181,8 @@ test("TC-09: Validar que el filtro (A to Z) ordena alfabéticamente de forma asc
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
@@ -218,8 +219,8 @@ test("TC-10: Validar que el filtro (Z to A) ordena alfabéticamente de forma des
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
@@ -255,8 +256,8 @@ test("TC-11: Validar incremento del contador del carrito (Badge)", async ({
   await loginPage.navigateTo();
   // 2. Hacer login con usuario y contraseña valido.
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
   // 3. Validar que se carga la pagina de products.
   const titleText = await productPage.validateOnPage();
@@ -287,8 +288,8 @@ test("TC-12: Validar la persistencia de productos en el carrito", async ({
   await loginPage.navigateTo();
   // 2. Nos logueamos con credenciales validas.
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
   // 3. Validamos si estamos en la pagina de productos.
   const titleText = await productPage.validateOnPage();
@@ -302,7 +303,7 @@ test("TC-12: Validar la persistencia de productos en el carrito", async ({
   await expect(cartBadge).toBeVisible();
   await expect(cartBadge).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
   // 7. Click al boton del carrito de compras.
-  await productPage.shoppingCartButton.click();
+  await productPage.goToCart();
   // 8. Validamos el titulo de la pagina del carrito de compras
   const cartTitleText = await productPage.validateOnPage();
   expect(cartTitleText).toBe("Your Cart");
@@ -322,8 +323,8 @@ test("TC-13: Verificar la eliminación del producto del carrito.", async ({
   // 1. Setup y Login
   await loginPage.navigateTo();
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
 
   // 2. Estado Inicial: Validar página y carrito vacío
@@ -355,7 +356,7 @@ test("TC-13: Verificar la eliminación del producto del carrito.", async ({
   await productPage.removeProductFromCart(PRODUCT_NAME);
 
   // 7. Navegación de retorno: Volver a la lista de productos
-  await productPage.clickContinueShopping();
+  await productPage.continueShopping();
 
   // 8. Verificación Final: El badge debe estar oculto tras la eliminación
   await expect(cartBadge).toBeHidden();
@@ -376,8 +377,8 @@ test("TC-14: Verificar la cancelacion del checkout, sin perder progreso en el ca
   // a. Navegamos a la pagina de login.
   await loginPage.navigateTo();
   await loginPage.login(
-    VALID_CREDENTIALS.usuario,
-    VALID_CREDENTIALS.contraseña,
+    testData.validUser.username,
+    testData.validUser.password,
   );
   // b. Validamos si estamos en la pagina de productos.
   const titleText = await productPage.validateOnPage();

@@ -1,8 +1,19 @@
 {
+  "inventoryURL": "https://www.saucedemo.com/inventory.html",
   "validUser": {
     "username": "standard_user",
     "password": "secret_sauce",
     "description": "Usuario estándar con acceso total"
+  },
+  "invalidPassword": {
+    "username": "standard_user",
+    "password": "no_es_esta",
+    "description": "Epic sadface: Username and password do not match any user in this service"
+  },
+  "emptyUser": {
+    "username": "",
+    "password": "secret_sauce",
+    "description": "Epic sadface: Username is required"
   },
   "lockedOutUser": {
     "username": "locked_out_user",
