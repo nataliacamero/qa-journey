@@ -423,3 +423,56 @@ test("TC-14: Verificar la cancelacion del checkout, sin perder progreso en el ca
   await expect(productName).toBeVisible();
   await expect(productName).toHaveText(PRODUCT_NAME);
 });
+
+test("TC-15: Validar proceso de compra completo con chechout.", async ({
+  page,
+}) => {
+  //Instanciamos las clases ProductPage y LoginPage.
+  const loginPage = new LoginPage(page);
+  const productPage = new ProductPage(page);
+
+  // 1. Setup, Login and add product to cart;
+
+  // a. Navegamos a la pagina de login y nos logueamos con credenciales validas.
+  await loginPage.navigateTo();
+  await loginPage.login(
+    testData.validUser.username,
+    testData.validUser.password,
+  );
+
+  // b. Validamos si estamos en la pagina de productos.
+  await expect(page).toHaveURL(/.*inventory.html/);
+  // c. Verificamos el estado inicial del carrito.
+  const cartBadge = productPage.getCartBadge();
+  await expect(cartBadge).toBeHidden();
+  // d. Añadimos un producto al carrito.
+  await productPage.addProductToCart(PRODUCT_NAME);
+  // e. Validamos los efectos secundarios del triguer.
+  await expect(cartBadge).toBeVisible();
+  await expect(cartBadge).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
+
+  // 2. Navegar al carrito y click en checkout.
+
+  // a. Click al boton del carrito de compras.
+  await productPage.goToCart();
+  // b. Validamos el titulo de la pagina del carrito de compras.
+  await expect(page).toHaveURL(/.*cart.html/);
+  // c. Validar que el producto este en el carrito.
+  const productName = productPage.productNameInCart;
+  await expect(productName).toBeVisible();
+  await expect(productName).toHaveText(PRODUCT_NAME);
+  // d. Click en el boton de checkout.
+  await productPage.goToCheckout();
+  // e. Validamos que estamos en la pagina del checkout.
+  await expect(page).toHaveURL(/.*checkout-step-one.html/);
+
+  // 3. Acción: Completar el formulario de checkout y finalizar compra.
+  await productPage.submitcheckout(
+    testData.checkoutData.firstName,
+    testData.checkoutData.lastName,
+    testData.checkoutData.zipCode,
+  );
+  await expect(page).toHaveURL(/.*checkout-step-two.html/);
+
+  // c. validar persistencia de datos, el producto seleccionado continua en el siguiente paso.
+});
