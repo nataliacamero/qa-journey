@@ -12,6 +12,9 @@ export class ProductPage {
   readonly shoppingCartButton: Locator;
   readonly productNameInCart: Locator;
   readonly itemContainerInCart: Locator;
+  readonly firstNameInput: Locator;
+  readonly lastNameInput: Locator;
+  readonly postalCodeInput: Locator;
 
   // Constructor
   constructor(page: Page) {
@@ -35,6 +38,12 @@ export class ProductPage {
     this.productNameInCart = page.locator(".inventory_item_name");
     // Contenedor del item en el carrito, se usa para remover un producto específico.
     this.itemContainerInCart = page.locator('[data-test="inventory-item"]');
+    // Campo de nombre en el carrito.
+    this.firstNameInput = page.locator('[data-test="firstName"]');
+    // Campo de apellido en el carrito.
+    this.lastNameInput = page.locator('[data-test="lastName"]');
+    // Campo de código postal en el carrito.
+    this.postalCodeInput = page.locator('[data-test="postalCode"]');
   }
 
   // Methods
@@ -130,4 +139,26 @@ export class ProductPage {
   async cancelCheckout() {
     await this.clickElement(this.page, { name: "Cancel" });
   }
+
+  async submitcheckout(
+    firstName: string,
+    lastName: string,
+    postalCode: string,
+  ) {
+    await this.firstNameInput.fill(firstName);
+    await this.lastNameInput.fill(lastName);
+    await this.postalCodeInput.fill(postalCode);
+    await this.clickElement(this.page, { name: "Continue" });
+  }
 }
+
+/*
+  await page.locator('[data-test="firstName"]').click();
+  await page.locator('[data-test="firstName"]').fill('natalia');
+  await page.locator('[data-test="firstName"]').press('Tab');
+  await page.locator('[data-test="lastName"]').fill('camero');
+  await page.locator('[data-test="lastName"]').press('Tab');
+  await page.locator('[data-test="postalCode"]').fill('87666');
+  await page.locator('[data-test="continue"]').click();
+
+*/
