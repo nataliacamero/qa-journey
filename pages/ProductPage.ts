@@ -53,21 +53,15 @@ export class ProductPage {
     // Nombre del producto en el carrito de compras.
     this.productNameInCart = page.locator(".inventory_item_name");
 
-    // Campo de nombre en el carrito.
-    this.firstNameInput = page.locator('[data-test="firstName"]');
-    // Campo de apellido en el carrito.
-    this.lastNameInput = page.locator('[data-test="lastName"]');
-    // Campo de código postal en el carrito.
-    this.postalCodeInput = page.locator('[data-test="postalCode"]');
+    // Contenedor del texto final de la compra.
+    this.completeCheckoutContainer = page.locator(
+      '[data-test="checkout-complete-container"]',
+    );
 
-    // Contenedor del texto final de la compra.
-    this.completeCheckoutContainer = page.locator(
-      '[data-test="checkout-complete-container"]',
-    );
-    // Contenedor del texto final de la compra.
-    this.completeCheckoutContainer = page.locator(
-      '[data-test="checkout-complete-container"]',
-    );
+    // Inputs de checkout
+    this.firstNameInput = page.locator('[data-test="firstName"]');
+    this.lastNameInput = page.locator('[data-test="lastName"]');
+    this.postalCodeInput = page.locator('[data-test="postalCode"]');
 
     // Usamos getByRole directamente en el constructor para botones únicos.
     this.checkoutButton = page.getByRole("button", { name: "Checkout" });
@@ -79,9 +73,20 @@ export class ProductPage {
     });
   }
 
-  // Methods
+  // Helper methods
+  private async clickElement(
+    scope: Locator | Page,
+    options?: { name?: string; testId?: string },
+  ) {
+    if (options?.testId) {
+      await scope.locator(`[data-test="${options?.testId}"]`).click();
+    } else if (options?.name) {
+      await scope.getByRole("button", { name: options?.name }).click();
+    }
+  }
+
+  // Acciones de invernario.
   async validateOnPage() {
-    await this.pageTitle.waitFor();
     return await this.pageTitle.textContent();
   }
 
@@ -118,16 +123,6 @@ export class ProductPage {
    * @param container - El contenedor donde se encuentra el botón (puede ser un Locator o la Page).
    * @param options - Opciones para identificar el botón, ya sea por nombre o por testId.
    */
-  private async clickElement(
-    container: Locator | Page,
-    options?: { name?: string; testId?: string },
-  ) {
-    if (options?.testId) {
-      await container.locator(`[data-test="${options?.testId}"]`).click();
-    } else if (options?.name) {
-      await container.getByRole("button", { name: options?.name }).click();
-    }
-  }
 
   getCartBadge() {
     return this.cartbadge;
