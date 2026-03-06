@@ -1,6 +1,6 @@
 import { Locator, Page } from "@playwright/test";
 
-interface CheckoutData {
+export interface CheckoutData {
   firstName: string;
   lastName: string;
   zipCode: string;
@@ -85,7 +85,7 @@ export class ProductPage {
     }
   }
 
-  // Acciones de invernario.
+  // - - - Acciones de inventario. - - -
   async validateOnPage() {
     return await this.pageTitle.textContent();
   }
@@ -94,69 +94,20 @@ export class ProductPage {
     return await this.inventoryItem.count();
   }
 
-  async getAllPrices() {
-    return await this.itemPrices.allTextContents();
-  }
-
-  async getAllProductNames() {
-    return await this.itemNames.allTextContents();
-  }
-  /**'lohi' (precio bajo a alto), 'hilo' (precio alto a bajo).
-   * 'az' (ordenado de la A a la Z), y 'za' (ordenado de la Z a la A).
-   */
-  async selectSortingPrices(option: string) {
-    return await this.selectSortPrices.selectOption(option);
-  }
-
-  /**
-   * @param price as string
-   * @returns a number
-   */
-  cleanPrice(price: string): number {
-    const clean = price.replace("$", "");
-    const numericPrice = parseFloat(clean);
-    console.log("cleanedPrice", numericPrice);
-    return numericPrice;
-  }
-
-  /** Método genérico para hacer click en un botón dentro de un contenedor específico.
-   * @param container - El contenedor donde se encuentra el botón (puede ser un Locator o la Page).
-   * @param options - Opciones para identificar el botón, ya sea por nombre o por testId.
-   */
-
-  getCartBadge() {
-    return this.cartbadge;
-  }
-
-  /**
-   * Agrega un producto al carrito desde la página de inventario.
-   */
   async addProductToCart(productName: string) {
     const itemContainer = this.inventoryItem.filter({ hasText: productName });
     await itemContainer.getByRole("button", { name: "Add to cart" }).click();
   }
 
-  async getNameOfProductInCart(productName: string) {
-    const container = this.itemContainerInCart;
-    return container.getByText(productName);
+  getCartBadge() {
+    return this.cartbadge;
   }
 
-  async getTextCheckoutComplete() {
-    return this.completeCheckoutContainer.getByRole("heading", {
-      name: "Thank you for your order!",
-    });
-  }
-
-  /**
-   * Navega a la página del carrito.
-   */
+  // - - - Acciones de carrito - - -
   async goToCart() {
     await this.shoppingCartButton.click();
   }
 
-  /**
-   * Remueve un producto específicamente desde la página del carrito.
-   */
   async removeProductFromCart(productName: string) {
     const itemContainer = this.itemContainerInCart.filter({
       hasText: productName,
@@ -164,13 +115,16 @@ export class ProductPage {
     await this.clickElement(itemContainer, { name: "Remove" });
   }
 
-  /**
-   * Navega de vuelta a la lista de productos.
-   */
   async continueShopping() {
     await this.clickElement(this.page, { name: "Continue Shopping" });
   }
 
+  async getNameOfProductInCart(productName: string) {
+    const container = this.itemContainerInCart;
+    return container.getByText(productName);
+  }
+
+  // - - - Acciones de checkout - - -
   async goToCheckout() {
     await this.checkoutButton.click();
   }
@@ -188,5 +142,39 @@ export class ProductPage {
 
   async completePurchase() {
     await this.finishButton.click();
+  }
+
+  async getTextCheckoutComplete() {
+    return this.completeCheckoutContainer.getByRole("heading", {
+      name: "Thank you for your order!",
+    });
+  }
+
+  // - - - Acciones de ordenamiento y validación de productos - - -
+
+  async getAllPrices() {
+    return await this.itemPrices.allTextContents();
+  }
+
+  async getAllProductNames() {
+    return await this.itemNames.allTextContents();
+  }
+
+  /**'lohi' (precio bajo a alto), 'hilo' (precio alto a bajo).
+   * 'az' (ordenado de la A a la Z), y 'za' (ordenado de la Z a la A).
+   */
+  async selectSortingPrices(option: string) {
+    return await this.selectSortPrices.selectOption(option);
+  }
+
+  /**
+   * @param price as string
+   * @returns a number
+   */
+  cleanPrice(price: string): number {
+    const clean = price.replace("$", "");
+    const numericPrice = parseFloat(clean);
+    console.log("cleanedPrice", numericPrice);
+    return numericPrice;
   }
 }
