@@ -431,48 +431,65 @@ test("TC-15: Validar proceso de compra completo con chechout.", async ({
   const loginPage = new LoginPage(page);
   const productPage = new ProductPage(page);
 
-  // 1. Setup, Login and add product to cart;
+  await test.step("1. Setup, Login and add product to cart", async () => {
+    // a. Navegamos a la pagina de login y nos logueamos con credenciales validas.
+    await loginPage.navigateTo();
+    await loginPage.login(
+      testData.validUser.username,
+      testData.validUser.password,
+    );
 
-  // a. Navegamos a la pagina de login y nos logueamos con credenciales validas.
-  await loginPage.navigateTo();
-  await loginPage.login(
-    testData.validUser.username,
-    testData.validUser.password,
-  );
+    // b. Validamos si estamos en la pagina de productos.
+    await expect(page).toHaveURL(/.*inventory.html/);
 
-  // b. Validamos si estamos en la pagina de productos.
-  await expect(page).toHaveURL(/.*inventory.html/);
-  // c. Verificamos el estado inicial del carrito.
-  const cartBadge = productPage.getCartBadge();
-  await expect(cartBadge).toBeHidden();
-  // d. Añadimos un producto al carrito.
-  await productPage.addProductToCart(PRODUCT_NAME);
-  // e. Validamos los efectos secundarios del triguer.
-  await expect(cartBadge).toBeVisible();
-  await expect(cartBadge).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
+    // c. Verificamos el estado inicial del carrito.
+    const cartBadge = productPage.getCartBadge();
+    await expect(cartBadge).toBeHidden();
 
-  // 2. Navegar al carrito y click en checkout.
+    // d. Añadimos un producto al carrito.
+    await productPage.addProductToCart(PRODUCT_NAME);
 
-  // a. Click al boton del carrito de compras.
-  await productPage.goToCart();
-  // b. Validamos el titulo de la pagina del carrito de compras.
-  await expect(page).toHaveURL(/.*cart.html/);
-  // c. Validar que el producto este en el carrito.
-  const productName = productPage.productNameInCart;
-  await expect(productName).toBeVisible();
-  await expect(productName).toHaveText(PRODUCT_NAME);
-  // d. Click en el boton de checkout.
-  await productPage.goToCheckout();
-  // e. Validamos que estamos en la pagina del checkout.
-  await expect(page).toHaveURL(/.*checkout-step-one.html/);
+    // e. Validamos los efectos secundarios del triguer.
+    await expect(cartBadge).toBeVisible();
+    await expect(cartBadge).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
+  });
 
-  // 3. Acción: Completar el formulario de checkout y finalizar compra.
-  await productPage.submitcheckout(
-    testData.checkoutData.firstName,
-    testData.checkoutData.lastName,
-    testData.checkoutData.zipCode,
-  );
-  await expect(page).toHaveURL(/.*checkout-step-two.html/);
+  await test.step("2. Navegar al carrito y click en checkout.", async () => {
+    // a. Click al boton del carrito de compras.
+    await productPage.goToCart();
 
-  // c. validar persistencia de datos, el producto seleccionado continua en el siguiente paso.
+    // b. Validamos el titulo de la pagina del carrito de compras.
+    await expect(page).toHaveURL(/.*cart.html/);
+
+    // c. Validar que el producto este en el carrito.
+    const productName = productPage.productNameInCart;
+    await expect(productName).toBeVisible();
+    await expect(productName).toHaveText(PRODUCT_NAME);
+
+    // d. Click en el boton de checkout.
+    await productPage.goToCheckout();
+
+    // e. Validamos que estamos en la pagina del checkout.
+    await expect(page).toHaveURL(/.*checkout-step-one.html/);
+  });
+
+  await test.step("3. Acción: Completar el formulario de checkout y finalizar compra.", async () => {
+    // a. Completamos la primera parte del checkout.
+    await productPage.fillCheckoutInformation(testData.checkoutData);
+    await expect(page).toHaveURL(/.*checkout-step-two.html/);
+
+    // b. validar persistencia de datos, del producto seleccionado continua en el siguiente paso.
+    const productSelected =
+      await productPage.getNameOfProductInCart(PRODUCT_NAME);
+    await expect(productSelected).toBeVisible();
+    await expect(productSelected).toHaveText(PRODUCT_NAME);
+
+    // c. Click en el boton de finish para finalizar la compra.
+    await productPage.completePurchase();
+
+    // d. Validamos que la compra se completo y que estamos en la pagina de confirmacion.
+    const textCompletePurchase = await productPage.getTextCheckoutComplete();
+    await expect(textCompletePurchase).toHaveText("Thank you for your order!");
+    await expect(page).toHaveURL(/.*checkout-complete.html/);
+  });
 });
