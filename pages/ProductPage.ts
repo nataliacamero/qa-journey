@@ -1,27 +1,47 @@
 import { Locator, Page } from "@playwright/test";
 
+interface CheckoutData {
+  firstName: string;
+  lastName: string;
+  zipCode: string;
+}
+
 export class ProductPage {
-  // Selectors
+  // Locators
   readonly page: Page;
   readonly inventoryItem: Locator;
+  readonly cartbadge: Locator;
+  readonly shoppingCartButton: Locator;
+  readonly itemContainerInCart: Locator;
   readonly pageTitle: Locator;
   readonly itemPrices: Locator;
   readonly itemNames: Locator;
   readonly selectSortPrices: Locator;
-  readonly cartbadge: Locator;
-  readonly shoppingCartButton: Locator;
   readonly productNameInCart: Locator;
-  readonly itemContainerInCart: Locator;
   readonly firstNameInput: Locator;
   readonly lastNameInput: Locator;
   readonly postalCodeInput: Locator;
+  readonly completeCheckoutContainer: Locator;
+
+  // Botones globales (Únicos) - Definidos como Locators específicos
+  readonly checkoutButton: Locator;
+  readonly continueButton: Locator;
+  readonly cancelButton: Locator;
+  readonly finishButton: Locator;
+  readonly completeHeader: Locator;
 
   // Constructor
   constructor(page: Page) {
     this.page = page;
 
-    // Localizador generico para cada item, (debería haber 6).
+    // Elementos de lista/repetidos
     this.inventoryItem = page.locator(".inventory_item");
+    this.itemContainerInCart = page.locator(".cart_item");
+
+    // Elementos únicos
+    this.cartbadge = page.locator(".shopping_cart_badge");
+    this.shoppingCartButton = page.locator('[data-test="shopping-cart-link"]');
+
     // Titulo de la seccion.
     this.pageTitle = page.locator(".title");
     // Lista de precios de los items.
@@ -30,20 +50,33 @@ export class ProductPage {
     this.itemNames = page.locator(".inventory_item_name");
     // Selector para ordenar los precios
     this.selectSortPrices = page.locator(".product_sort_container");
-    // El badge es el componente dinámico que muestra la cantidad.
-    this.cartbadge = page.locator(".shopping_cart_badge");
-    // Boton del carrito
-    this.shoppingCartButton = page.locator('[data-test="shopping-cart-link"]');
     // Nombre del producto en el carrito de compras.
     this.productNameInCart = page.locator(".inventory_item_name");
-    // Contenedor del item en el carrito, se usa para remover un producto específico.
-    this.itemContainerInCart = page.locator('[data-test="inventory-item"]');
+
     // Campo de nombre en el carrito.
     this.firstNameInput = page.locator('[data-test="firstName"]');
     // Campo de apellido en el carrito.
     this.lastNameInput = page.locator('[data-test="lastName"]');
     // Campo de código postal en el carrito.
     this.postalCodeInput = page.locator('[data-test="postalCode"]');
+
+    // Contenedor del texto final de la compra.
+    this.completeCheckoutContainer = page.locator(
+      '[data-test="checkout-complete-container"]',
+    );
+    // Contenedor del texto final de la compra.
+    this.completeCheckoutContainer = page.locator(
+      '[data-test="checkout-complete-container"]',
+    );
+
+    // Usamos getByRole directamente en el constructor para botones únicos.
+    this.checkoutButton = page.getByRole("button", { name: "Checkout" });
+    this.continueButton = page.getByRole("button", { name: "Continue" });
+    this.cancelButton = page.getByRole("button", { name: "Cancel" });
+    this.finishButton = page.getByRole("button", { name: "Finish" });
+    this.completeHeader = page.getByRole("heading", {
+      name: "Thank you for your order!",
+    });
   }
 
   // Methods
@@ -105,7 +138,18 @@ export class ProductPage {
    */
   async addProductToCart(productName: string) {
     const itemContainer = this.inventoryItem.filter({ hasText: productName });
-    await this.clickElement(itemContainer, { name: "Add to cart" });
+    await itemContainer.getByRole("button", { name: "Add to cart" }).click();
+  }
+
+  async getNameOfProductInCart(productName: string) {
+    const container = this.itemContainerInCart;
+    return container.getByText(productName);
+  }
+
+  async getTextCheckoutComplete() {
+    return this.completeCheckoutContainer.getByRole("heading", {
+      name: "Thank you for your order!",
+    });
   }
 
   /**
@@ -133,32 +177,21 @@ export class ProductPage {
   }
 
   async goToCheckout() {
-    await this.clickElement(this.page, { name: "Checkout" });
+    await this.checkoutButton.click();
   }
 
   async cancelCheckout() {
-    await this.clickElement(this.page, { name: "Cancel" });
+    await this.cancelButton.click();
   }
 
-  async submitcheckout(
-    firstName: string,
-    lastName: string,
-    postalCode: string,
-  ) {
-    await this.firstNameInput.fill(firstName);
-    await this.lastNameInput.fill(lastName);
-    await this.postalCodeInput.fill(postalCode);
-    await this.clickElement(this.page, { name: "Continue" });
+  async fillCheckoutInformation(data: CheckoutData) {
+    await this.firstNameInput.fill(data.firstName);
+    await this.lastNameInput.fill(data.lastName);
+    await this.postalCodeInput.fill(data.zipCode);
+    await this.continueButton.click(); // Usamos el locator definido arriba
+  }
+
+  async completePurchase() {
+    await this.finishButton.click();
   }
 }
-
-/*
-  await page.locator('[data-test="firstName"]').click();
-  await page.locator('[data-test="firstName"]').fill('natalia');
-  await page.locator('[data-test="firstName"]').press('Tab');
-  await page.locator('[data-test="lastName"]').fill('camero');
-  await page.locator('[data-test="lastName"]').press('Tab');
-  await page.locator('[data-test="postalCode"]').fill('87666');
-  await page.locator('[data-test="continue"]').click();
-
-*/
