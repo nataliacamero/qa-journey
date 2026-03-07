@@ -1,9 +1,14 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "@pages/LoginPage";
 import { ProductPage } from "@pages/ProductPage";
-import { MAIN_LIST, PRODUCT_NAME, TEXT_TO_HAVE_ONE_PRODUCT } from "./constants";
-
 import testData from "./data/users.json";
+import {
+  URL_CART,
+  URL_CHECKOUT_COMPLETE,
+  URL_CHECKOUT_STEP_ONE,
+  URL_CHECKOUT_STEP_TWO,
+  URL_INVENTORY,
+} from "./constants";
 
 // Declaración de variables globales para las clases de página
 let loginPage: LoginPage;
@@ -21,7 +26,7 @@ test.beforeEach(async ({ page }) => {
     testData.validUser.password,
   );
   // Validamos que el login fue exitoso antes de empezar cualquier test.
-  await expect(page).toHaveURL(/.*inventory.html/);
+  await expect(page).toHaveURL(URL_INVENTORY);
 });
 
 test.describe("Pruebas de la pagina de inventario.", () => {
@@ -43,7 +48,7 @@ test.describe("Pruebas de la pagina de inventario.", () => {
     const actualNames = await productPage.getAllProductNames();
     // Se valida longitud de la lista, contenido, y orden exacto.
     console.log("Comparando nombres reales contra lista esperada...");
-    expect(actualNames).toEqual(MAIN_LIST);
+    expect(actualNames).toEqual(testData.testScenarios.tc06_purchase.mainList);
   });
 
   test("TC-07: Validar que el filtro de menor a mayor ordena numéricamente de forma ascendente.", async () => {
@@ -142,12 +147,16 @@ test("TC-11: Validar incremento del contador del carrito (Badge)", async () => {
   await expect(cartBadgeSelector).toBeHidden();
 
   // 2. Acción: Añadir un producto específico.
-  await productPage.addProductToCart(PRODUCT_NAME);
+  await productPage.addProductToCart(
+    testData.testScenarios.tc15_purchase.productToBuy,
+  );
 
   // 3. Verificación de estado final (Efecto secundario visual).
   // Validamos que el elemento aparezca y que el sistema "recuerde" el estado (1).
   await expect(cartBadgeSelector).toBeVisible();
-  await expect(cartBadgeSelector).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
+  await expect(cartBadgeSelector).toHaveText(
+    testData.testScenarios.tc15_purchase.expectedBadgeCount,
+  );
 });
 
 test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
@@ -155,17 +164,23 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
     // Badge: no visible → agregar producto → visible -> ir al carrito.
     const cartBadgeSelector = productPage.getCartBadge();
     await expect(cartBadgeSelector).toBeHidden();
-    await productPage.addProductToCart(PRODUCT_NAME);
+    await productPage.addProductToCart(
+      testData.testScenarios.tc15_purchase.productToBuy,
+    );
     await expect(cartBadgeSelector).toBeVisible();
-    await expect(cartBadgeSelector).toHaveText(TEXT_TO_HAVE_ONE_PRODUCT);
+    await expect(cartBadgeSelector).toHaveText(
+      testData.testScenarios.tc15_purchase.expectedBadgeCount,
+    );
     await productPage.goToCart();
-    await expect(page).toHaveURL(/.*cart.html/);
+    await expect(page).toHaveURL(URL_CART);
   });
 
   test("TC-12: Validar la persistencia de productos en el carrito", async () => {
     const productName = productPage.productNameInCart;
     await expect(productName).toBeVisible();
-    await expect(productName).toHaveText(PRODUCT_NAME);
+    await expect(productName).toHaveText(
+      testData.testScenarios.tc15_purchase.productToBuy,
+    );
   });
 
   test("TC-13: Verificar la eliminación del producto del carrito.", async ({
@@ -174,10 +189,14 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
     // a. Validación de persistencia: El producto está en el carrito
     const productName = productPage.productNameInCart;
     await expect(productName).toBeVisible();
-    await expect(productName).toHaveText(PRODUCT_NAME);
+    await expect(productName).toHaveText(
+      testData.testScenarios.tc15_purchase.productToBuy,
+    );
 
     // b. Acción: Remover el producto
-    await productPage.removeProductFromCart(PRODUCT_NAME);
+    await productPage.removeProductFromCart(
+      testData.testScenarios.tc15_purchase.productToBuy,
+    );
 
     // c. Navegación de retorno: Volver a la lista de productos
     await productPage.continueShopping();
@@ -187,7 +206,7 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
     await expect(cartBadge).toBeHidden();
 
     // Importante: Siempre validar que volvimos a la URL de inventario
-    await expect(page).toHaveURL(/.*inventory.html/);
+    await expect(page).toHaveURL(URL_INVENTORY);
   });
 
   test("TC-14: Verificar la cancelacion del checkout, sin perder progreso en el carrito. Pruebas negativas.", async ({
@@ -196,7 +215,9 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
     // a. Validar que el producto este en el carrito.
     const productName = productPage.productNameInCart;
     await expect(productName).toBeVisible();
-    await expect(productName).toHaveText(PRODUCT_NAME);
+    await expect(productName).toHaveText(
+      testData.testScenarios.tc15_purchase.productToBuy,
+    );
 
     // b. Click en el boton de checkout.
     await productPage.goToCheckout();
@@ -204,7 +225,7 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
     // c. Validamos que estamos en la pagina del checkout.
     const checkoutTitle = await productPage.validateOnPage();
     expect(checkoutTitle).toBe("Checkout: Your Information");
-    await expect(page).toHaveURL(/.*checkout-step-one.html/);
+    await expect(page).toHaveURL(URL_CHECKOUT_STEP_ONE);
 
     // Acción: Cancelar el checkout.
 
@@ -212,11 +233,13 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
     await productPage.cancelCheckout();
 
     // b. Validamos que volvemos a la pagina del carrito.
-    await expect(page).toHaveURL(/.*cart.html/);
+    await expect(page).toHaveURL(URL_CART);
 
     // Verificación Final: El producto sigue en el carrito y el badge refleja la cantidad correcta.
     await expect(productName).toBeVisible();
-    await expect(productName).toHaveText(PRODUCT_NAME);
+    await expect(productName).toHaveText(
+      testData.testScenarios.tc15_purchase.productToBuy,
+    );
   });
 
   test("TC-15: Validar proceso de compra completo con chechout.", async ({
@@ -226,25 +249,30 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
       // a. Validar que el producto este en el carrito.
       const productName = productPage.productNameInCart;
       await expect(productName).toBeVisible();
-      await expect(productName).toHaveText(PRODUCT_NAME);
+      await expect(productName).toHaveText(
+        testData.testScenarios.tc15_purchase.productToBuy,
+      );
 
       // b. Click en el boton de checkout.
       await productPage.goToCheckout();
 
       // c. Validamos que estamos en la pagina del checkout.
-      await expect(page).toHaveURL(/.*checkout-step-one.html/);
+      await expect(page).toHaveURL(URL_CHECKOUT_STEP_ONE);
     });
 
     await test.step("Acción: Completar el formulario de checkout y finalizar compra.", async () => {
       // a. Completamos la primera parte del checkout.
       await productPage.fillCheckoutInformation(testData.checkoutData);
-      await expect(page).toHaveURL(/.*checkout-step-two.html/);
+      await expect(page).toHaveURL(URL_CHECKOUT_STEP_TWO);
 
       // b. validar persistencia de datos, del producto seleccionado continua en el siguiente paso.
-      const productSelected =
-        await productPage.getNameOfProductInCart(PRODUCT_NAME);
+      const productSelected = await productPage.getNameOfProductInCart(
+        testData.testScenarios.tc15_purchase.productToBuy,
+      );
       await expect(productSelected).toBeVisible();
-      await expect(productSelected).toHaveText(PRODUCT_NAME);
+      await expect(productSelected).toHaveText(
+        testData.testScenarios.tc15_purchase.productToBuy,
+      );
 
       // c. Click en el boton de finish para finalizar la compra.
       await productPage.completePurchase();
@@ -254,7 +282,7 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
       await expect(textCompletePurchase).toHaveText(
         "Thank you for your order!",
       );
-      await expect(page).toHaveURL(/.*checkout-complete.html/);
+      await expect(page).toHaveURL(URL_CHECKOUT_COMPLETE);
     });
   });
 });
