@@ -1,4 +1,5 @@
 import { Page, Locator } from "playwright/test";
+import { URL_BASE } from "tests/constants";
 
 export class LoginPage {
   // Selectors
@@ -19,7 +20,7 @@ export class LoginPage {
 
   // Methods
   async navigateTo() {
-    await this.page.goto("https://www.saucedemo.com/");
+    await this.page.goto(URL_BASE);
   }
 
   async login(user: string, password: string) {
