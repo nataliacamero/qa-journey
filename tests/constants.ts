@@ -1,13 +1,8 @@
 export const TITLE_PRODUCT_PAGE: string = "Products";
 
-export const MAIN_LIST: string[] = [
-  "Sauce Labs Backpack",
-  "Sauce Labs Bike Light",
-  "Sauce Labs Bolt T-Shirt",
-  "Sauce Labs Fleece Jacket",
-  "Sauce Labs Onesie",
-  "Test.allTheThings() T-Shirt (Red)",
-];
-export const PRODUCT_NAME: string = "Sauce Labs Backpack";
-
-export const TEXT_TO_HAVE_ONE_PRODUCT: string = "1";
+export const URL_BASE = "https://www.saucedemo.com/";
+export const URL_INVENTORY = /.*inventory.html/;
+export const URL_CART = /.*cart.html/;
+export const URL_CHECKOUT_STEP_ONE = /.*checkout-step-one.html/;
+export const URL_CHECKOUT_STEP_TWO = /.*checkout-step-two.html/;
+export const URL_CHECKOUT_COMPLETE = /.*checkout-complete.html/;

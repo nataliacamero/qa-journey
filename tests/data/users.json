@@ -29,5 +29,21 @@
     "firstName": "Lolita",
     "lastName": "Franck",
     "zipCode": "33020"
+  },
+  "testScenarios": {
+    "tc06_purchase": {
+      "mainList": [
+        "Sauce Labs Backpack",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Fleece Jacket",
+        "Sauce Labs Onesie",
+        "Test.allTheThings() T-Shirt (Red)"
+      ]
+    },
+    "tc15_purchase": {
+      "productToBuy": "Sauce Labs Backpack",
+      "expectedBadgeCount": "1"
+    }
   }
 }
