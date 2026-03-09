@@ -3,242 +3,332 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel de Control - Sesión 14 | Natalia Camero</title>
+    <title>Panel de Objetivos - Sesión 15</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Montserrat", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                blue: "#1d4ed8",
+                light: "#eff6ff",
+                dark: "#0f172a",
+                orange: "#f97316",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap");
       body {
-        font-family: "Inter", sans-serif;
+        background-color: #f8fafc;
       }
-      .orange-glow {
-        box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.2);
+
+      /* Custom Checkbox Styles replacing SVG */
+      .custom-check {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        border: 2px solid #cbd5e1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        background-color: white;
+        color: transparent;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .custom-check.checked {
+        background-color: #2563eb;
+        border-color: #2563eb;
+        color: white;
+        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+      }
+
+      .objective-card {
+        transition: all 0.2s ease;
+      }
+
+      .objective-card:hover {
+        transform: translateX(4px);
+        border-color: #bfdbfe;
+      }
+
+      .progress-bar-fill {
+        transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
     </style>
+
+    <!-- Chosen Palette: Slate-50 background, Crisp White cards, Blue-600 for primary accents, Slate-900 for dark notes, Orange-50 for Meta background. -->
+    <!-- Application Structure Plan: Replicated the user's provided UI design. A top header card for overall session progress. A 2-column grid layout below. Left column: Interactive checklist of today's specific objectives (Session 15). Right column: Static insight cards (SDET LAB NOTES in dark theme, META 2026 in warm theme) to keep core goals visible. -->
+    <!-- Visualization & Content Choices: Goal: Task tracking and motivation. Method: Interactive DOM elements (custom CSS checkboxes) triggering progress bar updates via JS. Content is tailored to ISTQB and Neuroscience discussions. No SVG used, relying on CSS shapes and Unicode. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
   </head>
-  <body
-    class="bg-slate-50 min-h-screen p-4 md:p-10 flex justify-center items-start text-slate-800"
-  >
-    <div class="max-w-5xl w-full space-y-8">
-      <!-- HEADER SESIÓN 14: DATA ARCHITECTURE -->
-      <header
-        class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-200 relative overflow-hidden"
+  <body class="antialiased text-slate-800 p-4 md:p-8">
+    <div class="max-w-6xl mx-auto space-y-8">
+      <!-- Header Card -->
+      <div
+        class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden"
       >
-        <div class="relative z-10">
-          <div class="flex items-center space-x-3 mb-4">
+        <div class="z-10 flex-1">
+          <div class="flex items-center gap-3 mb-2">
             <span
-              class="bg-orange-50 px-4 py-1 rounded-full text-xs font-bold text-orange-600 uppercase tracking-widest border border-orange-100 italic"
-              >Sesión 14</span
+              class="text-brand-orange font-bold text-xs tracking-widest uppercase"
+              >Sesión 15</span
             >
             <span class="text-slate-300">|</span>
             <span
-              class="text-slate-400 font-medium text-xs uppercase tracking-widest italic"
-              >Data-Driven Architecture</span
+              class="text-slate-400 font-medium text-xs tracking-widest uppercase"
+              >Data-Driven & ISTQB</span
             >
           </div>
-          <div
-            class="flex flex-col md:flex-row md:items-end justify-between gap-6"
+          <h1
+            class="font-display text-4xl md:text-5xl font-black text-brand-dark leading-tight tracking-tight uppercase italic"
           >
-            <div>
-              <h1
-                class="text-4xl md:text-6xl font-black text-slate-900 leading-none italic uppercase tracking-tighter"
-              >
-                Ingeniería<br /><span class="text-blue-600">de Datos</span>
-              </h1>
-              <p class="text-slate-500 mt-4 font-medium max-w-md italic">
-                Inyectando inteligencia dinámica mediante JSON y
-                desacoplamiento.
-              </p>
-            </div>
-            <div
-              class="bg-slate-50 p-6 rounded-3xl border border-slate-100 text-center min-w-[160px]"
-            >
-              <p
-                class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter mb-1 italic"
-              >
-                Progreso S14
-              </p>
-              <p
-                id="progress-text"
-                class="text-5xl font-black text-orange-500 tabular-nums italic"
-              >
-                0%
-              </p>
+            Ingeniería<br />
+            <span class="text-brand-blue">De Datos</span>
+          </h1>
+          <p class="text-slate-500 mt-4 italic font-medium max-w-lg">
+            Inyectando inteligencia dinámica mediante JSON, bucles y
+            desacoplamiento.
+          </p>
+
+          <!-- Progress Bar -->
+          <div class="mt-8 w-full max-w-md">
+            <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+              <div
+                id="progress-bar"
+                class="progress-bar-fill h-full bg-brand-blue rounded-full"
+                style="width: 0%"
+              ></div>
             </div>
           </div>
         </div>
-        <!-- Progress Bar -->
+
         <div
-          class="w-full bg-slate-100 h-1.5 rounded-full mt-10 overflow-hidden"
+          class="z-10 bg-slate-50 rounded-2xl p-6 text-center border border-slate-100 min-w-[180px]"
         >
-          <div
-            id="progress-bar"
-            class="bg-blue-600 h-full transition-all duration-1000 ease-out w-0"
-          ></div>
-        </div>
-      </header>
-
-      <main class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <!-- CHECKLIST TÉCNICO -->
-        <div class="lg:col-span-8 space-y-6">
-          <h2
-            class="text-xl font-black text-slate-900 italic uppercase tracking-tight flex items-center space-x-2"
+          <p
+            class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-1"
           >
-            <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
-            <span>Objetivos de Hoy</span>
-          </h2>
+            Progreso S15
+          </p>
+          <p class="font-display text-5xl font-black text-brand-orange italic">
+            <span id="progress-text">0</span>%
+          </p>
+        </div>
+      </div>
 
-          <div class="space-y-3">
-            <div
-              onclick="toggleTask(0)"
-              class="group bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:border-blue-200 transition-all cursor-pointer flex items-center space-x-5"
-            >
-              <div
-                id="check-0"
-                class="w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center transition-all bg-slate-50"
-              ></div>
-              <div class="flex-1">
-                <h3 class="font-bold text-slate-900 leading-tight italic">
-                  Análisis Deep Dive: DDT Conceptos
-                </h3>
-                <p class="text-xs text-slate-500 mt-0.5 italic">
-                  Comprender la separación entre lógica (.spec) y datos (.json).
-                </p>
-              </div>
+      <!-- Main Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Left Column: Objetivos -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-1.5 h-6 bg-brand-blue rounded-full"></div>
+            <h2 class="text-xl font-bold italic tracking-tight uppercase">
+              Objetivos de Hoy
+            </h2>
+          </div>
+
+          <!-- Objective 1 -->
+          <div
+            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
+          >
+            <div class="mt-1">
+              <div class="custom-check" onclick="toggleCheck(this)">✓</div>
             </div>
-
-            <div
-              onclick="toggleTask(1)"
-              class="group bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:border-blue-200 transition-all cursor-pointer flex items-center space-x-5"
-            >
-              <div
-                id="check-1"
-                class="w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center transition-all bg-slate-50"
-              ></div>
-              <div class="flex-1">
-                <h3 class="font-bold text-slate-900 leading-tight italic">
-                  Refactor Checkout: Lolita Franck
-                </h3>
-                <p class="text-xs text-slate-500 mt-0.5 italic">
-                  Inyectar checkoutData del JSON en el TC-12 del inventory.spec.
-                </p>
-              </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg">
+                Neurociencia del Enfoque
+              </h3>
+              <p class="text-slate-500 text-sm mt-1">
+                Comprender la función ejecutiva, hacer "Brain Dump" y aplicar la
+                regla de los 5 minutos.
+              </p>
             </div>
+          </div>
 
-            <div
-              onclick="toggleTask(2)"
-              class="group bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:border-blue-200 transition-all cursor-pointer flex items-center space-x-5"
-            >
-              <div
-                id="check-2"
-                class="w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center transition-all bg-slate-50"
-              ></div>
-              <div class="flex-1">
-                <h3 class="font-bold text-slate-900 leading-tight italic">
-                  Consolidación de Infraestructura
-                </h3>
-                <p class="text-xs text-slate-500 mt-0.5 italic">
-                  Eliminar strings quemados y centralizar URLs dinámicas.
-                </p>
-              </div>
+          <!-- Objective 2 -->
+          <div
+            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
+          >
+            <div class="mt-1">
+              <div class="custom-check" onclick="toggleCheck(this)">✓</div>
             </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg">
+                Fundamentos ISTQB
+              </h3>
+              <p class="text-slate-500 text-sm mt-1">
+                Entender el concepto de "Partición de Equivalencia" y "Valores
+                Límite" (Caja Negra).
+              </p>
+            </div>
+          </div>
 
-            <div
-              onclick="toggleTask(3)"
-              class="group bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:border-blue-200 transition-all cursor-pointer flex items-center space-x-5"
-            >
-              <div
-                id="check-3"
-                class="w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center transition-all bg-slate-50"
-              ></div>
-              <div class="flex-1">
-                <h3 class="font-bold text-slate-900 leading-tight italic">
-                  Full Regression & Sync
-                </h3>
-                <p class="text-xs text-slate-500 mt-0.5 italic">
-                  Validar los 42 tests en todos los navegadores y push a GitHub.
-                </p>
-              </div>
+          <!-- Objective 3 -->
+          <div
+            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
+          >
+            <div class="mt-1">
+              <div class="custom-check" onclick="toggleCheck(this)">✓</div>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg">
+                Setup Certificación
+              </h3>
+              <p class="text-slate-500 text-sm mt-1">
+                Descargar el Syllabus Oficial ISTQB CTFL v4.0 para el plan de
+                estudio diario.
+              </p>
+            </div>
+          </div>
+
+          <!-- Objective 4 -->
+          <div
+            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
+          >
+            <div class="mt-1">
+              <div class="custom-check" onclick="toggleCheck(this)">✓</div>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg">
+                Refactor Login: DDT Avanzado
+              </h3>
+              <p class="text-slate-500 text-sm mt-1">
+                Usar un bucle (for...of) en login.spec.ts para leer
+                dinámicamente desde users.json.
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- SIDEBAR: RECURSOS -->
-        <div class="lg:col-span-4 space-y-6">
-          <div class="bg-slate-900 rounded-[2.5rem] p-8 text-white orange-glow">
+        <!-- Right Column: Notes & Meta -->
+        <div class="lg:col-span-1 space-y-6">
+          <!-- Lab Notes Card -->
+          <div
+            class="bg-brand-dark rounded-3xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden"
+          >
             <h3
-              class="text-sm font-black italic text-orange-400 uppercase mb-6 tracking-widest"
+              class="text-brand-orange font-bold text-sm tracking-widest uppercase italic mb-6"
             >
               SDET Lab Notes
             </h3>
-            <ul class="space-y-6">
-              <li>
-                <p
-                  class="text-[10px] font-bold text-slate-500 uppercase mb-2 tracking-tighter"
+
+            <div class="space-y-6">
+              <div>
+                <h4
+                  class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
                 >
-                  DDT Strategy
-                </p>
-                <p class="text-xs text-slate-300 leading-relaxed italic">
-                  "Un cambio en el JSON debe actualizar todos los tests sin
-                  tocar código."
-                </p>
-              </li>
-              <li class="pt-4 border-t border-slate-800">
+                  ISTQB Strategy
+                </h4>
                 <p
-                  class="text-[10px] font-bold text-slate-500 uppercase mb-2 tracking-tighter"
+                  class="text-slate-200 text-sm font-medium leading-relaxed italic"
                 >
-                  Maintenance
+                  "Las particiones de equivalencia nos permiten probar toda la
+                  cobertura de fallos sin escribir pruebas redundantes."
                 </p>
-                <p class="text-xs text-slate-300 leading-relaxed italic">
-                  "Menos 'Magic Strings' significa una vida más tranquila para
-                  el QA."
+              </div>
+
+              <div class="w-full h-px bg-slate-800"></div>
+
+              <div>
+                <h4
+                  class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
+                >
+                  Focus Hack
+                </h4>
+                <p
+                  class="text-slate-200 text-sm font-medium leading-relaxed italic"
+                >
+                  "El Brain Dump libera la memoria de trabajo. Externalizar el
+                  control ejecutivo reduce el 'Wall of Awful'."
                 </p>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
 
+          <!-- Meta 2026 Card -->
           <div
-            class="bg-orange-50 rounded-[2.5rem] p-8 border border-orange-100"
+            class="bg-orange-50 rounded-3xl p-6 md:p-8 border border-orange-100 shadow-sm transition-transform hover:-translate-y-1"
           >
-            <div class="flex items-center space-x-2 mb-3">
-              <span class="text-orange-500 text-lg">🍏</span>
-              <h3 class="text-slate-900 font-black italic text-xs uppercase">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-xl">🍏</span>
+              <h3
+                class="font-bold text-slate-800 tracking-tight italic uppercase"
+              >
                 Meta 2026
               </h3>
             </div>
-            <p
-              class="text-slate-600 text-sm leading-relaxed italic font-medium"
-            >
+            <p class="text-slate-600 font-medium leading-relaxed">
               Terminar a las 18:00 para descansar con Mateo y proteger mi salud.
             </p>
           </div>
         </div>
-      </main>
+      </div>
     </div>
 
     <script>
-      let tasks = [false, false, false, false];
-      function toggleTask(i) {
-        tasks[i] = !tasks[i];
-        updateUI();
-      }
-      function updateUI() {
-        tasks.forEach((t, i) => {
-          const el = document.getElementById(`check-${i}`);
-          if (t) {
-            el.innerHTML = "✓";
-            el.className =
-              "w-8 h-8 rounded-xl bg-blue-600 border-blue-600 flex items-center justify-center text-white font-bold transition-all shadow-lg shadow-blue-200";
-          } else {
-            el.innerHTML = "";
-            el.className =
-              "w-8 h-8 rounded-xl border-2 border-slate-100 flex items-center justify-center bg-slate-50 transition-all";
+      // Progress Logic
+      function updateProgress() {
+        const checkboxes = document.querySelectorAll(".custom-check");
+        const total = checkboxes.length;
+        let checkedCount = 0;
+
+        checkboxes.forEach((box) => {
+          if (box.classList.contains("checked")) {
+            checkedCount++;
           }
         });
-        const p = Math.round(
-          (tasks.filter((t) => t).length / tasks.length) * 100,
+
+        const percentage = Math.round((checkedCount / total) * 100);
+
+        // Update UI
+        document.getElementById("progress-bar").style.width = percentage + "%";
+
+        // Animate number counter
+        const textElement = document.getElementById("progress-text");
+        animateValue(
+          textElement,
+          parseInt(textElement.innerText),
+          percentage,
+          500,
         );
-        document.getElementById("progress-bar").style.width = p + "%";
-        document.getElementById("progress-text").innerText = p + "%";
+      }
+
+      function toggleCheck(element) {
+        element.classList.toggle("checked");
+        updateProgress();
+      }
+
+      // Helper to animate numbers smoothly
+      function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          obj.innerHTML = Math.floor(progress * (end - start) + start);
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        window.requestAnimationFrame(step);
       }
     </script>
   </body>
