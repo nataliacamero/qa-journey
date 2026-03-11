@@ -46,4 +46,13 @@ test.describe("Pruebas de Login (Data-Driven Testing) y concepto: Partición de 
       });
     });
   }
+
+  test("TC-04: Prueba Visual de la pantalla de Login", async ({ page }) => {
+    // 1. Instanciamos la página de login (o usamos la del beforeEach si ya está)
+    // 2. Navegamos a la página
+    await loginPage.navigateTo();
+
+    // 3. ¡La magia visual! Le decimos a Playwright que verifique la foto
+    await expect(page).toHaveScreenshot("pantalla-login.png");
+  });
 });
