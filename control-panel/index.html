@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel de Objetivos - Sesión 15</title>
+    <title>Panel de Objetivos - Sesión 16</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -25,6 +25,7 @@
                 light: "#eff6ff",
                 dark: "#0f172a",
                 orange: "#f97316",
+                green: "#10b981",
               },
             },
           },
@@ -37,7 +38,6 @@
         background-color: #f8fafc;
       }
 
-      /* Custom Checkbox Styles replacing SVG */
       .custom-check {
         width: 24px;
         height: 24px;
@@ -55,30 +55,39 @@
       }
 
       .custom-check.checked {
-        background-color: #2563eb;
-        border-color: #2563eb;
+        background-color: #10b981; /* Cambiado a verde victoria */
+        border-color: #10b981;
         color: white;
-        box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39);
+        box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
       }
 
       .objective-card {
         transition: all 0.2s ease;
       }
-
       .objective-card:hover {
         transform: translateX(4px);
         border-color: #bfdbfe;
       }
-
       .progress-bar-fill {
         transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
-    </style>
 
-    <!-- Chosen Palette: Slate-50 background, Crisp White cards, Blue-600 for primary accents, Slate-900 for dark notes, Orange-50 for Meta background. -->
-    <!-- Application Structure Plan: Replicated the user's provided UI design. A top header card for overall session progress. A 2-column grid layout below. Left column: Interactive checklist of today's specific objectives (Session 15). Right column: Static insight cards (SDET LAB NOTES in dark theme, META 2026 in warm theme) to keep core goals visible. -->
-    <!-- Visualization & Content Choices: Goal: Task tracking and motivation. Method: Interactive DOM elements (custom CSS checkboxes) triggering progress bar updates via JS. Content is tailored to ISTQB and Neuroscience discussions. No SVG used, relying on CSS shapes and Unicode. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+      /* Animación de confeti para el 100% */
+      @keyframes pulse-green {
+        0% {
+          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+        }
+      }
+      .victory-glow {
+        animation: pulse-green 2s infinite;
+      }
+    </style>
   </head>
   <body class="antialiased text-slate-800 p-4 md:p-8">
     <div class="max-w-6xl mx-auto space-y-8">
@@ -90,23 +99,23 @@
           <div class="flex items-center gap-3 mb-2">
             <span
               class="text-brand-orange font-bold text-xs tracking-widest uppercase"
-              >Sesión 15</span
+              >Sesión 16</span
             >
             <span class="text-slate-300">|</span>
             <span
               class="text-slate-400 font-medium text-xs tracking-widest uppercase"
-              >Data-Driven & ISTQB</span
+              >ISTQB & Traceability</span
             >
           </div>
           <h1
             class="font-display text-4xl md:text-5xl font-black text-brand-dark leading-tight tracking-tight uppercase italic"
           >
-            Ingeniería<br />
-            <span class="text-brand-blue">De Datos</span>
+            Trazabilidad<br />
+            <span class="text-brand-blue">y Escalabilidad</span>
           </h1>
           <p class="text-slate-500 mt-4 italic font-medium max-w-lg">
-            Inyectando inteligencia dinámica mediante JSON, bucles y
-            desacoplamiento.
+            Dominando los tipos de pruebas, el debugging profundo y expandiendo
+            la arquitectura dinámica.
           </p>
 
           <!-- Progress Bar -->
@@ -122,14 +131,19 @@
         </div>
 
         <div
-          class="z-10 bg-slate-50 rounded-2xl p-6 text-center border border-slate-100 min-w-[180px]"
+          id="progress-container"
+          class="z-10 bg-slate-50 rounded-2xl p-6 text-center border border-slate-100 min-w-[180px] transition-all duration-500"
         >
           <p
             class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-1"
+            id="progress-label"
           >
-            Progreso S15
+            Progreso S16
           </p>
-          <p class="font-display text-5xl font-black text-brand-orange italic">
+          <p
+            class="font-display text-5xl font-black text-brand-orange italic transition-colors duration-500"
+            id="progress-text-container"
+          >
             <span id="progress-text">0</span>%
           </p>
         </div>
@@ -142,7 +156,7 @@
           <div class="flex items-center gap-3 mb-6">
             <div class="w-1.5 h-6 bg-brand-blue rounded-full"></div>
             <h2 class="text-xl font-bold italic tracking-tight uppercase">
-              Objetivos de Hoy
+              Checklist de Objetivos
             </h2>
           </div>
 
@@ -151,15 +165,17 @@
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
             <div class="mt-1">
-              <div class="custom-check" onclick="toggleCheck(this)">✓</div>
+              <div class="custom-check" onclick="toggleCheck(this)">
+                &#10003;
+              </div>
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                Neurociencia del Enfoque
+                Lectura Diaria: Teoría ISTQB
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Comprender la función ejecutiva, hacer "Brain Dump" y aplicar la
-                regla de los 5 minutos.
+                Comprender las diferencias entre pruebas Funcionales, No
+                Funcionales, Caja Blanca y Caja Negra (Niveles de Prueba).
               </p>
             </div>
           </div>
@@ -169,51 +185,44 @@
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
             <div class="mt-1">
-              <div class="custom-check" onclick="toggleCheck(this)">✓</div>
+              <div class="custom-check" onclick="toggleCheck(this)">
+                &#10003;
+              </div>
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                Fundamentos ISTQB
+                Trazabilidad: Playwright Trace Viewer
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Entender el concepto de "Partición de Equivalencia" y "Valores
-                Límite" (Caja Negra).
+                Aprender a ejecutar un test con la bandera --trace on, analizar
+                el archivo generado y leer la pestaña "Network".
               </p>
             </div>
           </div>
 
           <!-- Objective 3 -->
           <div
-            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
+            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-brand-green bg-green-50 flex items-start gap-4 relative overflow-hidden"
           >
-            <div class="mt-1">
-              <div class="custom-check" onclick="toggleCheck(this)">✓</div>
+            <div class="absolute right-0 top-0 text-6xl opacity-5">
+              &#127942;
             </div>
-            <div>
-              <h3 class="font-bold text-slate-800 text-lg">
-                Setup Certificación
+            <div class="mt-1 z-10">
+              <div class="custom-check" onclick="toggleCheck(this)">
+                &#10003;
+              </div>
+            </div>
+            <div class="z-10">
+              <h3 class="font-bold text-brand-green text-lg">
+                Práctica: Escalar el DDT en Inventory
+                <span
+                  class="text-xs bg-brand-green text-white px-2 py-1 rounded ml-2 align-middle"
+                  >LOGRADO</span
+                >
               </h3>
-              <p class="text-slate-500 text-sm mt-1">
-                Descargar el Syllabus Oficial ISTQB CTFL v4.0 para el plan de
-                estudio diario.
-              </p>
-            </div>
-          </div>
-
-          <!-- Objective 4 -->
-          <div
-            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
-          >
-            <div class="mt-1">
-              <div class="custom-check" onclick="toggleCheck(this)">✓</div>
-            </div>
-            <div>
-              <h3 class="font-bold text-slate-800 text-lg">
-                Refactor Login: DDT Avanzado
-              </h3>
-              <p class="text-slate-500 text-sm mt-1">
-                Usar un bucle (for...of) en login.spec.ts para leer
-                dinámicamente desde users.json.
+              <p class="text-slate-600 text-sm mt-1 font-medium">
+                Bucle <code>for...of</code> implementado, aserciones de array
+                <code>toEqual()</code> dominadas y 48 tests en verde.
               </p>
             </div>
           </div>
@@ -236,13 +245,13 @@
                 <h4
                   class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
                 >
-                  ISTQB Strategy
+                  Traceability Rule
                 </h4>
                 <p
                   class="text-slate-200 text-sm font-medium leading-relaxed italic"
                 >
-                  "Las particiones de equivalencia nos permiten probar toda la
-                  cobertura de fallos sin escribir pruebas redundantes."
+                  "Un test que falla y no tiene traza es un misterio. Un test
+                  con traza es un bug fácil de reportar."
                 </p>
               </div>
 
@@ -252,13 +261,13 @@
                 <h4
                   class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
                 >
-                  Focus Hack
+                  Golden Rule del DDT
                 </h4>
                 <p
-                  class="text-slate-200 text-sm font-medium leading-relaxed italic"
+                  class="text-brand-green text-sm font-bold leading-relaxed italic"
                 >
-                  "El Brain Dump libera la memoria de trabajo. Externalizar el
-                  control ejecutivo reduce el 'Wall of Awful'."
+                  "for...of para acciones en la UI. .map() solo para
+                  transformación de datos."
                 </p>
               </div>
             </div>
@@ -269,15 +278,16 @@
             class="bg-orange-50 rounded-3xl p-6 md:p-8 border border-orange-100 shadow-sm transition-transform hover:-translate-y-1"
           >
             <div class="flex items-center gap-2 mb-4">
-              <span class="text-xl">🍏</span>
+              <span class="text-xl">&#127823;</span>
               <h3
-                class="font-bold text-slate-800 tracking-tight italic uppercase"
+                class="font-bold text-brand-orange tracking-tight italic uppercase"
               >
                 Meta 2026
               </h3>
             </div>
-            <p class="text-slate-600 font-medium leading-relaxed">
-              Terminar a las 18:00 para descansar con Mateo y proteger mi salud.
+            <p class="text-slate-600 font-medium leading-relaxed text-sm">
+              Terminar a las 18:00. Priorizar la salud, descansar temprano por
+              amor propio y estar presente para Mateo evitando accidentes.
             </p>
           </div>
         </div>
@@ -285,7 +295,6 @@
     </div>
 
     <script>
-      // Progress Logic
       function updateProgress() {
         const checkboxes = document.querySelectorAll(".custom-check");
         const total = checkboxes.length;
@@ -299,17 +308,47 @@
 
         const percentage = Math.round((checkedCount / total) * 100);
 
-        // Update UI
-        document.getElementById("progress-bar").style.width = percentage + "%";
+        const progressBar = document.getElementById("progress-bar");
+        progressBar.style.width = percentage + "%";
 
-        // Animate number counter
         const textElement = document.getElementById("progress-text");
+        const textContainer = document.getElementById(
+          "progress-text-container",
+        );
+        const progressContainer = document.getElementById("progress-container");
+        const progressLabel = document.getElementById("progress-label");
+
         animateValue(
           textElement,
           parseInt(textElement.innerText),
           percentage,
           500,
         );
+
+        // Efectos visuales al llegar al 100%
+        if (percentage === 100) {
+          progressBar.classList.remove("bg-brand-blue");
+          progressBar.classList.add("bg-brand-green");
+          textContainer.classList.remove("text-brand-orange");
+          textContainer.classList.add("text-brand-green");
+          progressContainer.classList.add("victory-glow");
+          progressContainer.classList.add("bg-green-50");
+          progressContainer.classList.remove("bg-slate-50");
+          progressLabel.innerText = "¡SESIÓN COMPLETADA!";
+          progressLabel.classList.remove("text-slate-500");
+          progressLabel.classList.add("text-brand-green");
+        } else {
+          progressBar.classList.add("bg-brand-blue");
+          progressBar.classList.remove("bg-brand-green");
+          textContainer.classList.add("text-brand-orange");
+          textContainer.classList.remove("text-brand-green");
+          progressContainer.classList.remove("victory-glow");
+          progressContainer.classList.remove("bg-green-50");
+          progressContainer.classList.add("bg-slate-50");
+          progressLabel.innerText = "Progreso S16";
+          progressLabel.classList.add("text-slate-500");
+          progressLabel.classList.remove("text-brand-green");
+        }
       }
 
       function toggleCheck(element) {
@@ -317,16 +356,13 @@
         updateProgress();
       }
 
-      // Helper to animate numbers smoothly
       function animateValue(obj, start, end, duration) {
         let startTimestamp = null;
         const step = (timestamp) => {
           if (!startTimestamp) startTimestamp = timestamp;
           const progress = Math.min((timestamp - startTimestamp) / duration, 1);
           obj.innerHTML = Math.floor(progress * (end - start) + start);
-          if (progress < 1) {
-            window.requestAnimationFrame(step);
-          }
+          if (progress < 1) window.requestAnimationFrame(step);
         };
         window.requestAnimationFrame(step);
       }
