@@ -22,6 +22,7 @@ export class ProductPage {
   readonly lastNameInput: Locator;
   readonly postalCodeInput: Locator;
   readonly completeCheckoutContainer: Locator;
+  readonly cartListContainer: Locator;
 
   // Botones globales (Únicos) - Definidos como Locators específicos
   readonly checkoutButton: Locator;
@@ -52,6 +53,8 @@ export class ProductPage {
     this.selectSortPrices = page.locator(".product_sort_container");
     // Nombre del producto en el carrito de compras.
     this.productNameInCart = page.locator(".inventory_item_name");
+    // Nombre de la lista
+    this.cartListContainer = page.locator('[data-test="cart-list"]');
 
     // Contenedor del texto final de la compra.
     this.completeCheckoutContainer = page.locator(
@@ -122,6 +125,11 @@ export class ProductPage {
   async getNameOfProductInCart(productName: string) {
     const container = this.itemContainerInCart;
     return container.getByText(productName);
+  }
+
+  async getAllProductNamesInCart() {
+    const namesLocator = this.cartListContainer.locator(".inventory_item_name");
+    return await namesLocator.allTextContents();
   }
 
   // - - - Acciones de checkout - - -

@@ -141,22 +141,26 @@ test.describe("Pruebas de la pagina de inventario.", () => {
 });
 
 test("TC-11: Validar incremento del contador del carrito (Badge)", async () => {
-  // 1. Verificar estado inicial (Baseline): El badge no debe ser visible.
+  // Verificar estado inicial (Baseline): El badge no debe ser visible.
   // SauceDemo no renderiza el badge si el carrito está vacío.
   const cartBadgeSelector = productPage.getCartBadge();
   await expect(cartBadgeSelector).toBeHidden();
 
-  // 2. Acción: Añadir un producto específico.
-  await productPage.addProductToCart(
-    testData.testScenarios.tc15_purchase.productToBuy,
-  );
+  // Traemos la lista de productos a comprar.
+  const productsToBuy = testData.testScenarios.tc_purchase.productsToBuy;
 
-  // 3. Verificación de estado final (Efecto secundario visual).
-  // Validamos que el elemento aparezca y que el sistema "recuerde" el estado (1).
+  // Agregamos cada producto al carrito iterando sobre la lista.
+  for (const product of productsToBuy) {
+    await productPage.addProductToCart(product);
+  }
+
+  // Cantidad esperada de productos en el badge.
+  const expectedBadgeCount =
+    testData.testScenarios.tc_purchase.productsToBuy.length.toString();
+
+  // Verificación de estado final (Efecto secundario visual).
   await expect(cartBadgeSelector).toBeVisible();
-  await expect(cartBadgeSelector).toHaveText(
-    testData.testScenarios.tc15_purchase.expectedBadgeCount,
-  );
+  await expect(cartBadgeSelector).toHaveText(expectedBadgeCount);
 });
 
 test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
@@ -164,39 +168,43 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
     // Badge: no visible → agregar producto → visible -> ir al carrito.
     const cartBadgeSelector = productPage.getCartBadge();
     await expect(cartBadgeSelector).toBeHidden();
-    await productPage.addProductToCart(
-      testData.testScenarios.tc15_purchase.productToBuy,
-    );
+
+    // Traemos la lista de productos a comprar.
+    const productsToBuy = testData.testScenarios.tc_purchase.productsToBuy;
+
+    // Agregamos cada producto al carrito iterando sobre la lista.
+    for (const product of productsToBuy) {
+      await productPage.addProductToCart(product);
+    }
+
+    // Cantidad esperada de productos en el badge.
+    const expectedBadgeCount =
+      testData.testScenarios.tc_purchase.productsToBuy.length.toString();
+
+    // Verificación de estado final (Efecto secundario visual).
     await expect(cartBadgeSelector).toBeVisible();
-    await expect(cartBadgeSelector).toHaveText(
-      testData.testScenarios.tc15_purchase.expectedBadgeCount,
-    );
+    await expect(cartBadgeSelector).toHaveText(expectedBadgeCount);
+
+    // Ir al carrito de compras.
     await productPage.goToCart();
     await expect(page).toHaveURL(URL_CART);
   });
 
   test("TC-12: Validar la persistencia de productos en el carrito", async () => {
-    const productName = productPage.productNameInCart;
-    await expect(productName).toBeVisible();
-    await expect(productName).toHaveText(
-      testData.testScenarios.tc15_purchase.productToBuy,
-    );
+    const expectedProducts = testData.testScenarios.tc_purchase.productsToBuy;
+    const actualProductsInCart = await productPage.getAllProductNamesInCart();
+    expect(actualProductsInCart).toEqual(expectedProducts);
   });
 
-  test("TC-13: Verificar la eliminación del producto del carrito.", async ({
+  test("TC-13: Verificar la eliminación de productos del carrito.", async ({
     page,
   }) => {
-    // a. Validación de persistencia: El producto está en el carrito
-    const productName = productPage.productNameInCart;
-    await expect(productName).toBeVisible();
-    await expect(productName).toHaveText(
-      testData.testScenarios.tc15_purchase.productToBuy,
-    );
+    // Eliminacion de productos del carrito.
+    const expectedProducts = testData.testScenarios.tc_purchase.productsToBuy;
 
-    // b. Acción: Remover el producto
-    await productPage.removeProductFromCart(
-      testData.testScenarios.tc15_purchase.productToBuy,
-    );
+    for (const productName of expectedProducts) {
+      await productPage.removeProductFromCart(productName);
+    }
 
     // c. Navegación de retorno: Volver a la lista de productos
     await productPage.continueShopping();
@@ -213,11 +221,9 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
     page,
   }) => {
     // a. Validar que el producto este en el carrito.
-    const productName = productPage.productNameInCart;
-    await expect(productName).toBeVisible();
-    await expect(productName).toHaveText(
-      testData.testScenarios.tc15_purchase.productToBuy,
-    );
+    const expectedProducts = testData.testScenarios.tc_purchase.productsToBuy;
+    const actualProductsInCart = await productPage.getAllProductNamesInCart();
+    expect(actualProductsInCart).toEqual(expectedProducts);
 
     // b. Click en el boton de checkout.
     await productPage.goToCheckout();
@@ -235,11 +241,8 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
     // b. Validamos que volvemos a la pagina del carrito.
     await expect(page).toHaveURL(URL_CART);
 
-    // Verificación Final: El producto sigue en el carrito y el badge refleja la cantidad correcta.
-    await expect(productName).toBeVisible();
-    await expect(productName).toHaveText(
-      testData.testScenarios.tc15_purchase.productToBuy,
-    );
+    // Verificación Final: Los productos siguen en el carrito y el badge refleja la cantidad correcta.
+    expect(actualProductsInCart).toEqual(expectedProducts);
   });
 
   test("TC-15: Validar proceso de compra completo con chechout.", async ({
@@ -247,11 +250,9 @@ test.describe("Pruebas de la funcionalidad del carrito de compras.", () => {
   }) => {
     await test.step("Navegar al carrito y click en checkout.", async () => {
       // a. Validar que el producto este en el carrito.
-      const productName = productPage.productNameInCart;
-      await expect(productName).toBeVisible();
-      await expect(productName).toHaveText(
-        testData.testScenarios.tc15_purchase.productToBuy,
-      );
+      const expectedProducts = testData.testScenarios.tc_purchase.productsToBuy;
+      const actualProductsInCart = await productPage.getAllProductNamesInCart();
+      expect(actualProductsInCart).toEqual(expectedProducts);
 
       // b. Click en el boton de checkout.
       await productPage.goToCheckout();

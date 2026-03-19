@@ -31,6 +31,13 @@
     "zipCode": "33020"
   },
   "testScenarios": {
+    "tc_purchase": {
+      "productsToBuy": [
+        "Sauce Labs Backpack",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Fleece Jacket"
+      ]
+    },
     "tc06_purchase": {
       "mainList": [
         "Sauce Labs Backpack",
@@ -40,6 +47,15 @@
         "Sauce Labs Onesie",
         "Test.allTheThings() T-Shirt (Red)"
       ]
+    },
+    "tc11_purchase": {
+      "productToBuy": "Sauce Labs Bolt T-Shirt",
+      "productsToBuy": [
+        "Sauce Labs Backpack",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Fleece Jacket"
+      ],
+      "expectedBadgeCount": "1"
     },
     "tc15_purchase": {
       "productToBuy": "Sauce Labs Backpack",
