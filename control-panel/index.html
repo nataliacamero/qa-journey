@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel de Objetivos - Sesión 16</title>
+    <title>Control Panel - Session 17</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -55,7 +55,7 @@
       }
 
       .custom-check.checked {
-        background-color: #10b981; /* Cambiado a verde victoria */
+        background-color: #10b981;
         border-color: #10b981;
         color: white;
         box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
@@ -72,7 +72,6 @@
         transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      /* Animación de confeti para el 100% */
       @keyframes pulse-green {
         0% {
           box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
@@ -91,7 +90,6 @@
   </head>
   <body class="antialiased text-slate-800 p-4 md:p-8">
     <div class="max-w-6xl mx-auto space-y-8">
-      <!-- Header Card -->
       <div
         class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden"
       >
@@ -99,26 +97,25 @@
           <div class="flex items-center gap-3 mb-2">
             <span
               class="text-brand-orange font-bold text-xs tracking-widest uppercase"
-              >Sesión 16</span
+              >Session 17</span
             >
             <span class="text-slate-300">|</span>
             <span
               class="text-slate-400 font-medium text-xs tracking-widest uppercase"
-              >ISTQB & Traceability</span
+              >Theory & Application</span
             >
           </div>
           <h1
             class="font-display text-4xl md:text-5xl font-black text-brand-dark leading-tight tracking-tight uppercase italic"
           >
-            Trazabilidad<br />
-            <span class="text-brand-blue">y Escalabilidad</span>
+            ISTQB Foundations<br />
+            <span class="text-brand-blue">& SDET Application</span>
           </h1>
           <p class="text-slate-500 mt-4 italic font-medium max-w-lg">
-            Dominando los tipos de pruebas, el debugging profundo y expandiendo
-            la arquitectura dinámica.
+            Mastering testing principles, tackling mock exams, and applying
+            theory directly to our Playwright architecture.
           </p>
 
-          <!-- Progress Bar -->
           <div class="mt-8 w-full max-w-md">
             <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
               <div
@@ -138,7 +135,7 @@
             class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-1"
             id="progress-label"
           >
-            Progreso S16
+            S17 Progress
           </p>
           <p
             class="font-display text-5xl font-black text-brand-orange italic transition-colors duration-500"
@@ -149,18 +146,15 @@
         </div>
       </div>
 
-      <!-- Main Content Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Left Column: Objetivos -->
         <div class="lg:col-span-2 space-y-4">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-1.5 h-6 bg-brand-blue rounded-full"></div>
             <h2 class="text-xl font-bold italic tracking-tight uppercase">
-              Checklist de Objetivos
+              Objectives Checklist
             </h2>
           </div>
 
-          <!-- Objective 1 -->
           <div
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
@@ -171,16 +165,15 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                Lectura Diaria: Teoría ISTQB
+                1. ISTQB Chapter 1: Deep Dive
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Comprender las diferencias entre pruebas Funcionales, No
-                Funcionales, Caja Blanca y Caja Negra (Niveles de Prueba).
+                Study the 7 Principles of Testing, the difference between QA and
+                QC, and the psychology of testing.
               </p>
             </div>
           </div>
 
-          <!-- Objective 2 -->
           <div
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
@@ -191,46 +184,36 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                Trazabilidad: Playwright Trace Viewer
+                2. Mock Exam & Memory Exercises
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Aprender a ejecutar un test con la bandera --trace on, analizar
-                el archivo generado y leer la pestaña "Network".
+                Tackle ISTQB-style multiple-choice questions to wire the
+                concepts into long-term memory.
               </p>
             </div>
           </div>
 
-          <!-- Objective 3 -->
           <div
-            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-brand-green bg-green-50 flex items-start gap-4 relative overflow-hidden"
+            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
-            <div class="absolute right-0 top-0 text-6xl opacity-5">
-              &#127942;
-            </div>
-            <div class="mt-1 z-10">
+            <div class="mt-1">
               <div class="custom-check" onclick="toggleCheck(this)">
                 &#10003;
               </div>
             </div>
-            <div class="z-10">
-              <h3 class="font-bold text-brand-green text-lg">
-                Práctica: Escalar el DDT en Inventory
-                <span
-                  class="text-xs bg-brand-green text-white px-2 py-1 rounded ml-2 align-middle"
-                  >LOGRADO</span
-                >
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg">
+                3. SDET Path: Theory to Practice
               </h3>
-              <p class="text-slate-600 text-sm mt-1 font-medium">
-                Bucle <code>for...of</code> implementado, aserciones de array
-                <code>toEqual()</code> dominadas y 48 tests en verde.
+              <p class="text-slate-500 text-sm mt-1">
+                Apply Chapter 1 concepts (like the Pesticide Paradox or
+                Shift-Left) to our current Playwright framework strategy.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Notes & Meta -->
         <div class="lg:col-span-1 space-y-6">
-          <!-- Lab Notes Card -->
           <div
             class="bg-brand-dark rounded-3xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden"
           >
@@ -245,13 +228,12 @@
                 <h4
                   class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
                 >
-                  Traceability Rule
+                  Golden Rule
                 </h4>
                 <p
                   class="text-slate-200 text-sm font-medium leading-relaxed italic"
                 >
-                  "Un test que falla y no tiene traza es un misterio. Un test
-                  con traza es un bug fácil de reportar."
+                  "Testing shows the presence of defects, not their absence."
                 </p>
               </div>
 
@@ -261,34 +243,16 @@
                 <h4
                   class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
                 >
-                  Golden Rule del DDT
+                  Focus
                 </h4>
                 <p
                   class="text-brand-green text-sm font-bold leading-relaxed italic"
                 >
-                  "for...of para acciones en la UI. .map() solo para
-                  transformación de datos."
+                  English terminology, precise definitions, and strategic
+                  application.
                 </p>
               </div>
             </div>
-          </div>
-
-          <!-- Meta 2026 Card -->
-          <div
-            class="bg-orange-50 rounded-3xl p-6 md:p-8 border border-orange-100 shadow-sm transition-transform hover:-translate-y-1"
-          >
-            <div class="flex items-center gap-2 mb-4">
-              <span class="text-xl">&#127823;</span>
-              <h3
-                class="font-bold text-brand-orange tracking-tight italic uppercase"
-              >
-                Meta 2026
-              </h3>
-            </div>
-            <p class="text-slate-600 font-medium leading-relaxed text-sm">
-              Terminar a las 18:00. Priorizar la salud, descansar temprano por
-              amor propio y estar presente para Mateo evitando accidentes.
-            </p>
           </div>
         </div>
       </div>
@@ -325,7 +289,6 @@
           500,
         );
 
-        // Efectos visuales al llegar al 100%
         if (percentage === 100) {
           progressBar.classList.remove("bg-brand-blue");
           progressBar.classList.add("bg-brand-green");
@@ -334,7 +297,7 @@
           progressContainer.classList.add("victory-glow");
           progressContainer.classList.add("bg-green-50");
           progressContainer.classList.remove("bg-slate-50");
-          progressLabel.innerText = "¡SESIÓN COMPLETADA!";
+          progressLabel.innerText = "SESSION COMPLETE!";
           progressLabel.classList.remove("text-slate-500");
           progressLabel.classList.add("text-brand-green");
         } else {
@@ -345,7 +308,7 @@
           progressContainer.classList.remove("victory-glow");
           progressContainer.classList.remove("bg-green-50");
           progressContainer.classList.add("bg-slate-50");
-          progressLabel.innerText = "Progreso S16";
+          progressLabel.innerText = "S17 Progress";
           progressLabel.classList.add("text-slate-500");
           progressLabel.classList.remove("text-brand-green");
         }
