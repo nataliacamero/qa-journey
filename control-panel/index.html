@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Control Panel - Session 17</title>
+    <title>Control Panel - Session 18</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -21,11 +21,12 @@
             },
             colors: {
               brand: {
-                blue: "#1d4ed8",
+                blue: "#2563eb",
                 light: "#eff6ff",
                 dark: "#0f172a",
                 orange: "#f97316",
                 green: "#10b981",
+                purple: "#8b5cf6",
               },
             },
           },
@@ -55,10 +56,10 @@
       }
 
       .custom-check.checked {
-        background-color: #10b981;
-        border-color: #10b981;
+        background-color: #8b5cf6;
+        border-color: #8b5cf6;
         color: white;
-        box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
+        box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.39);
       }
 
       .objective-card {
@@ -66,61 +67,63 @@
       }
       .objective-card:hover {
         transform: translateX(4px);
-        border-color: #bfdbfe;
+        border-color: #c4b5fd;
       }
       .progress-bar-fill {
         transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      @keyframes pulse-green {
+      @keyframes pulse-purple {
         0% {
-          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+          box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
         }
         70% {
-          box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
+          box-shadow: 0 0 0 15px rgba(139, 92, 246, 0);
         }
         100% {
-          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+          box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
         }
       }
       .victory-glow {
-        animation: pulse-green 2s infinite;
+        animation: pulse-purple 2s infinite;
       }
     </style>
   </head>
   <body class="antialiased text-slate-800 p-4 md:p-8">
     <div class="max-w-6xl mx-auto space-y-8">
+      <!-- Header Card -->
       <div
         class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden"
       >
         <div class="z-10 flex-1">
           <div class="flex items-center gap-3 mb-2">
             <span
-              class="text-brand-orange font-bold text-xs tracking-widest uppercase"
-              >Session 17</span
+              class="text-brand-purple font-bold text-xs tracking-widest uppercase"
+              >Session 18</span
             >
             <span class="text-slate-300">|</span>
             <span
               class="text-slate-400 font-medium text-xs tracking-widest uppercase"
-              >Theory & Application</span
+              >Phase 3: Backend</span
             >
           </div>
           <h1
             class="font-display text-4xl md:text-5xl font-black text-brand-dark leading-tight tracking-tight uppercase italic"
           >
-            ISTQB Foundations<br />
-            <span class="text-brand-blue">& SDET Application</span>
+            API Testing &<br />
+            <span class="text-brand-purple">Shift-Left</span>
           </h1>
           <p class="text-slate-500 mt-4 italic font-medium max-w-lg">
-            Mastering testing principles, tackling mock exams, and applying
-            theory directly to our Playwright architecture.
+            Bypassing the UI to test the database directly. Speed, efficiency,
+            and Senior SDET architecture.
           </p>
 
+          <!-- Progress Bar -->
           <div class="mt-8 w-full max-w-md">
             <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
               <div
                 id="progress-bar"
-                class="progress-bar-fill h-full bg-brand-blue rounded-full"
+                class="progress-bar-fill h-full bg-brand-purple rounded-full"
                 style="width: 0%"
               ></div>
             </div>
@@ -135,7 +138,7 @@
             class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-1"
             id="progress-label"
           >
-            S17 Progress
+            S18 Progress
           </p>
           <p
             class="font-display text-5xl font-black text-brand-orange italic transition-colors duration-500"
@@ -146,15 +149,18 @@
         </div>
       </div>
 
+      <!-- Main Content Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Left Column: Objectives -->
         <div class="lg:col-span-2 space-y-4">
           <div class="flex items-center gap-3 mb-6">
-            <div class="w-1.5 h-6 bg-brand-blue rounded-full"></div>
+            <div class="w-1.5 h-6 bg-brand-purple rounded-full"></div>
             <h2 class="text-xl font-bold italic tracking-tight uppercase">
               Objectives Checklist
             </h2>
           </div>
 
+          <!-- Objective 1 -->
           <div
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
@@ -165,15 +171,16 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                1. ISTQB Chapter 1: Deep Dive
+                1. API Fundamentals (Backend)
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Study the 7 Principles of Testing, the difference between QA and
-                QC, and the psychology of testing.
+                Master HTTP Methods (GET, POST, PUT) and Status Codes (200, 401,
+                404, 500) to understand how the web communicates.
               </p>
             </div>
           </div>
 
+          <!-- Objective 2 -->
           <div
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
@@ -184,15 +191,16 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                2. Mock Exam & Memory Exercises
+                2. APIRequestContext in Playwright
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Tackle ISTQB-style multiple-choice questions to wire the
-                concepts into long-term memory.
+                Learn how to send requests directly to the server without
+                opening a browser to drop execution time from 15s to 0.5s.
               </p>
             </div>
           </div>
 
+          <!-- Objective 3 -->
           <div
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
@@ -203,22 +211,44 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                3. SDET Path: Theory to Practice
+                3. Write Your First API Test
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Apply Chapter 1 concepts (like the Pesticide Paradox or
-                Shift-Left) to our current Playwright framework strategy.
+                Create <code>api.spec.ts</code>, send a GET request to a real
+                endpoint, read the JSON response, and assert a 200 OK status.
+              </p>
+            </div>
+          </div>
+
+          <!-- Objective 4 -->
+          <div
+            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
+          >
+            <div class="mt-1">
+              <div class="custom-check" onclick="toggleCheck(this)">
+                &#10003;
+              </div>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg">
+                4. SDET Interview Simulator
+              </h3>
+              <p class="text-slate-500 text-sm mt-1">
+                Answer real 2026 interview questions (e.g., PUT vs POST) and
+                connect today's practice with ISTQB Integration Testing theory.
               </p>
             </div>
           </div>
         </div>
 
+        <!-- Right Column: Notes & Meta -->
         <div class="lg:col-span-1 space-y-6">
+          <!-- Lab Notes Card -->
           <div
             class="bg-brand-dark rounded-3xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden"
           >
             <h3
-              class="text-brand-orange font-bold text-sm tracking-widest uppercase italic mb-6"
+              class="text-brand-purple font-bold text-sm tracking-widest uppercase italic mb-6"
             >
               SDET Lab Notes
             </h3>
@@ -228,12 +258,13 @@
                 <h4
                   class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
                 >
-                  Golden Rule
+                  Shift-Left Strategy
                 </h4>
                 <p
                   class="text-slate-200 text-sm font-medium leading-relaxed italic"
                 >
-                  "Testing shows the presence of defects, not their absence."
+                  "Testing the API before the UI is built saves time and money.
+                  It is the ultimate application of early testing."
                 </p>
               </div>
 
@@ -243,16 +274,35 @@
                 <h4
                   class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
                 >
-                  Focus
+                  Execution Speed
                 </h4>
                 <p
                   class="text-brand-green text-sm font-bold leading-relaxed italic"
                 >
-                  English terminology, precise definitions, and strategic
-                  application.
+                  UI tests take seconds. API tests take milliseconds. We use
+                  both for total coverage.
                 </p>
               </div>
             </div>
+          </div>
+
+          <!-- Meta 2026 Card -->
+          <div
+            class="bg-purple-50 rounded-3xl p-6 md:p-8 border border-purple-100 shadow-sm transition-transform hover:-translate-y-1"
+          >
+            <div class="flex items-center gap-2 mb-4">
+              <span class="text-xl">&#128187;</span>
+              <h3
+                class="font-bold text-brand-purple tracking-tight italic uppercase"
+              >
+                Career Goal
+              </h3>
+            </div>
+            <p class="text-slate-600 font-medium leading-relaxed text-sm">
+              Mastering API testing is the key to unlocking Senior SDET salary
+              brackets, ensuring financial independence and €1,000 monthly
+              savings.
+            </p>
           </div>
         </div>
       </div>
@@ -290,7 +340,7 @@
         );
 
         if (percentage === 100) {
-          progressBar.classList.remove("bg-brand-blue");
+          progressBar.classList.remove("bg-brand-purple");
           progressBar.classList.add("bg-brand-green");
           textContainer.classList.remove("text-brand-orange");
           textContainer.classList.add("text-brand-green");
@@ -301,14 +351,14 @@
           progressLabel.classList.remove("text-slate-500");
           progressLabel.classList.add("text-brand-green");
         } else {
-          progressBar.classList.add("bg-brand-blue");
+          progressBar.classList.add("bg-brand-purple");
           progressBar.classList.remove("bg-brand-green");
           textContainer.classList.add("text-brand-orange");
           textContainer.classList.remove("text-brand-green");
           progressContainer.classList.remove("victory-glow");
           progressContainer.classList.remove("bg-green-50");
           progressContainer.classList.add("bg-slate-50");
-          progressLabel.innerText = "S17 Progress";
+          progressLabel.innerText = "S18 Progress";
           progressLabel.classList.add("text-slate-500");
           progressLabel.classList.remove("text-brand-green");
         }
