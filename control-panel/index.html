@@ -3,14 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Control Panel - Session 18</title>
-
+    <title>Control Panel - Session 19</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@800;900&display=swap"
       rel="stylesheet"
     />
-
     <script>
       tailwind.config = {
         theme: {
@@ -22,7 +20,6 @@
             colors: {
               brand: {
                 blue: "#2563eb",
-                light: "#eff6ff",
                 dark: "#0f172a",
                 orange: "#f97316",
                 green: "#10b981",
@@ -33,12 +30,10 @@
         },
       };
     </script>
-
     <style>
       body {
         background-color: #f8fafc;
       }
-
       .custom-check {
         width: 24px;
         height: 24px;
@@ -54,14 +49,12 @@
         font-size: 14px;
         font-weight: bold;
       }
-
       .custom-check.checked {
         background-color: #8b5cf6;
         border-color: #8b5cf6;
         color: white;
         box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.39);
       }
-
       .objective-card {
         transition: all 0.2s ease;
       }
@@ -72,7 +65,6 @@
       .progress-bar-fill {
         transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
       @keyframes pulse-purple {
         0% {
           box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
@@ -91,7 +83,6 @@
   </head>
   <body class="antialiased text-slate-800 p-4 md:p-8">
     <div class="max-w-6xl mx-auto space-y-8">
-      <!-- Header Card -->
       <div
         class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden"
       >
@@ -99,26 +90,25 @@
           <div class="flex items-center gap-3 mb-2">
             <span
               class="text-brand-purple font-bold text-xs tracking-widest uppercase"
-              >Session 18</span
+              >Session 19</span
             >
             <span class="text-slate-300">|</span>
             <span
               class="text-slate-400 font-medium text-xs tracking-widest uppercase"
-              >Phase 3: Backend</span
+              >Phase 3: API Automation</span
             >
           </div>
           <h1
             class="font-display text-4xl md:text-5xl font-black text-brand-dark leading-tight tracking-tight uppercase italic"
           >
-            API Testing &<br />
-            <span class="text-brand-purple">Shift-Left</span>
+            API Testing en<br /><span class="text-brand-purple"
+              >Playwright</span
+            >
           </h1>
           <p class="text-slate-500 mt-4 italic font-medium max-w-lg">
-            Bypassing the UI to test the database directly. Speed, efficiency,
-            and Senior SDET architecture.
+            Llevando el QA Roadmap a la realidad: Automatizando peticiones GET y
+            POST directamente contra la base de datos.
           </p>
-
-          <!-- Progress Bar -->
           <div class="mt-8 w-full max-w-md">
             <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
               <div
@@ -129,7 +119,6 @@
             </div>
           </div>
         </div>
-
         <div
           id="progress-container"
           class="z-10 bg-slate-50 rounded-2xl p-6 text-center border border-slate-100 min-w-[180px] transition-all duration-500"
@@ -138,7 +127,7 @@
             class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-1"
             id="progress-label"
           >
-            S18 Progress
+            S19 Progress
           </p>
           <p
             class="font-display text-5xl font-black text-brand-orange italic transition-colors duration-500"
@@ -149,9 +138,7 @@
         </div>
       </div>
 
-      <!-- Main Content Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Left Column: Objectives -->
         <div class="lg:col-span-2 space-y-4">
           <div class="flex items-center gap-3 mb-6">
             <div class="w-1.5 h-6 bg-brand-purple rounded-full"></div>
@@ -159,8 +146,6 @@
               Objectives Checklist
             </h2>
           </div>
-
-          <!-- Objective 1 -->
           <div
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
@@ -171,16 +156,14 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                1. API Fundamentals (Backend)
+                1. Actualizar QA Roadmap
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Master HTTP Methods (GET, POST, PUT) and Status Codes (200, 401,
-                404, 500) to understand how the web communicates.
+                Añadir TC-16 (GET) y TC-17 (POST) al Excel de pruebas con sus
+                respectivos pasos y resultados esperados.
               </p>
             </div>
           </div>
-
-          <!-- Objective 2 -->
           <div
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
@@ -191,16 +174,14 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                2. APIRequestContext in Playwright
+                2. Setup de <code>api.spec.ts</code>
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Learn how to send requests directly to the server without
-                opening a browser to drop execution time from 15s to 0.5s.
+                Crear el archivo en el framework e instanciar el fixture
+                especial <code>{ request }</code> de Playwright.
               </p>
             </div>
           </div>
-
-          <!-- Objective 3 -->
           <div
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
@@ -211,16 +192,14 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                3. Write Your First API Test
+                3. Automatizar TC-16 (GET)
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Create <code>api.spec.ts</code>, send a GET request to a real
-                endpoint, read the JSON response, and assert a 200 OK status.
+                Realizar la petición para obtener usuarios y hacer aserción del
+                código de estado 200 OK.
               </p>
             </div>
           </div>
-
-          <!-- Objective 4 -->
           <div
             class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
           >
@@ -231,19 +210,17 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                4. SDET Interview Simulator
+                4. Automatizar TC-17 (POST)
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Answer real 2026 interview questions (e.g., PUT vs POST) and
-                connect today's practice with ISTQB Integration Testing theory.
+                Enviar un payload JSON para crear un usuario y validar el estado
+                201 Created y el ID devuelto.
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: Notes & Meta -->
         <div class="lg:col-span-1 space-y-6">
-          <!-- Lab Notes Card -->
           <div
             class="bg-brand-dark rounded-3xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden"
           >
@@ -252,74 +229,63 @@
             >
               SDET Lab Notes
             </h3>
-
             <div class="space-y-6">
               <div>
                 <h4
                   class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
                 >
-                  Shift-Left Strategy
+                  Golden Rule
                 </h4>
                 <p
                   class="text-slate-200 text-sm font-medium leading-relaxed italic"
                 >
-                  "Testing the API before the UI is built saves time and money.
-                  It is the ultimate application of early testing."
+                  "El código es lo último que se escribe. Un SDET primero diseña
+                  el caso de prueba (Roadmap) y luego lo automatiza."
                 </p>
               </div>
-
               <div class="w-full h-px bg-slate-800"></div>
-
               <div>
                 <h4
                   class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
                 >
-                  Execution Speed
+                  API Speed
                 </h4>
                 <p
                   class="text-brand-green text-sm font-bold leading-relaxed italic"
                 >
-                  UI tests take seconds. API tests take milliseconds. We use
-                  both for total coverage.
+                  Las pruebas de API tardan milisegundos en lugar de segundos
+                  porque evitan renderizar el DOM del navegador.
                 </p>
               </div>
             </div>
           </div>
-
-          <!-- Meta 2026 Card -->
           <div
             class="bg-purple-50 rounded-3xl p-6 md:p-8 border border-purple-100 shadow-sm transition-transform hover:-translate-y-1"
           >
             <div class="flex items-center gap-2 mb-4">
-              <span class="text-xl">&#128187;</span>
+              <span class="text-xl">&#127823;</span>
               <h3
                 class="font-bold text-brand-purple tracking-tight italic uppercase"
               >
-                Career Goal
+                Meta 2026
               </h3>
             </div>
             <p class="text-slate-600 font-medium leading-relaxed text-sm">
-              Mastering API testing is the key to unlocking Senior SDET salary
-              brackets, ensuring financial independence and €1,000 monthly
-              savings.
+              Evitar el burnout a toda costa. Descansar temprano por amor
+              propio, para cuidar la salud y estar al 100% presente para Mateo.
             </p>
           </div>
         </div>
       </div>
     </div>
-
     <script>
       function updateProgress() {
         const checkboxes = document.querySelectorAll(".custom-check");
         const total = checkboxes.length;
         let checkedCount = 0;
-
         checkboxes.forEach((box) => {
-          if (box.classList.contains("checked")) {
-            checkedCount++;
-          }
+          if (box.classList.contains("checked")) checkedCount++;
         });
-
         const percentage = Math.round((checkedCount / total) * 100);
 
         const progressBar = document.getElementById("progress-bar");
@@ -344,8 +310,7 @@
           progressBar.classList.add("bg-brand-green");
           textContainer.classList.remove("text-brand-orange");
           textContainer.classList.add("text-brand-green");
-          progressContainer.classList.add("victory-glow");
-          progressContainer.classList.add("bg-green-50");
+          progressContainer.classList.add("victory-glow", "bg-green-50");
           progressContainer.classList.remove("bg-slate-50");
           progressLabel.innerText = "SESSION COMPLETE!";
           progressLabel.classList.remove("text-slate-500");
@@ -355,20 +320,17 @@
           progressBar.classList.remove("bg-brand-green");
           textContainer.classList.add("text-brand-orange");
           textContainer.classList.remove("text-brand-green");
-          progressContainer.classList.remove("victory-glow");
-          progressContainer.classList.remove("bg-green-50");
+          progressContainer.classList.remove("victory-glow", "bg-green-50");
           progressContainer.classList.add("bg-slate-50");
-          progressLabel.innerText = "S18 Progress";
+          progressLabel.innerText = "S19 Progress";
           progressLabel.classList.add("text-slate-500");
           progressLabel.classList.remove("text-brand-green");
         }
       }
-
       function toggleCheck(element) {
         element.classList.toggle("checked");
         updateProgress();
       }
-
       function animateValue(obj, start, end, duration) {
         let startTimestamp = null;
         const step = (timestamp) => {

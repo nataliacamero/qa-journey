@@ -1,6 +1,6 @@
 # 🧪 SauceDemo Automation Framework: My QA Journey
 
-Welcome to my automation repository. This project documents my professional transition from **Frontend Developer** to **SDET (Software Development Engineer in Test)**. Here, I apply advanced development practices to the world of E2E testing.
+Welcome to my automation repository. This project showcases my commitment to building high-quality, robust applications as a Frontend Developer. By applying advanced E2E testing practices, I ensure the code I write is scalable, bug-free, and fully prepared for modern CI/CD pipelines.
 
 ## 🎯 Project Objectives
 
