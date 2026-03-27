@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Control Panel - Session 19</title>
+    <title>Control Panel - Session 20</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@800;900&display=swap"
@@ -24,6 +24,7 @@
                 orange: "#f97316",
                 green: "#10b981",
                 purple: "#8b5cf6",
+                red: "#ef4444",
               },
             },
           },
@@ -50,104 +51,90 @@
         font-weight: bold;
       }
       .custom-check.checked {
-        background-color: #8b5cf6;
-        border-color: #8b5cf6;
+        background-color: #10b981;
+        border-color: #10b981;
         color: white;
-        box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.39);
+        box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
       }
       .objective-card {
         transition: all 0.2s ease;
       }
       .objective-card:hover {
         transform: translateX(4px);
-        border-color: #c4b5fd;
+        border-color: #a7f3d0;
       }
       .progress-bar-fill {
         transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       }
-      @keyframes pulse-purple {
-        0% {
-          box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 15px rgba(139, 92, 246, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
-        }
-      }
-      .victory-glow {
-        animation: pulse-purple 2s infinite;
+      .question-card {
+        border-left: 4px solid #8b5cf6;
       }
     </style>
   </head>
   <body class="antialiased text-slate-800 p-4 md:p-8">
-    <div class="max-w-6xl mx-auto space-y-8">
+    <div class="max-w-5xl mx-auto space-y-8">
+      <!-- Header -->
       <div
-        class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden"
+        class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8"
       >
-        <div class="z-10 flex-1">
+        <div class="flex-1">
           <div class="flex items-center gap-3 mb-2">
             <span
-              class="text-brand-purple font-bold text-xs tracking-widest uppercase"
-              >Session 19</span
+              class="text-brand-green font-bold text-xs tracking-widest uppercase"
+              >Session 20</span
             >
             <span class="text-slate-300">|</span>
             <span
               class="text-slate-400 font-medium text-xs tracking-widest uppercase"
-              >Phase 3: API Automation</span
+              >API Mastery</span
             >
           </div>
           <h1
             class="font-display text-4xl md:text-5xl font-black text-brand-dark leading-tight tracking-tight uppercase italic"
           >
-            API Testing en<br /><span class="text-brand-purple"
-              >Playwright</span
-            >
+            The CRUD <span class="text-brand-green">Completion</span>
           </h1>
-          <p class="text-slate-500 mt-4 italic font-medium max-w-lg">
-            Llevando el QA Roadmap a la realidad: Automatizando peticiones GET y
-            POST directamente contra la base de datos.
+          <p class="text-slate-500 mt-4 font-medium max-w-lg">
+            Dominando la manipulación de datos backend: Actualización (PUT) y
+            Eliminación (DELETE) mediante Playwright.
           </p>
           <div class="mt-8 w-full max-w-md">
+            <div
+              class="flex justify-between text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider"
+            >
+              <span>Progress</span>
+              <span id="progress-text" class="text-brand-green">0%</span>
+            </div>
             <div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
               <div
                 id="progress-bar"
-                class="progress-bar-fill h-full bg-brand-purple rounded-full"
+                class="progress-bar-fill h-full bg-brand-green rounded-full"
                 style="width: 0%"
               ></div>
             </div>
           </div>
         </div>
         <div
-          id="progress-container"
-          class="z-10 bg-slate-50 rounded-2xl p-6 text-center border border-slate-100 min-w-[180px] transition-all duration-500"
+          class="bg-slate-50 rounded-2xl p-6 text-center border border-slate-100 min-w-[150px]"
         >
-          <p
-            class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-1"
-            id="progress-label"
-          >
-            S19 Progress
+          <div class="text-4xl mb-2">&#128293;</div>
+          <p class="text-slate-500 text-xs font-bold uppercase tracking-widest">
+            Status
           </p>
-          <p
-            class="font-display text-5xl font-black text-brand-orange italic transition-colors duration-500"
-            id="progress-text-container"
-          >
-            <span id="progress-text">0</span>%
-          </p>
+          <p class="font-bold text-slate-800">Senior Level</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div class="lg:col-span-2 space-y-4">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-1.5 h-6 bg-brand-purple rounded-full"></div>
-            <h2 class="text-xl font-bold italic tracking-tight uppercase">
-              Objectives Checklist
-            </h2>
-          </div>
+      <!-- Checklist -->
+      <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+        <h2
+          class="text-xl font-bold italic tracking-tight uppercase mb-6 flex items-center gap-2"
+        >
+          <span class="text-brand-green">&#10004;</span> Lab Tasks
+        </h2>
+        <div class="space-y-4">
           <div
-            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
+            class="objective-card bg-slate-50 rounded-2xl p-5 border border-slate-100 flex items-start gap-4"
           >
             <div class="mt-1">
               <div class="custom-check" onclick="toggleCheck(this)">
@@ -159,13 +146,12 @@
                 1. Actualizar QA Roadmap
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Añadir TC-16 (GET) y TC-17 (POST) al Excel de pruebas con sus
-                respectivos pasos y resultados esperados.
+                Pegar la tabla con TC-18 y TC-19 en el documento Excel.
               </p>
             </div>
           </div>
           <div
-            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
+            class="objective-card bg-slate-50 rounded-2xl p-5 border border-slate-100 flex items-start gap-4"
           >
             <div class="mt-1">
               <div class="custom-check" onclick="toggleCheck(this)">
@@ -174,16 +160,16 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                2. Setup de <code>api.spec.ts</code>
+                2. Automatizar TC-18 (PUT)
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Crear el archivo en el framework e instanciar el fixture
-                especial <code>{ request }</code> de Playwright.
+                Usar <code>request.put()</code> para modificar el usuario 1 y
+                asertar el Status 200.
               </p>
             </div>
           </div>
           <div
-            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
+            class="objective-card bg-slate-50 rounded-2xl p-5 border border-slate-100 flex items-start gap-4"
           >
             <div class="mt-1">
               <div class="custom-check" onclick="toggleCheck(this)">
@@ -192,92 +178,97 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-800 text-lg">
-                3. Automatizar TC-16 (GET)
+                3. Automatizar TC-19 (DELETE)
               </h3>
               <p class="text-slate-500 text-sm mt-1">
-                Realizar la petición para obtener usuarios y hacer aserción del
-                código de estado 200 OK.
-              </p>
-            </div>
-          </div>
-          <div
-            class="objective-card bg-white rounded-2xl p-5 shadow-sm border border-slate-100 flex items-start gap-4"
-          >
-            <div class="mt-1">
-              <div class="custom-check" onclick="toggleCheck(this)">
-                &#10003;
-              </div>
-            </div>
-            <div>
-              <h3 class="font-bold text-slate-800 text-lg">
-                4. Automatizar TC-17 (POST)
-              </h3>
-              <p class="text-slate-500 text-sm mt-1">
-                Enviar un payload JSON para crear un usuario y validar el estado
-                201 Created y el ID devuelto.
+                Usar <code>request.delete()</code> y verificar el código de
+                éxito de eliminación de la BD.
               </p>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="lg:col-span-1 space-y-6">
-          <div
-            class="bg-brand-dark rounded-3xl p-6 md:p-8 text-white shadow-lg relative overflow-hidden"
+      <!-- Simulador de Entrevista -->
+      <div class="bg-brand-dark rounded-3xl p-8 shadow-lg text-white">
+        <div
+          class="flex items-center justify-between mb-8 border-b border-slate-700 pb-4"
+        >
+          <h2
+            class="text-xl font-bold italic tracking-tight uppercase flex items-center gap-3"
           >
-            <h3
-              class="text-brand-purple font-bold text-sm tracking-widest uppercase italic mb-6"
-            >
-              SDET Lab Notes
-            </h3>
-            <div class="space-y-6">
-              <div>
-                <h4
-                  class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
-                >
-                  Golden Rule
-                </h4>
-                <p
-                  class="text-slate-200 text-sm font-medium leading-relaxed italic"
-                >
-                  "El código es lo último que se escribe. Un SDET primero diseña
-                  el caso de prueba (Roadmap) y luego lo automatiza."
-                </p>
-              </div>
-              <div class="w-full h-px bg-slate-800"></div>
-              <div>
-                <h4
-                  class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2"
-                >
-                  API Speed
-                </h4>
-                <p
-                  class="text-brand-green text-sm font-bold leading-relaxed italic"
-                >
-                  Las pruebas de API tardan milisegundos en lugar de segundos
-                  porque evitan renderizar el DOM del navegador.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            class="bg-purple-50 rounded-3xl p-6 md:p-8 border border-purple-100 shadow-sm transition-transform hover:-translate-y-1"
+            <span class="text-brand-purple">&#127908;</span> Technical Interview
+            Simulator
+          </h2>
+          <span
+            class="bg-slate-800 text-slate-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"
+            >English Only</span
           >
-            <div class="flex items-center gap-2 mb-4">
-              <span class="text-xl">&#127823;</span>
-              <h3
-                class="font-bold text-brand-purple tracking-tight italic uppercase"
+        </div>
+
+        <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+          Reply to Gemini in the chat answering these 3 questions as if you were
+          in a real interview for a Senior SDET position.
+        </p>
+
+        <div class="space-y-6">
+          <!-- Pregunta 1 -->
+          <div class="question-card bg-slate-800/50 rounded-xl p-5">
+            <div class="flex justify-between items-start mb-2">
+              <span
+                class="text-brand-purple text-xs font-bold uppercase tracking-widest"
+                >ISTQB Chapter 1</span
               >
-                Meta 2026
-              </h3>
+              <span class="text-slate-500 text-xs">Q1</span>
             </div>
-            <p class="text-slate-600 font-medium leading-relaxed text-sm">
-              Evitar el burnout a toda costa. Descansar temprano por amor
-              propio, para cuidar la salud y estar al 100% presente para Mateo.
+            <p class="font-medium text-slate-200">
+              "Natalia, in the ISTQB principles, there is a concept called the
+              <span class="text-white font-bold">'Pesticide Paradox'</span>.
+              Could you explain what it means, and how we solve it in Automated
+              Testing?"
+            </p>
+          </div>
+
+          <!-- Pregunta 2 -->
+          <div class="question-card bg-slate-800/50 rounded-xl p-5">
+            <div class="flex justify-between items-start mb-2">
+              <span
+                class="text-brand-purple text-xs font-bold uppercase tracking-widest"
+                >ISTQB Chapter 1</span
+              >
+              <span class="text-slate-500 text-xs">Q2</span>
+            </div>
+            <p class="font-medium text-slate-200">
+              "Many junior developers confuse testing with debugging. As a
+              Senior QA, how would you explain the exact difference between
+              <span class="text-white font-bold">Testing</span> and
+              <span class="text-white font-bold">Debugging</span>?"
+            </p>
+          </div>
+
+          <!-- Pregunta 3 -->
+          <div
+            class="question-card bg-slate-800/50 rounded-xl p-5 border-l-4 border-l-brand-orange"
+          >
+            <div class="flex justify-between items-start mb-2">
+              <span
+                class="text-brand-orange text-xs font-bold uppercase tracking-widest"
+                >SDET Architecture</span
+              >
+              <span class="text-slate-500 text-xs">Q3</span>
+            </div>
+            <p class="font-medium text-slate-200">
+              "Imagine your Playwright API test runs a PUT request to update a
+              user's address, but it fails and returns a
+              <span class="text-white font-bold">500 Internal Server Error</span
+              >. Does this mean your Playwright script is wrong? How would you
+              handle this situation?"
             </p>
           </div>
         </div>
       </div>
     </div>
+
     <script>
       function updateProgress() {
         const checkboxes = document.querySelectorAll(".custom-check");
@@ -288,58 +279,12 @@
         });
         const percentage = Math.round((checkedCount / total) * 100);
 
-        const progressBar = document.getElementById("progress-bar");
-        progressBar.style.width = percentage + "%";
-
-        const textElement = document.getElementById("progress-text");
-        const textContainer = document.getElementById(
-          "progress-text-container",
-        );
-        const progressContainer = document.getElementById("progress-container");
-        const progressLabel = document.getElementById("progress-label");
-
-        animateValue(
-          textElement,
-          parseInt(textElement.innerText),
-          percentage,
-          500,
-        );
-
-        if (percentage === 100) {
-          progressBar.classList.remove("bg-brand-purple");
-          progressBar.classList.add("bg-brand-green");
-          textContainer.classList.remove("text-brand-orange");
-          textContainer.classList.add("text-brand-green");
-          progressContainer.classList.add("victory-glow", "bg-green-50");
-          progressContainer.classList.remove("bg-slate-50");
-          progressLabel.innerText = "SESSION COMPLETE!";
-          progressLabel.classList.remove("text-slate-500");
-          progressLabel.classList.add("text-brand-green");
-        } else {
-          progressBar.classList.add("bg-brand-purple");
-          progressBar.classList.remove("bg-brand-green");
-          textContainer.classList.add("text-brand-orange");
-          textContainer.classList.remove("text-brand-green");
-          progressContainer.classList.remove("victory-glow", "bg-green-50");
-          progressContainer.classList.add("bg-slate-50");
-          progressLabel.innerText = "S19 Progress";
-          progressLabel.classList.add("text-slate-500");
-          progressLabel.classList.remove("text-brand-green");
-        }
+        document.getElementById("progress-bar").style.width = percentage + "%";
+        document.getElementById("progress-text").innerText = percentage + "%";
       }
       function toggleCheck(element) {
         element.classList.toggle("checked");
         updateProgress();
-      }
-      function animateValue(obj, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-          if (!startTimestamp) startTimestamp = timestamp;
-          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-          obj.innerHTML = Math.floor(progress * (end - start) + start);
-          if (progress < 1) window.requestAnimationFrame(step);
-        };
-        window.requestAnimationFrame(step);
       }
     </script>
   </body>
