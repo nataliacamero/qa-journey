@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { log } from "node:console";
 
 interface IResponseBodyJSONPlaceHolder {
   name: string;
@@ -95,7 +96,11 @@ test.describe("Pruebas del backend", () => {
     const response = await request.delete(
       "https://jsonplaceholder.typicode.com/users/1",
     );
-
     expect(response.status()).toBe(200);
+
+    const responseBody = await response.json();
+    console.log("responseBody del DELETE", responseBody);
+
+    expect(Object.keys(responseBody).length).toBe(0);
   });
 });
