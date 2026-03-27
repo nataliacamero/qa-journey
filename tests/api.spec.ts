@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-interface IResponseBodyPost {
+interface IResponseBodyJSONPlaceHolder {
   name: string;
   job: string;
   id: number;
@@ -60,10 +60,42 @@ test.describe("Pruebas del backend", () => {
     expect(response.status()).toBe(201);
 
     // Extraemos la respuesta del servidor.
-    const responseBody: IResponseBodyPost = await response.json();
+    const responseBody: IResponseBodyJSONPlaceHolder = await response.json();
     console.log("responseBody", responseBody);
 
     expect(responseBody.name).toBe(newUserData.name);
     expect(responseBody.id).toBeDefined();
+  });
+
+  test("TC-18: Validar actualización de usuario mediante PUT (API)", async ({
+    request,
+  }) => {
+    // Preparamos los datos que nesitaremos
+    const newDataUser = {
+      name: "Mateito Amado",
+      job: "SDTE",
+    };
+
+    const response = await request.put(
+      "https://jsonplaceholder.typicode.com/users/1",
+      { data: newDataUser },
+    );
+    expect(response.status()).toBe(200);
+
+    const responseBody: IResponseBodyJSONPlaceHolder = await response.json();
+    console.log("responseBody", responseBody);
+
+    expect(responseBody.name).toBe(newDataUser.name);
+    expect(responseBody.job).toBe(newDataUser.job);
+  });
+
+  test("TC-19: Validar eliminación de usuario mediante DELETE (API)", async ({
+    request,
+  }) => {
+    const response = await request.delete(
+      "https://jsonplaceholder.typicode.com/users/1",
+    );
+
+    expect(response.status()).toBe(200);
   });
 });
