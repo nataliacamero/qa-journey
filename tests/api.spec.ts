@@ -1,5 +1,4 @@
 import { expect, test } from "@playwright/test";
-import { log } from "node:console";
 
 interface IResponseBodyJSONPlaceHolder {
   name: string;
@@ -32,9 +31,7 @@ test.describe("Pruebas del backend", () => {
   test("TC-016: Validar respuesta GET de lista de usuarios (API)", async ({
     request,
   }) => {
-    const response = await request.get(
-      "https://jsonplaceholder.typicode.com/users",
-    );
+    const response = await request.get("/users");
 
     expect(response.status()).toBe(200);
 
@@ -53,10 +50,7 @@ test.describe("Pruebas del backend", () => {
       job: "Senior SDTE",
     };
 
-    const response = await request.post(
-      "https://jsonplaceholder.typicode.com/users",
-      { data: newUserData },
-    );
+    const response = await request.post("/users", { data: newUserData });
     // Validadmos el status code de creacion del registro o recurso 201.
     expect(response.status()).toBe(201);
 
@@ -77,10 +71,7 @@ test.describe("Pruebas del backend", () => {
       job: "SDTE",
     };
 
-    const response = await request.put(
-      "https://jsonplaceholder.typicode.com/users/1",
-      { data: newDataUser },
-    );
+    const response = await request.put("/users/1", { data: newDataUser });
     expect(response.status()).toBe(200);
 
     const responseBody: IResponseBodyJSONPlaceHolder = await response.json();
@@ -93,9 +84,7 @@ test.describe("Pruebas del backend", () => {
   test("TC-19: Validar eliminación de usuario mediante DELETE (API)", async ({
     request,
   }) => {
-    const response = await request.delete(
-      "https://jsonplaceholder.typicode.com/users/1",
-    );
+    const response = await request.delete("/users/1");
     expect(response.status()).toBe(200);
 
     const responseBody = await response.json();
